@@ -17,7 +17,17 @@ graphics = {
 			Timer.cancel(graphics.fadeTimer)
 		end
 		
-		graphics.fadeTimer = Timer.tween(duration, graphics.fade, {0}, "linear", func)
+		graphics.fadeTimer = Timer.tween(
+			duration,
+			graphics.fade,
+			{0},
+			"linear",
+			function()
+				graphics.fade = {0} -- Force precision
+				
+				if func then func() end
+			end
+		)
 	end,
 	
 	fadeIn = function(duration, func)
@@ -25,7 +35,17 @@ graphics = {
 			Timer.cancel(graphics.fadeTimer)
 		end
 		
-		graphics.fadeTimer = Timer.tween(duration, graphics.fade, {1}, "linear", func)
+		graphics.fadeTimer = Timer.tween(
+			duration,
+			graphics.fade,
+			{1},
+			"linear",
+			function()
+				graphics.fade = {1} -- Force precision
+				
+				if func then func() end
+			end
+		)
 	end,
 	
 	setColor = function(r, g, b, a)

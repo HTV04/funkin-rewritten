@@ -73,22 +73,24 @@ tutorial = {
 	
 	update = function(dt)
 		if gameOver then
-			if graphics.fade[1] == 1 and input:pressed("confirm") then
-				if inst then -- In case "confirm" is pressed before game over music starts
-					inst:stop()
+			if graphics.fade[1] == 1 then
+				if input:pressed("confirm") then
+					if inst then -- In case "confirm" is pressed before game over music starts
+						inst:stop()
+					end
+					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
+					inst:play()
+					
+					Timer.clear()
+					
+					cam.x, cam.y = -boyfriend.x, -boyfriend.y
+					
+					boyfriend:animate("dead confirm", false)
+					
+					graphics.fadeOut(3, tutorial.load)
+				elseif input:pressed("gameBack") then
+					graphics.fadeOut(1, tutorial.stop)
 				end
-				inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
-				inst:play()
-				
-				Timer.clear()
-				
-				cam.x, cam.y = -boyfriend.x, -boyfriend.y
-				
-				boyfriend:animate("dead confirm", false)
-				
-				graphics.fadeOut(3, tutorial.load)
-			elseif input:pressed("gameBack") then
-				graphics.fadeOut(1, tutorial.stop)
 			end
 			
 			boyfriend:update(dt)

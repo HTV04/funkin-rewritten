@@ -63,8 +63,7 @@ showFps=false
 			settings["Video"]["width"],
 			settings["Video"]["height"],
 			{
-				resizable = true,
-				vsync = tonumber(settings["Video"]["vsync"])
+				resizable = true
 			}
 		)
 	end
@@ -105,8 +104,6 @@ end
 function love.update(dt)
 	dt = math.min(dt, 1/15) -- To prevent game crashes, min 15 FPS (any lower slows down the game)
 	
-	Timer.update(dt)
-	
 	input:update()
 	
 	if inMenu then
@@ -122,6 +119,8 @@ function love.update(dt)
 			tutorial.update(dt)
 		end
 	end
+	
+	Timer.update(dt)
 end
 
 function love.draw()

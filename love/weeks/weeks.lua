@@ -787,12 +787,12 @@ weeks = {
 		storyMode = false
 		inGame = false
 		
-		graphics.fade[1] = 1
-		
 		cam.sizeX, cam.sizeY = 0.9, 0.9
 		camScale.x, camScale.y = 0.9, 0.9
 		
 		menuState = 0
+		
+		graphics.fadeIn(0.5)
 		
 		music:play()
 	end

@@ -60,20 +60,22 @@ week2 = {
 	
 	update = function(dt)
 		if gameOver then
-			if graphics.fade[1] == 1 and input:pressed("confirm") then
-				inst:stop()
-				inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
-				inst:play()
-				
-				Timer.clear()
-				
-				cam.x, cam.y = -boyfriend.x, -boyfriend.y
-				
-				boyfriend:animate("dead confirm", false)
-				
-				graphics.fadeOut(3, week2.load)
-			elseif input:pressed("gameBack") then
-				graphics.fadeOut(1, week2.stop)
+			if graphics.fade[1] == 1 then
+				if input:pressed("confirm") then
+					inst:stop()
+					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
+					inst:play()
+					
+					Timer.clear()
+					
+					cam.x, cam.y = -boyfriend.x, -boyfriend.y
+					
+					boyfriend:animate("dead confirm", false)
+					
+					graphics.fadeOut(3, week2.load)
+				elseif input:pressed("gameBack") then
+					graphics.fadeOut(1, week2.stop)
+				end
 			end
 			
 			boyfriend:update(dt)

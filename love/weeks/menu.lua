@@ -130,18 +130,18 @@ menu = {
 					)
 				end
 			elseif input:pressed("back") then
-				audio.playSound(selectSound)
+				if menuState > 0 then -- Don't play sound if exiting the game
+					audio.playSound(selectSound)
+				end
 				
 				menuState = menuState - 1
 				
-				if menuState == 1 then
-					songDifficulty = 2
-				elseif menuState == 0 then
+				if menuState == 0 then
 					songNum = 0
 				elseif menuState < 0 then
 					menuState = 0 -- So menuState isn't an "invalid" value
 					
-					love.event.quit()
+					graphics.fadeOut(1, love.event.quit)
 				end
 			end
 		end
