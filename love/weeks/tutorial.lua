@@ -2,7 +2,7 @@
 This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
-tutorial = {
+weeks[0] = {
 	init = function(songNum)
 		bpm = 100
 		enemyFrameTimer = 0
@@ -18,8 +18,6 @@ tutorial = {
 		}
 		
 		sheets = {
-			["girlfriend"] = love.graphics.newImage("images/GF_assets.png"),
-			["boyfriend"] = love.graphics.newImage("images/BOYFRIEND.png"),
 			["icons"] = love.graphics.newImage("images/iconGrid.png")
 		}
 		
@@ -27,9 +25,9 @@ tutorial = {
 			["icons"] = love.filesystem.load("sprites/icons.lua")
 		}
 		
-		stageBack = Image("images/stageback.png")
-		stageFront = Image("images/stagefront.png")
-		curtains = Image("images/stagecurtains.png")
+		stageBack = Image(love.graphics.newImage("images/stageback.png"))
+		stageFront = Image(love.graphics.newImage("images/stagefront.png"))
+		curtains = Image(love.graphics.newImage("images/stagecurtains.png"))
 		
 		stageFront.y = 400
 		curtains.y = -100
@@ -49,7 +47,7 @@ tutorial = {
 		
 		enemyIcon:animate("girlfriend", false)
 		
-		tutorial.load()
+		weeks[0].load()
 	end,
 	
 	load = function()
@@ -58,7 +56,7 @@ tutorial = {
 		inst = nil
 		voices = love.audio.newSource("music/Tutorial_Inst.ogg", "stream")
 		
-		tutorial.initUI(songNum)
+		weeks[0].initUI(songNum)
 		
 		weeks.voicesPlay()
 	end,
@@ -66,9 +64,7 @@ tutorial = {
 	initUI = function(songNum)
 		weeks.initUI()
 		
-		chart = love.filesystem.load("charts/tutorial" .. songAppend .. ".lua")()
-		
-		weeks.generateNotes(chart)
+		weeks.generateNotes(love.filesystem.load("charts/tutorial" .. songAppend .. ".lua")())
 	end,
 	
 	update = function(dt)
@@ -87,9 +83,9 @@ tutorial = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, tutorial.load)
+					graphics.fadeOut(3, weeks[0].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, tutorial.stop)
+					graphics.fadeOut(1, weeks[0].stop)
 				end
 			end
 			
@@ -98,7 +94,7 @@ tutorial = {
 			return
 		end
 			
-		weeks.updateInput()
+		oldMusicThres = musicThres
 		
 		musicTime = musicTime + (love.timer.getTime() * 1000) - previousFrameTime
 		previousFrameTime = love.timer.getTime() * 1000
@@ -108,24 +104,7 @@ tutorial = {
 			lastReportedPlaytime = voices:tell("seconds") * 1000
 		end
 		
-		musicThres = math.floor(musicTime / 100) -- Since "musicTime" isn't precise, we need this
-		
-		enemy:update(dt)
-		boyfriend:update(dt)
-		
-		enemy.anim.speed = 14.4 / (60 / bpm)
-		
-		if enemyFrameTimer >= 29 then
-			enemy:animate("idle", true)
-			enemyFrameTimer = 0
-		end
-		enemyFrameTimer = enemyFrameTimer + 14.4 / (60 / bpm) * dt
-		
-		if boyfriendFrameTimer >= 13 then
-			boyfriend:animate("idle", true)
-			boyfriendFrameTimer = 0
-		end
-		boyfriendFrameTimer = boyfriendFrameTimer + 24 * dt
+		musicThres = math.floor(musicTime / 100) -- Since "musicTime" isn't precise, this is needed
 		
 		for i = 1, #events do
 			if events[i].eventTime <= musicTime then
@@ -152,15 +131,30 @@ tutorial = {
 			Timer.tween((60 / bpm) / 16, cam, {sizeX = camScale.x * 1.05, sizeY = camScale.y * 1.05}, "out-quad", function() Timer.tween((60 / bpm), cam, {sizeX = camScale.x, sizeY = camScale.y}, "out-quad") end)
 		end
 		
+		enemy:update(dt)
+		boyfriend:update(dt)
+		
+		enemy.anim.speed = 14.4 / (60 / bpm)
+		
+		if enemyFrameTimer >= 29 then
+			enemy:animate("idle", true)
+			enemyFrameTimer = 0
+		end
+		enemyFrameTimer = enemyFrameTimer + 14.4 / (60 / bpm) * dt
+		
+		if boyfriendFrameTimer >= 13 then
+			boyfriend:animate("idle", true)
+			boyfriendFrameTimer = 0
+		end
+		boyfriendFrameTimer = boyfriendFrameTimer + 24 * dt
+		
 		if graphics.fade[1] == 1 and not voices:isPlaying() then
 			storyMode = false
 			
-			graphics.fadeOut(1, tutorial.stop)
+			graphics.fadeOut(1, weeks[0].stop)
 		end
 		
 		weeks.updateUI(dt)
-		
-		weeks.updateEnd(dt)
 	end,
 	
 	draw = function()
@@ -194,7 +188,7 @@ tutorial = {
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			tutorial.drawUI()
+			weeks[0].drawUI()
 		love.graphics.pop()
 	end,
 	

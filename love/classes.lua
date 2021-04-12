@@ -10,7 +10,7 @@ Image = Class {
 		self.shearX = 0
 		self.shearY = 0
 		
-		self.image = love.graphics.newImage(image)
+		self.image = image
 		self.width = self.image:getWidth()
 		self.height = self.image:getHeight()
 	end,
@@ -92,34 +92,36 @@ Sprite = Class {
 		self.loopAnim = loopAnim
 	end,
 	draw = function(self)
-		local width
-		local height
-		
 		local currentFrame = math.floor(self.currentFrame)
 		
-		if self.frameData[currentFrame].offsetWidth == 0 then
-			width = self.frameData[currentFrame].width / 2
-		else
-			width = self.frameData[currentFrame].offsetWidth / 2 + self.frameData[currentFrame].offsetX
+		if currentFrame <= self.anim.stop then
+			local width
+			local height
+			
+			if self.frameData[currentFrame].offsetWidth == 0 then
+				width = self.frameData[currentFrame].width / 2
+			else
+				width = self.frameData[currentFrame].offsetWidth / 2 + self.frameData[currentFrame].offsetX
+			end
+			if self.frameData[currentFrame].offsetHeight == 0 then
+				height = self.frameData[currentFrame].height / 2
+			else
+				height = self.frameData[currentFrame].offsetHeight / 2 + self.frameData[currentFrame].offsetY
+			end
+			
+			love.graphics.draw(
+				self.sheet,
+				self.frames[currentFrame],
+				self.x,
+				self.y,
+				self.orientation,
+				self.sizeX,
+				self.sizeY,
+				width + self.anim.offsetX / 2 + self.offsetX,
+				height + self.anim.offsetY / 2 + self.offsetY,
+				self.shearX,
+				self.shearY
+			)
 		end
-		if self.frameData[currentFrame].offsetHeight == 0 then
-			height = self.frameData[currentFrame].height / 2
-		else
-			height = self.frameData[currentFrame].offsetHeight / 2 + self.frameData[currentFrame].offsetY
-		end
-		
-		love.graphics.draw(
-			self.sheet,
-			self.frames[currentFrame],
-			self.x,
-			self.y,
-			self.orientation,
-			self.sizeX,
-			self.sizeY,
-			width + self.anim.offsetX / 2 + self.offsetX,
-			height + self.anim.offsetY / 2 + self.offsetY,
-			self.shearX,
-			self.shearY
-		)
 	end
 }

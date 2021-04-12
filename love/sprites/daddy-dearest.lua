@@ -3,7 +3,7 @@ This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	sheets["daddy dearest"],
+	love.graphics.newImage("images/DADDY_DEAREST.png"),
 	-- Automatically generated from DADDY_DEAREST.xml
 	{
 		{x = 1369, y = 0, width = 470, height = 730, offsetX = 0, offsetY = -5, offsetWidth = 470, offsetHeight = 735}, -- 1: Dad Sing Note DOWN0000

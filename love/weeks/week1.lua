@@ -2,15 +2,13 @@
 This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
-week1 = {
+weeks[1] = {
 	init = function()
 		weeks.init()
 		
-		sheets["daddy dearest"] = love.graphics.newImage("images/DADDY_DEAREST.png")
-		
-		stageBack = Image("images/stageback.png")
-		stageFront = Image("images/stagefront.png")
-		curtains = Image("images/stagecurtains.png")
+		stageBack = Image(love.graphics.newImage("images/stageback.png"))
+		stageFront = Image(love.graphics.newImage("images/stagefront.png"))
+		curtains = Image(love.graphics.newImage("images/stagecurtains.png"))
 		
 		stageFront.y = 400
 		curtains.y = -100
@@ -23,7 +21,7 @@ week1 = {
 		
 		enemyIcon:animate("daddy dearest", false)
 		
-		week1.load()
+		weeks[1].load()
 	end,
 	
 	load = function()
@@ -40,7 +38,7 @@ week1 = {
 			voices = love.audio.newSource("music/Bopeebo_Voices.ogg", "stream")
 		end
 		
-		week1.initUI()
+		weeks[1].initUI()
 		
 		inst:play()
 		weeks.voicesPlay()
@@ -50,14 +48,12 @@ week1 = {
 		weeks.initUI()
 		
 		if songNum == 2 then
-			chart = love.filesystem.load("charts/fresh" .. songAppend .. ".lua")()
+			weeks.generateNotes(love.filesystem.load("charts/fresh" .. songAppend .. ".lua")())
 		elseif songNum == 3 then
-			chart = love.filesystem.load("charts/dadbattle" .. songAppend .. ".lua")()
+			weeks.generateNotes(love.filesystem.load("charts/dadbattle" .. songAppend .. ".lua")())
 		else
-			chart = love.filesystem.load("charts/bopeebo" .. songAppend .. ".lua")()
+			weeks.generateNotes(love.filesystem.load("charts/bopeebo" .. songAppend .. ".lua")())
 		end
-		
-		weeks.generateNotes(chart)
 	end,
 	
 	update = function(dt)
@@ -74,9 +70,9 @@ week1 = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, week1.load)
+					graphics.fadeOut(3, weeks[1].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, week1.stop)
+					graphics.fadeOut(1, weeks[1].stop)
 				end
 			end
 			
@@ -84,8 +80,6 @@ week1 = {
 			
 			return
 		end
-		
-		weeks.updateInput()
 		
 		weeks.update(dt)
 		
@@ -114,17 +108,15 @@ week1 = {
 			if storyMode and songNum < 3 then
 				songNum = songNum + 1
 			else
-				graphics.fadeOut(1, week1.stop)
+				graphics.fadeOut(1, weeks[1].stop)
 				
 				return
 			end
 			
-			week1.load()
+			weeks[1].load()
 		end
 		
 		weeks.updateUI(dt)
-		
-		weeks.updateEnd(dt)
 	end,
 	
 	draw = function()
@@ -160,7 +152,7 @@ week1 = {
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			week1.drawUI()
+			weeks[1].drawUI()
 		love.graphics.pop()
 	end,
 	

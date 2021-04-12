@@ -3,7 +3,7 @@ This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	sheets["haunted house"],
+	love.graphics.newImage("images/halloween_bg.png"),
 	-- Automatically generated from halloween_bg.xml
 	{
 		{x = 0, y = 0, width = 2114, height = 1075, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: halloweem bg0000

@@ -2,7 +2,7 @@
 This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
-week2 = {
+weeks[2] = {
 	init = function()
 		weeks.init()
 		
@@ -14,9 +14,6 @@ week2 = {
 			love.audio.newSource("sounds/thunder_2.ogg", "static")
 		}
 		
-		sheets["haunted house"] = love.graphics.newImage("images/halloween_bg.png")
-		sheets["skid and pump"] = love.graphics.newImage("images/spooky_kids_assets.png")
-		
 		hauntedHouse = love.filesystem.load("sprites/haunted-house.lua")()
 		enemy = love.filesystem.load("sprites/skid-and-pump.lua")()
 		
@@ -26,7 +23,7 @@ week2 = {
 		
 		enemyIcon:animate("skid and pump", false)
 		
-		week2.load()
+		weeks[2].load()
 	end,
 	
 	load = function()
@@ -40,7 +37,7 @@ week2 = {
 			voices = love.audio.newSource("music/Spookeez_Voices.ogg", "stream")
 		end
 		
-		week2.initUI()
+		weeks[2].initUI()
 		
 		inst:play()
 		weeks.voicesPlay()
@@ -50,12 +47,10 @@ week2 = {
 		weeks.initUI()
 		
 		if songNum == 2 then
-			chart = love.filesystem.load("charts/south" .. songAppend .. ".lua")()
+			weeks.generateNotes(love.filesystem.load("charts/south" .. songAppend .. ".lua")())
 		else
-			chart = love.filesystem.load("charts/spookeez" .. songAppend .. ".lua")()
+			weeks.generateNotes(love.filesystem.load("charts/spookeez" .. songAppend .. ".lua")())
 		end
-		
-		weeks.generateNotes(chart)
 	end,
 	
 	update = function(dt)
@@ -72,9 +67,9 @@ week2 = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, week2.load)
+					graphics.fadeOut(3, weeks[2].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, week2.stop)
+					graphics.fadeOut(1, weeks[2].stop)
 				end
 			end
 			
@@ -82,8 +77,6 @@ week2 = {
 			
 			return
 		end
-		
-		weeks.updateInput()
 		
 		weeks.update(dt)
 		
@@ -123,17 +116,15 @@ week2 = {
 			if storyMode and songNum < 2 then
 				songNum = songNum + 1
 			else
-				graphics.fadeOut(1, week2.stop)
+				graphics.fadeOut(1, weeks[2].stop)
 				
 				return
 			end
 			
-			week2.load()
+			weeks[2].load()
 		end
 		
 		weeks.updateUI(dt)
-		
-		weeks.updateEnd(dt)
 	end,
 	
 	draw = function()
@@ -162,7 +153,7 @@ week2 = {
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			week2.drawUI()
+			weeks[2].drawUI()
 		love.graphics.pop()
 	end,
 	

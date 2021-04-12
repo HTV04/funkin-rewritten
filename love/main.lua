@@ -5,23 +5,23 @@ By HTV04
 
 function love.load()
 	-- Load libraries
-	baton = require("lib.baton")
-	Class = require("lib.class")
-	ini = require("lib.ini")
-	lovesize = require("lib.lovesize")
-	Timer = require("lib.timer")
+	baton = require "lib.baton"
+	Class = require "lib.class"
+	ini = require "lib.ini"
+	lovesize = require "lib.lovesize"
+	Timer = require "lib.timer"
 	
-	-- Weeks Engine init
-	require("weeks.classes")
-	require("weeks.modules")
+	-- Load engine
+	require "classes"
+	require "modules"
+	require "menu"
+	require "weeks"
 	
-	require("weeks.menu")
-	require("weeks.weeks")
-	
-	require("weeks.tutorial")
-	require("weeks.week1")
-	require("weeks.week2")
-	require("weeks.week3")
+	-- Load week data
+	require "weeks.tutorial"
+	require "weeks.week1"
+	require "weeks.week2"
+	require "weeks.week3"
 	
 	-- Create, read and apply settings
 	if not love.filesystem.getInfo("settings.ini") then
@@ -48,27 +48,27 @@ showFps=false
 	
 	settings = ini.load("settings.ini")
 	
-	if settings["Video"]["fullscreen"] == "true" then
+	if ini.readKey(settings, "Video", "fullscreen") == "true" then
 		love.window.setMode(
-			settings["Video"]["width"],
-			settings["Video"]["height"],
+			ini.readKey(settings, "Video", "width"),
+			ini.readKey(settings, "Video", "height"),
 			{
 				fullscreen = true,
-				fullscreentype = settings["Video"]["fullscreenType"],
-				vsync = tonumber(settings["Video"]["vsync"])
+				fullscreentype = ini.readKey(settings, "Video", "fullscreenType"),
+				vsync = tonumber(ini.readKey(settings, "Video", "vsync"))
 			}
 		)
 	else
 		love.window.setMode(
-			settings["Video"]["width"],
-			settings["Video"]["height"],
+			ini.readKey(settings, "Video", "width"),
+			ini.readKey(settings, "Video", "height"),
 			{
 				resizable = true
 			}
 		)
 	end
 	
-	if settings["Advanced"]["showFps"] == "true" then
+	if ini.readKey(settings, "Advanced", "showFps") == "true" then
 		settings.showFps = true
 	else
 		settings.showFps = false
@@ -109,15 +109,7 @@ function love.update(dt)
 	if inMenu then
 		menu.update(dt)
 	elseif inGame then
-		if weekNum == 3 then
-			week3.update(dt)
-		elseif weekNum == 2 then
-			week2.update(dt)
-		elseif weekNum == 1 then
-			week1.update(dt)
-		else
-			tutorial.update(dt)
-		end
+		weeks[weekNum].update(dt)
 	end
 	
 	Timer.update(dt)
@@ -134,15 +126,7 @@ function love.draw()
 			if inMenu then
 				menu.draw()
 			elseif inGame then
-				if weekNum == 3 then
-					week3.draw()
-				elseif weekNum == 2 then
-					week2.draw()
-				elseif weekNum == 1 then
-					week1.draw()
-				else
-					tutorial.draw()
-				end
+				weeks[weekNum].draw()
 			end
 		love.graphics.pop()
 		

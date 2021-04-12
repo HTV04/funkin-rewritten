@@ -2,10 +2,10 @@
 This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
+-- NOTE: Pico's sprites are flipped horizontally as an enemy!
+-- TODO: Maybe remove miss anim data?
 return Sprite (
-	sheets["pico"],
-	-- NOTE: Pico's sprites need to be flipped horizontally!
-	-- TODO: Maybe remove miss anim data?
+	love.graphics.newImage("images/Pico_FNF_assetss.png"), -- Not a typo ;)
 	-- Automatically generated from Pico_FNF_assetss.xml
 	{
 		{x = 0, y = 0, width = 723, height = 382, offsetX = -13, offsetY = -9, offsetWidth = 736, offsetHeight = 392}, -- 1: Pico Down Note0000

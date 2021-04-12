@@ -33,8 +33,8 @@ menu = {
 		selectSound = love.audio.newSource("sounds/scrollMenu.ogg", "static")
 		confirmSound = love.audio.newSource("sounds/confirmMenu.ogg", "static")
 		
-		titleBG = Image("images/titleBG.png")
-		logo = Image("images/logo.png")
+		titleBG = Image(love.graphics.newImage("images/titleBG.png"))
+		logo = Image(love.graphics.newImage("images/logo.png"))
 		
 		girlfriendTitle = love.filesystem.load("sprites/girlfriend-dance-title.lua")()
 		
@@ -49,6 +49,8 @@ menu = {
 	end,
 	
 	update = function(dt)
+		girlfriendTitle:update(dt)
+		
 		if graphics.fade[1] == 1 then
 			if input:pressed("left") then
 				audio.playSound(selectSound)
@@ -117,15 +119,7 @@ menu = {
 								storyMode = true
 							end
 							
-							if weekNum == 3 then
-								week3.init()
-							elseif weekNum == 2 then
-								week2.init()
-							elseif weekNum == 1 then
-								week1.init()
-							else
-								tutorial.init()
-							end
+							weeks[weekNum].init()
 						end
 					)
 				end
@@ -145,8 +139,6 @@ menu = {
 				end
 			end
 		end
-		
-		girlfriendTitle:update(dt)
 	end,
 	
 	draw = function()

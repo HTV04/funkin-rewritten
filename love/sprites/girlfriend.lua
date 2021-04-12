@@ -3,7 +3,7 @@ This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	sheets["girlfriend"],
+	love.graphics.newImage("images/GF_assets.png"),
 	-- Automatically generated from GF_assets.xml
 	{
 		{x = 0, y = 0, width = 699, height = 657, offsetX = -2, offsetY = 0, offsetWidth = 703, offsetHeight = 657}, -- 1: GF Cheer0000
