@@ -301,36 +301,29 @@ weeks = {
 					
 					enemyArrows[1]:animate("confirm", false)
 					
-					if enemy.anim.name ~= "left" or enemyNotes[i].anim.name == "on" then
-						enemy:animate("left", false)
-						enemyFrameTimer = 0
-					end
+					enemy:animate("left", false)
+					enemyFrameTimer = 0
 				elseif enemyNotes[1].x == enemyArrows[2].x then
 					voices:setVolume(1)
 					
 					enemyArrows[2]:animate("confirm", false)
 					
-					if enemy.anim.name ~= "down" or enemyNotes[i].anim.name == "on" then
-						enemy:animate("down", false)
-						enemyFrameTimer = 0
-					end
+					enemy:animate("down", false)
+					enemyFrameTimer = 0
 				elseif enemyNotes[1].x == enemyArrows[3].x then
 					voices:setVolume(1)
 					
 					enemyArrows[3]:animate("confirm", false)
-					if enemy.anim.name ~= "up" or enemyNotes[i].anim.name == "on" then
-						enemy:animate("up", false)
-						enemyFrameTimer = 0
-					end
+					
+					enemy:animate("up", false)
+					enemyFrameTimer = 0
 				elseif enemyNotes[1].x == enemyArrows[4].x then
 					voices:setVolume(1)
 					
 					enemyArrows[4]:animate("confirm", false)
 					
-					if enemy.anim.name ~= "right" or enemyNotes[i].anim.name == "on" then
-						enemy:animate("right", false)
-						enemyFrameTimer = 0
-					end
+					enemy:animate("right", false)
+					enemyFrameTimer = 0
 				end
 				
 				table.remove(enemyNotes, 1)
@@ -381,6 +374,7 @@ weeks = {
 						table.remove(boyfriendNotes, i)
 						
 						boyfriendArrows[1]:animate("confirm", false)
+						
 						boyfriend:animate("left", false)
 						boyfriendFrameTimer = 0
 						
@@ -425,6 +419,7 @@ weeks = {
 						table.remove(boyfriendNotes, i)
 						
 						boyfriendArrows[2]:animate("confirm", false)
+						
 						boyfriend:animate("down", false)
 						boyfriendFrameTimer = 0
 						
@@ -467,7 +462,9 @@ weeks = {
 						end
 						
 						table.remove(boyfriendNotes, i)
+						
 						boyfriendArrows[3]:animate("confirm", false)
+						
 						boyfriend:animate("up", false)
 						boyfriendFrameTimer = 0
 						
@@ -512,6 +509,7 @@ weeks = {
 						table.remove(boyfriendNotes, i)
 						
 						boyfriendArrows[4]:animate("confirm", false)
+						
 						boyfriend:animate("right", false)
 						boyfriendFrameTimer = 0
 						
@@ -544,10 +542,9 @@ weeks = {
 					table.remove(boyfriendNotes, i)
 					
 					boyfriendArrows[1]:animate("confirm", false)
-					if boyfriend.anim.name ~= "left" then
-						boyfriend:animate("left", false)
-						boyfriendFrameTimer = 0
-					end
+					
+					boyfriend:animate("left", false)
+					boyfriendFrameTimer = 0
 					
 					health = health + 1
 					
@@ -563,10 +560,9 @@ weeks = {
 					table.remove(boyfriendNotes, i)
 					
 					boyfriendArrows[2]:animate("confirm", false)
-					if boyfriend.anim.name ~= "down" then
-						boyfriend:animate("down", false)
-						boyfriendFrameTimer = 0
-					end
+					
+					boyfriend:animate("down", false)
+					boyfriendFrameTimer = 0
 					
 					health = health + 1
 					
@@ -582,10 +578,9 @@ weeks = {
 					table.remove(boyfriendNotes, i)
 					
 					boyfriendArrows[3]:animate("confirm", false)
-					if boyfriend.anim.name ~= "up" then
-						boyfriend:animate("up", false)
-						boyfriendFrameTimer = 0
-					end
+					
+					boyfriend:animate("up", false)
+					boyfriendFrameTimer = 0
 					
 					health = health + 1
 					
@@ -601,10 +596,9 @@ weeks = {
 					table.remove(boyfriendNotes, i)
 					
 					boyfriendArrows[4]:animate("confirm", false)
-					if boyfriend.anim.name ~= "right" then
-						boyfriend:animate("right", false)
-						boyfriendFrameTimer = 0
-					end
+					
+					boyfriend:animate("right", false)
+					boyfriendFrameTimer = 0
 					
 					health = health + 1
 					
