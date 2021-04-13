@@ -153,12 +153,8 @@ weeks[2] = {
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			weeks[2].drawUI()
+			weeks.drawUI()
 		love.graphics.pop()
-	end,
-	
-	drawUI = function()
-		weeks.drawUI()
 	end,
 	
 	stop = function()

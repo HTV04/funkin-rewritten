@@ -6,20 +6,35 @@ weeks[3] = {
 	init = function()
 		weeks.init()
 		
+		cam.sizeX, cam.sizeY = 1, 1
+		camScale.x, camScale.y = 1, 1
+		
+		winColors = {
+			{49, 162, 253}, -- Blue
+			{49, 253, 140}, -- Green
+			{251, 51, 245}, -- Magenta
+			{253, 69, 49}, -- Orange
+			{251, 166, 51}, -- Yellow
+		}
+		winColor = 1
+		
 		sky = Image(love.graphics.newImage("images/sky.png"))
 		city = Image(love.graphics.newImage("images/city.png"))
+		cityWindows = Image(love.graphics.newImage("images/city-windows.png"))
 		behindTrain = Image(love.graphics.newImage("images/behindTrain.png"))
 		street = Image(love.graphics.newImage("images/street.png"))
 		
+		behindTrain.y = -100
+		behindTrain.sizeX, behindTrain.sizeY = 1.25, 1.25
 		street.y = -100
-		street.sizeX, street.sizeY = 1.5, 1.5
+		street.sizeX, street.sizeY = 1.25, 1.25
 		
 		enemy = love.filesystem.load("sprites/pico-enemy.lua")()
 		
-		girlfriend.x, girlfriend.y = -70, -40
-		enemy.x, enemy.y = -480, 140
+		girlfriend.x, girlfriend.y = -70, -140
+		enemy.x, enemy.y = -480, 40
 		enemy.sizeX = -1 -- Reverse, reverse!
-		boyfriend.x, boyfriend.y = 165, 150
+		boyfriend.x, boyfriend.y = 165, 50
 		
 		enemyIcon:animate("pico", false)
 		
@@ -85,6 +100,14 @@ weeks[3] = {
 		
 		weeks.update(dt)
 		
+		if musicThres ~= oldMusicThres and math.fmod(musicTime, 240000 / bpm) < 100 then
+			winColor = winColor + 1
+			
+			if winColor > 5 then
+				winColor = 1
+			end
+		end
+		
 		if enemyFrameTimer >= 13 then
 			enemy:animate("idle", true)
 			enemyFrameTimer = 0
@@ -117,6 +140,8 @@ weeks[3] = {
 	end,
 	
 	draw = function()
+		local curWinColor = winColors[winColor]
+		
 		weeks.draw()
 		
 		if not inGame or gameOver then
@@ -134,18 +159,21 @@ weeks[3] = {
 				love.graphics.translate(cam.x * 0.5, cam.y * 0.5)
 				
 				city:draw()
+				graphics.setColor(curWinColor[1] / 255, curWinColor[2] / 255, curWinColor[3] / 255)
+					cityWindows:draw()
+				graphics.setColor(1, 1, 1)
 			love.graphics.pop()
 			love.graphics.push()
-				love.graphics.translate(cam.x * 0.75, cam.y * 0.75)
+				love.graphics.translate(cam.x * 0.9, cam.y * 0.9)
 				
 				behindTrain:draw()
+				street:draw()
+				
+				girlfriend:draw()
 			love.graphics.pop()
 			love.graphics.push()
 				love.graphics.translate(cam.x, cam.y)
 				
-				street:draw()
-				
-				girlfriend:draw()
 				enemy:draw()
 				boyfriend:draw()
 			love.graphics.pop()
@@ -154,12 +182,8 @@ weeks[3] = {
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			weeks[3].drawUI()
+			weeks.drawUI()
 		love.graphics.pop()
-	end,
-	
-	drawUI = function()
-		weeks.drawUI()
 	end,
 	
 	stop = function()

@@ -5,6 +5,7 @@ This file is part of Friday Night Funkin' Rewritten by HTV04
 weeks[0] = {
 	init = function(songNum)
 		bpm = 100
+		
 		enemyFrameTimer = 0
 		boyfriendFrameTimer = 0
 		
@@ -188,12 +189,8 @@ weeks[0] = {
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			weeks[0].drawUI()
+			weeks.drawUI()
 		love.graphics.pop()
-	end,
-	
-	drawUI = function()
-		weeks.drawUI()
 	end,
 	
 	stop = function()

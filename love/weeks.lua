@@ -6,6 +6,9 @@ weeks = {
 	init = function()
 		bpm = 100
 		
+		enemyFrameTimer = 0
+		boyfriendFrameTimer = 0
+		
 		sounds = {
 			["miss"] = {
 				love.audio.newSource("sounds/missnote1.ogg", "static"),
@@ -40,10 +43,9 @@ weeks = {
 	
 	load = function()
 		gameOver = false
-		girlfriendFrameTimer = 0
-		enemyFrameTimer = 0
-		boyfriendFrameTimer = 0
 		cam.x, cam.y = -boyfriend.x + 50, -boyfriend.y + 50
+		
+		girlfriendFrameTimer = 0
 		
 		enemy:animate("idle")
 		boyfriend:animate("idle")
@@ -383,9 +385,6 @@ weeks = {
 						break
 					end
 				else
-					if inst then
-						voices:setVolume(0)
-					end
 					audio.playSound(sounds["miss"][love.math.random(3)])
 					
 					boyfriend:animate("miss left", false)
@@ -428,9 +427,6 @@ weeks = {
 						break
 					end
 				else
-					if inst then
-						voices:setVolume(0)
-					end
 					audio.playSound(sounds["miss"][love.math.random(3)])
 					
 					boyfriend:animate("miss down", false)
@@ -473,9 +469,6 @@ weeks = {
 						break
 					end
 				else
-					if inst then
-						voices:setVolume(0)
-					end
 					audio.playSound(sounds["miss"][love.math.random(3)])
 					
 					boyfriend:animate("miss up", false)
@@ -518,9 +511,6 @@ weeks = {
 						break
 					end
 				else
-					if inst then
-						voices:setVolume(0)
-					end
 					audio.playSound(sounds["miss"][love.math.random(3)])
 					
 					boyfriend:animate("miss right", false)
@@ -703,16 +693,20 @@ weeks = {
 	
 	drawUI = function()
 		for i = 1, 4 do
+			if enemyArrows[i].anim.name == "off" then
+				graphics.setColor(0.6, 0.6, 0.6)
+			end
 			enemyArrows[i]:draw()
+			graphics.setColor(1, 1, 1)
+			
 			boyfriendArrows[i]:draw()
 		end
 		
 		for i = #enemyNotes, 1, -1 do
-			
 			if enemyNotes[i].y - enemyNotes[i].offsetY < 560 then
-				local anim = enemyNotes[i].anim.name
+				local animName = enemyNotes[i].anim.name
 				
-				if anim == "hold" or anim == "end" then
+				if animName == "hold" or animName == "end" then
 					graphics.setColor(1, 1, 1, 0.5)
 				end
 			
@@ -721,12 +715,11 @@ weeks = {
 				graphics.setColor(1, 1, 1)
 			end
 		end
-		
 		for i = #boyfriendNotes, 1, -1 do
 			if boyfriendNotes[i].y - boyfriendNotes[i].offsetY < 560 then
-				local anim = boyfriendNotes[i].anim.name
+				local animName = boyfriendNotes[i].anim.name
 				
-				if anim == "hold" or anim == "end" then
+				if animName == "hold" or animName == "end" then
 					graphics.setColor(1, 1, 1, 0.5)
 				end
 				
@@ -737,13 +730,13 @@ weeks = {
 		end
 		
 		graphics.setColor(1, 0, 0)
-		love.graphics.rectangle("fill", -500, 350, 1000, 30)
+			love.graphics.rectangle("fill", -500, 350, 1000, 30)
 		graphics.setColor(0, 1, 0)
-		love.graphics.rectangle("fill", 500, 350, -health * 10, 30)
+			love.graphics.rectangle("fill", 500, 350, -health * 10, 30)
 		graphics.setColor(0, 0, 0)
-		love.graphics.setLineWidth(10)
-		love.graphics.rectangle("line", -500, 350, 1000, 30)
-		love.graphics.setLineWidth(1)
+			love.graphics.setLineWidth(10)
+				love.graphics.rectangle("line", -500, 350, 1000, 30)
+			love.graphics.setLineWidth(1)
 		graphics.setColor(1, 1, 1)
 		
 		boyfriendIcon:draw()
