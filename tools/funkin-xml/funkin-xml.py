@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 
 # --------------------------------------------------------------------------------
-# Friday Night Funkin' Rewritten Legacy XML Conversion Helper v1.0
+# Friday Night Funkin' Rewritten Legacy XML Conversion Helper v1.1
 # By HTV04
 # --------------------------------------------------------------------------------
 
+import os
 import sys
 
 import xml.etree.ElementTree as ET
 
-xmlname = sys.argv[1]
+xmlname = os.path.split(sys.argv[1])[1]
 sheetxml = ET.parse(xmlname).getroot()
 
 lua = ('\t-- Automatically generated from ' + xmlname + '\n'

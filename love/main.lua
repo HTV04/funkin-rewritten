@@ -63,6 +63,7 @@ showFps=false
 			ini.readKey(settings, "Video", "width"),
 			ini.readKey(settings, "Video", "height"),
 			{
+				vsync = tonumber(ini.readKey(settings, "Video", "vsync")),
 				resizable = true
 			}
 		)
@@ -102,7 +103,7 @@ function love.resize(width, height)
 end
 
 function love.update(dt)
-	dt = math.min(dt, 1/15) -- To prevent game crashes, min 15 FPS (any lower slows down the game)
+	dt = math.min(dt, 1 / 30)
 	
 	input:update()
 	

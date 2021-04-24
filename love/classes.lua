@@ -95,8 +95,7 @@ Sprite = Class {
 		local currentFrame = math.floor(self.currentFrame)
 		
 		if currentFrame <= self.anim.stop then
-			local width
-			local height
+			local width, height
 			
 			if self.frameData[currentFrame].offsetWidth == 0 then
 				width = self.frameData[currentFrame].width / 2

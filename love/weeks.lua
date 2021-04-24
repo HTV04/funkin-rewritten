@@ -28,6 +28,7 @@ weeks = {
 		
 		girlfriend = love.filesystem.load("sprites/girlfriend.lua")()
 		boyfriend = love.filesystem.load("sprites/boyfriend.lua")()
+		
 		enemyIcon = sprites["icons"]()
 		boyfriendIcon = sprites["icons"]()
 		
@@ -243,9 +244,9 @@ weeks = {
 					Timer.cancel(camTimer)
 				end
 				if events[i].mustHitSection then
-					camTimer = Timer.tween(1.5, cam, {x = -boyfriend.x + 50, y = -boyfriend.y + 50}, "out-quad")
+					camTimer = Timer.tween(1.25, cam, {x = -boyfriend.x + 50, y = -boyfriend.y + 50}, "out-quad")
 				else
-					camTimer = Timer.tween(1.5, cam, {x = -enemy.x - 100, y = -enemy.y + 75}, "out-quad")
+					camTimer = Timer.tween(1.25, cam, {x = -enemy.x - 100, y = -enemy.y + 75}, "out-quad")
 				end
 				
 				table.remove(events, i)
@@ -684,6 +685,7 @@ weeks = {
 			love.graphics.push()
 				love.graphics.scale(cam.sizeX, cam.sizeY)
 				love.graphics.translate(cam.x, cam.y)
+				
 				boyfriend:draw()
 			love.graphics.pop()
 			

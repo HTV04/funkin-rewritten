@@ -35,6 +35,10 @@ weeks[0] = {
 		
 		enemy = love.filesystem.load("sprites/girlfriend.lua")()
 		boyfriend = love.filesystem.load("sprites/boyfriend.lua")()
+		
+		enemy.x, enemy.y = 30, -90
+		boyfriend.x, boyfriend.y = 260, 100
+		
 		enemyIcon = sprites["icons"]()
 		boyfriendIcon = sprites["icons"]()
 		
@@ -42,9 +46,6 @@ weeks[0] = {
 		enemyIcon.sizeX, enemyIcon.sizeY = 1.5, 1.5
 		boyfriendIcon.y = 350
 		boyfriendIcon.sizeX, boyfriendIcon.sizeY = -1.5, 1.5
-		
-		enemy.x, enemy.y = 30, -90
-		boyfriend.x, boyfriend.y = 260, 100
 		
 		enemyIcon:animate("girlfriend", false)
 		
