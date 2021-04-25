@@ -162,7 +162,7 @@ menu = {
 				end
 			elseif menuState == 1 then
 				if songNum == 0 then
-					love.graphics.printf("Choose a song: < (Full Week) >", -640, 285, 853, "center", nil, 1.5, 1.5)
+					love.graphics.printf("Choose a song: < (Story Mode) >", -640, 285, 853, "center", nil, 1.5, 1.5)
 				else
 					love.graphics.printf("Choose a song: < " .. weekSongs[weekNum + 1][songNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
 				end

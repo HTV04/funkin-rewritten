@@ -98,6 +98,14 @@ showFps=false
 	menu.init()
 end
 
+function love.keypressed(key)
+	if key == "7" then
+		love.filesystem.createDirectory("screenshots")
+		
+		love.graphics.captureScreenshot("screenshots/" .. os.time() .. ".png")
+	end
+end
+
 function love.resize(width, height)
     lovesize.resize(width, height)
 end
