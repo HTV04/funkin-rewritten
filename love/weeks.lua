@@ -290,13 +290,6 @@ weeks = {
 			end
 		end
 		
-		for i = 1, #enemyNotes do
-			if enemyNotes[i].y - enemyNotes[i].offsetY < 560 then
-				enemyNotes[i]:update(dt)
-			end
-			
-			enemyNotes[i].offsetY = musicTime * 0.6 * speed
-		end
 		for	i = 1, #enemyNotes do
 			if enemyNotes[1].y - enemyNotes[1].offsetY < -400 then
 				if enemyNotes[1].x == enemyArrows[1].x then
@@ -335,13 +328,6 @@ weeks = {
 			end
 		end
 		
-		for i = 1, #boyfriendNotes do
-			if boyfriendNotes[i].y - boyfriendNotes[i].offsetY < 560 then
-				boyfriendNotes[i]:update(dt)
-			end
-			
-			boyfriendNotes[i].offsetY = musicTime * 0.6 * speed
-		end
 		for i = 1, #boyfriendNotes do
 			if boyfriendNotes[1].y - boyfriendNotes[1].offsetY < -480 then
 				if inst then
@@ -716,6 +702,8 @@ weeks = {
 				
 				graphics.setColor(1, 1, 1)
 			end
+			
+			enemyNotes[i].offsetY = musicTime * 0.6 * speed
 		end
 		for i = #boyfriendNotes, 1, -1 do
 			if boyfriendNotes[i].y - boyfriendNotes[i].offsetY < 560 then
@@ -729,6 +717,8 @@ weeks = {
 				
 				graphics.setColor(1, 1, 1)
 			end
+			
+			boyfriendNotes[i].offsetY = musicTime * 0.6 * speed
 		end
 		
 		graphics.setColor(1, 0, 0)
