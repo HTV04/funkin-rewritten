@@ -36,7 +36,7 @@ menu = {
 		titleBG = Image(love.graphics.newImage("images/titleBG.png"))
 		logo = Image(love.graphics.newImage("images/logo.png"))
 		
-		girlfriendTitle = love.filesystem.load("sprites/girlfriend-dance-title.lua")()
+		girlfriendTitle = love.filesystem.load("sprites/girlfriend-title.lua")()
 		
 		logo.x, logo.y = -350, -125
 		logo.sizeX, logo.sizeY = 1.25, 1.25
@@ -51,7 +51,7 @@ menu = {
 	update = function(dt)
 		girlfriendTitle:update(dt)
 		
-		if graphics.fade[1] == 1 then
+		if not graphics.isFading then
 			if input:pressed("left") then
 				audio.playSound(selectSound)
 				
@@ -151,7 +151,7 @@ menu = {
 			
 			girlfriendTitle:draw()
 			
-			love.graphics.printf("By HTV04\nv1.0.0 beta 1\n\nOriginal game by ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, in association with Newgrounds", -525, 90, 450, "right", nil, 1, 1)
+			love.graphics.printf("By HTV04\nv1.0.0 beta 2\n\nOriginal game by ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, in association with Newgrounds", -525, 90, 450, "right", nil, 1, 1)
 			
 			graphics.setColor(1, 1, 0)
 			if menuState == 0 then

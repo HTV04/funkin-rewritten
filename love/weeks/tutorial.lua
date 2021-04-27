@@ -71,7 +71,7 @@ weeks[0] = {
 	
 	update = function(dt)
 		if gameOver then
-			if graphics.fade[1] == 1 then
+			if not graphics.isFading then
 				if input:pressed("confirm") then
 					if inst then -- In case "confirm" is pressed before game over music starts
 						inst:stop()
@@ -150,7 +150,7 @@ weeks[0] = {
 		end
 		boyfriendFrameTimer = boyfriendFrameTimer + 24 * dt
 		
-		if graphics.fade[1] == 1 and not voices:isPlaying() then
+		if not graphics.isFading and not voices:isPlaying() then
 			storyMode = false
 			
 			graphics.fadeOut(1, weeks[0].stop)

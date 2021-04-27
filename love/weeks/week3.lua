@@ -75,7 +75,7 @@ weeks[3] = {
 	
 	update = function(dt)
 		if gameOver then
-			if graphics.fade[1] == 1 then
+			if not graphics.isFading then
 				if input:pressed("confirm") then
 					inst:stop()
 					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
@@ -124,7 +124,7 @@ weeks[3] = {
 			end
 		end
 		
-		if graphics.fade[1] == 1 and not voices:isPlaying() then
+		if not graphics.isFading and not voices:isPlaying() then
 			if storyMode and songNum < 3 then
 				songNum = songNum + 1
 			else

@@ -1,5 +1,5 @@
 --[[----------------------------------------------------------------------------
-Friday Night Funkin' Rewritten v1.0.0 beta 1
+Friday Night Funkin' Rewritten v1.0.0 beta 2
 By HTV04
 ------------------------------------------------------------------------------]]
 
@@ -23,11 +23,8 @@ function love.load()
 	require "weeks.week2"
 	require "weeks.week3"
 	
-	-- Create, read and apply settings
-	if not love.filesystem.getInfo("settings.ini") then
-		love.filesystem.write(
-			"settings.ini",
-			[[
+	-- Create, read, and apply settings
+	settingsStr = [[
 ; Friday Night Funkin' Rewritten Settings
 
 [Video]
@@ -42,8 +39,34 @@ vsync=1
 
 [Advanced]
 showFps=false
+
+; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings.
+[Data]
+settingsVer=1
 ]]
-		)
+	
+	if love.filesystem.getInfo("settings.ini") then
+		settings = ini.load("settings.ini")
+		
+		if not settings["Data"] or ini.readKey(settings, "Data", "settingsVer") ~= "1" then
+			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
+			
+			local success, message = love.filesystem.write("settings.ini", settingsStr)
+			
+			if success then
+				love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
+			else
+				love.window.showMessageBox("Error", message)
+			end
+		end
+	else
+		local success, message = love.filesystem.write("settings.ini", settingsStr)
+		
+		if success then
+			love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
+		else
+			love.window.showMessageBox("Error", message)
+		end
 	end
 	
 	settings = ini.load("settings.ini")

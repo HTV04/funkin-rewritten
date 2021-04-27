@@ -11,19 +11,21 @@ audio = {
 
 graphics = {
 	fade = {1}, -- Have to make this a table for "Timer.tween"
+	isFading = false,
 	
 	fadeOut = function(duration, func)
 		if graphics.fadeTimer then
 			Timer.cancel(graphics.fadeTimer)
 		end
 		
+		graphics.isFading = true
 		graphics.fadeTimer = Timer.tween(
 			duration,
 			graphics.fade,
 			{0},
 			"linear",
 			function()
-				graphics.fade = {0} -- Force precision
+				graphics.isFading = false
 				
 				if func then func() end
 			end
@@ -35,13 +37,14 @@ graphics = {
 			Timer.cancel(graphics.fadeTimer)
 		end
 		
+		graphics.isFading = true
 		graphics.fadeTimer = Timer.tween(
 			duration,
 			graphics.fade,
 			{1},
 			"linear",
 			function()
-				graphics.fade = {1} -- Force precision
+				graphics.isFading = false
 				
 				if func then func() end
 			end
