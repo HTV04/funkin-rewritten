@@ -144,9 +144,7 @@ weeks[3] = {
 		
 		weeks.draw()
 		
-		if not inGame or gameOver then
-			return
-		end
+		if not inGame or gameOver then return end
 		
 		love.graphics.push()
 			love.graphics.scale(cam.sizeX, cam.sizeY)

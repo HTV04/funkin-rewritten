@@ -145,8 +145,6 @@ function love.update(dt)
 	end
 	
 	Timer.update(dt)
-	
-	collectgarbage()
 end
 
 function love.draw()

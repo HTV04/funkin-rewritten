@@ -238,6 +238,8 @@ weeks = {
 			if events[i].eventTime <= musicTime then
 				if events[i].bpm then
 					bpm = events[i].bpm
+					
+					girlfriend.anim.speed = 14.4 / (60 / bpm)
 				end
 				
 				if camTimer then
@@ -262,8 +264,6 @@ weeks = {
 		girlfriend:update(dt)
 		enemy:update(dt)
 		boyfriend:update(dt)
-		
-		girlfriend.anim.speed = 14.4 / (60 / bpm)
 		
 		if girlfriendFrameTimer >= 29 then
 			girlfriend:animate("idle", true)
@@ -290,6 +290,9 @@ weeks = {
 			end
 		end
 		
+		for i = 1, #enemyNotes do
+			enemyNotes[i].offsetY = musicTime * 0.6 * speed
+		end
 		for	i = 1, #enemyNotes do
 			if enemyNotes[1].y - enemyNotes[1].offsetY < -400 then
 				if enemyNotes[1].x == enemyArrows[1].x then
@@ -329,7 +332,10 @@ weeks = {
 		end
 		
 		for i = 1, #boyfriendNotes do
-			if boyfriendNotes[1].y - boyfriendNotes[1].offsetY < -480 then
+			boyfriendNotes[i].offsetY = musicTime * 0.6 * speed
+		end
+		for i = 1, #boyfriendNotes do
+			if boyfriendNotes[1].y - boyfriendNotes[1].offsetY < -500 then
 				if inst then
 					voices:setVolume(0)
 				end
@@ -343,18 +349,18 @@ weeks = {
 		end
 		
 		if input:pressed("gameLeft") then
-			boyfriendArrows[1]:animate("press", false)
+			local success = false
 			
-			for i = 1, #boyfriendNotes do
-				if boyfriendNotes[i].x == boyfriendArrows[1].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -320 then
+			for i = 1, math.min(4, #boyfriendNotes) do
+				if boyfriendNotes[i].x == boyfriendArrows[1].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -250 then
 					if boyfriendNotes[i].anim.name == "on" then
 						voices:setVolume(1)
 						
-						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 20 then -- "Sick"
+						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 37 then -- "Sick"
 							score = score + 350
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 40 then -- "Good"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 75 then -- "Good"
 							score = score + 200
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 60 then -- "Bad"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 112 then -- "Bad"
 							score = score + 100
 						else -- "Shit"
 							score = score + 50
@@ -368,35 +374,39 @@ weeks = {
 						boyfriendFrameTimer = 0
 						
 						health = health + 1
-						
-						break
 					end
-				else
-					audio.playSound(sounds["miss"][love.math.random(3)])
 					
-					boyfriend:animate("miss left", false)
-					boyfriendFrameTimer = 0
-					
-					health = health - 2
-					score = score - 10
+					success = true
 					
 					break
 				end
 			end
+			
+			if not success then
+				audio.playSound(sounds["miss"][love.math.random(3)])
+				
+				boyfriendArrows[1]:animate("press", false)
+				
+				boyfriend:animate("miss left", false)
+				boyfriendFrameTimer = 0
+				
+				health = health - 2
+				score = score - 10
+			end
 		end
 		if input:pressed("gameDown") then
-			boyfriendArrows[2]:animate("press", false)
+			local success = false
 			
-			for i = 1, #boyfriendNotes do
-				if boyfriendNotes[i].x == boyfriendArrows[2].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -320 then
+			for i = 1, math.min(4, #boyfriendNotes) do
+				if boyfriendNotes[i].x == boyfriendArrows[2].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -300 then
 					if boyfriendNotes[i].anim.name == "on" then
 						voices:setVolume(1)
 						
-						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 20 then -- "Sick"
+						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 37 then -- "Sick"
 							score = score + 350
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 40 then -- "Good"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 75 then -- "Good"
 							score = score + 200
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 60 then -- "Bad"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 112 then -- "Bad"
 							score = score + 100
 						else -- "Shit"
 							score = score + 50
@@ -410,35 +420,39 @@ weeks = {
 						boyfriendFrameTimer = 0
 						
 						health = health + 1
-						
-						break
 					end
-				else
-					audio.playSound(sounds["miss"][love.math.random(3)])
 					
-					boyfriend:animate("miss down", false)
-					boyfriendFrameTimer = 0
-					
-					health = health - 2
-					score = score - 10
+					success = true
 					
 					break
 				end
 			end
+			
+			if not success then
+				audio.playSound(sounds["miss"][love.math.random(3)])
+				
+				boyfriendArrows[2]:animate("press", false)
+				
+				boyfriend:animate("miss down", false)
+				boyfriendFrameTimer = 0
+				
+				health = health - 2
+				score = score - 10
+			end
 		end
 		if input:pressed("gameUp") then
-			boyfriendArrows[3]:animate("press", false)
+			local success = false
 			
-			for i = 1, #boyfriendNotes do
-				if boyfriendNotes[i].x == boyfriendArrows[3].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -320 then
+			for i = 1, math.min(4, #boyfriendNotes) do
+				if boyfriendNotes[i].x == boyfriendArrows[3].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -250 then
 					if boyfriendNotes[i].anim.name == "on" then
 						voices:setVolume(1)
 						
-						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 20 then -- "Sick"
+						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 37 then -- "Sick"
 							score = score + 350
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 40 then -- "Good"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 75 then -- "Good"
 							score = score + 200
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 60 then -- "Bad"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 112 then -- "Bad"
 							score = score + 100
 						else -- "Shit"
 							score = score + 50
@@ -452,35 +466,39 @@ weeks = {
 						boyfriendFrameTimer = 0
 						
 						health = health + 1
-						
-						break
 					end
-				else
-					audio.playSound(sounds["miss"][love.math.random(3)])
 					
-					boyfriend:animate("miss up", false)
-					boyfriendFrameTimer = 0
-					
-					health = health - 2
-					score = score - 10
+					success = true
 					
 					break
 				end
 			end
+			
+			if not success then
+				audio.playSound(sounds["miss"][love.math.random(3)])
+				
+				boyfriendArrows[3]:animate("press", false)
+				
+				boyfriend:animate("miss up", false)
+				boyfriendFrameTimer = 0
+				
+				health = health - 2
+				score = score - 10
+			end
 		end
 		if input:pressed("gameRight") then
-			boyfriendArrows[4]:animate("press", false)
+			local success = false
 			
-			for i = 1, #boyfriendNotes do
-				if boyfriendNotes[i].x == boyfriendArrows[4].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -320 then
+			for i = 1, math.min(4, #boyfriendNotes) do
+				if boyfriendNotes[i].x == boyfriendArrows[4].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -250 then
 					if boyfriendNotes[i].anim.name == "on" then
 						voices:setVolume(1)
 						
-						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 20 then -- "Sick"
+						if math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 37 then -- "Sick"
 							score = score + 350
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 40 then -- "Good"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 75 then -- "Good"
 							score = score + 200
-						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 60 then -- "Bad"
+						elseif math.abs(-400 - boyfriendNotes[i].y - boyfriendNotes[i].offsetY) >= 112 then -- "Bad"
 							score = score + 100
 						else -- "Shit"
 							score = score + 50
@@ -494,25 +512,29 @@ weeks = {
 						boyfriendFrameTimer = 0
 						
 						health = health + 1
-						
-						break
 					end
-				else
-					audio.playSound(sounds["miss"][love.math.random(3)])
 					
-					boyfriend:animate("miss right", false)
-					boyfriendFrameTimer = 0
-					
-					health = health - 2
-					score = score - 10
+					success = true
 					
 					break
 				end
 			end
+			
+			if not success then
+				audio.playSound(sounds["miss"][love.math.random(3)])
+				
+				boyfriendArrows[4]:animate("press", false)
+				
+				boyfriend:animate("miss right", false)
+				boyfriendFrameTimer = 0
+				
+				health = health - 2
+				score = score - 10
+			end
 		end
 		
 		if input:down("gameLeft") then
-			for i = 1, #boyfriendNotes do
+			for i = 1, math.min(4, #boyfriendNotes) do
 				if boyfriendNotes[i].x == boyfriendArrows[1].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -400 and (boyfriendNotes[i].anim.name == "hold" or boyfriendNotes[i].anim.name == "end") then
 					voices:setVolume(1)
 					
@@ -530,7 +552,7 @@ weeks = {
 			end
 		end
 		if input:down("gameDown") then
-			for i = 1, #boyfriendNotes do
+			for i = 1, math.min(4, #boyfriendNotes) do
 				if boyfriendNotes[i].x == boyfriendArrows[2].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -400 and (boyfriendNotes[i].anim.name == "hold" or boyfriendNotes[i].anim.name == "end") then
 					voices:setVolume(1)
 					
@@ -548,7 +570,7 @@ weeks = {
 			end
 		end
 		if input:down("gameUp") then
-			for i = 1, #boyfriendNotes do
+			for i = 1, math.min(4, #boyfriendNotes) do
 				if boyfriendNotes[i].x == boyfriendArrows[3].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -400 and (boyfriendNotes[i].anim.name == "hold" or boyfriendNotes[i].anim.name == "end") then
 					voices:setVolume(1)
 					
@@ -566,7 +588,7 @@ weeks = {
 			end
 		end
 		if input:down("gameRight") then
-			for i = 1, #boyfriendNotes do
+			for i = 1, math.min(4, #boyfriendNotes) do
 				if boyfriendNotes[i].x == boyfriendArrows[4].x and boyfriendNotes[i].y - boyfriendNotes[i].offsetY <= -400 and (boyfriendNotes[i].anim.name == "hold" or boyfriendNotes[i].anim.name == "end") then
 					voices:setVolume(1)
 					
@@ -663,9 +685,7 @@ weeks = {
 	end,
 	
 	draw = function()
-		if not inGame then
-			return
-		end
+		if not inGame then return end
 		
 		if gameOver then
 			love.graphics.push()
@@ -702,8 +722,6 @@ weeks = {
 				
 				graphics.setColor(1, 1, 1)
 			end
-			
-			enemyNotes[i].offsetY = musicTime * 0.6 * speed
 		end
 		for i = #boyfriendNotes, 1, -1 do
 			if boyfriendNotes[i].y - boyfriendNotes[i].offsetY < 560 then
@@ -717,8 +735,6 @@ weeks = {
 				
 				graphics.setColor(1, 1, 1)
 			end
-			
-			boyfriendNotes[i].offsetY = musicTime * 0.6 * speed
 		end
 		
 		graphics.setColor(1, 0, 0)
