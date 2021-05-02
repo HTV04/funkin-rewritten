@@ -37,6 +37,10 @@ fullscreen=false
 fullscreenType=desktop
 vsync=1
 
+[Game]
+; "Kade Input" disables anti-spam, but counts "Shit" inputs as misses.
+kadeInput=false
+
 [Advanced]
 showFps=false
 
@@ -90,6 +94,12 @@ settingsVer=1
 				resizable = true
 			}
 		)
+	end
+	
+	if ini.readKey(settings, "Game", "kadeInput") == "true" then
+		settings.kadeInput = true
+	else
+		settings.kadeInput = false
 	end
 	
 	if ini.readKey(settings, "Advanced", "showFps") == "true" then

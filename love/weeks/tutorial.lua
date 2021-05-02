@@ -112,6 +112,8 @@ weeks[0] = {
 			if events[i].eventTime <= musicTime then
 				if events[i].bpm then
 					bpm = events[i].bpm
+					
+					enemy.anim.speed = 14.4 / (60 / bpm)
 				end
 				
 				if camTimer then
@@ -136,10 +138,10 @@ weeks[0] = {
 		enemy:update(dt)
 		boyfriend:update(dt)
 		
-		enemy.anim.speed = 14.4 / (60 / bpm)
-		
 		if enemyFrameTimer >= 29 then
 			enemy:animate("idle", true)
+			enemy.anim.speed = 14.4 / (60 / bpm)
+			
 			enemyFrameTimer = 0
 		end
 		enemyFrameTimer = enemyFrameTimer + 14.4 / (60 / bpm) * dt

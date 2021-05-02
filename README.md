@@ -7,6 +7,8 @@
 * Controller support!
 * And more to come!
 
+Check it out on GameBanana: https://gamebanana.com/mods/55620
+
 # Overview
 *Friday Night Funkin'* is an awesome game, the gameplay, visuals, and music are amazing! However, I have a few pet peeves with the game engine. It feels weirdly sluggish at times, even on the desktop version. Fullscreen is also weird, the video is capped at 60 FPS but the game runs at a higher framerate, causing a lot of screen tear. Additionally, some things just feel wrong, like the arrows being off-center, and the "visual beats" (screen and UI zooming in to match the BPS) look really weird, especially on the UI.
 
