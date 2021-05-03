@@ -1,12 +1,17 @@
-# LOVE
-*.love
+# Build
+build/*
 
-# Executables
-*.exe
-*.app
+# Dependencies
+dependencies/macos/*
+dependencies/win64/*
 
-# Other
-tools/funkin-json/*.json
-tools/funkin-json/*.lua
-tools/funkin-xml/*.xml
-tools/funkin-xml/output.txt
+!dependencies/macos/dependencies.txt
+!dependencies/macos/Info.plist
+!dependencies/win64/dependencies.txt
+
+# Tools
+tools/funkin-json/*
+tools/funkin-xml/*
+
+!tools/funkin-json/funkin-json.py
+!tools/funkin-xml/funkin-xml.py
