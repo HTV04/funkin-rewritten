@@ -81,19 +81,27 @@ The settings file can be found in the following places on the following systems:
 ## Unix-like
 ### LOVE file
 * Run `make`
-* Results are in `build/lovefile`
+
+Results are in `build/lovefile`.
 
 ### Windows (64-bit)
+* Set up dependencies shown in `dependencies/win64/dependencies.txt`
 * Run `make win64`
-* Results are in `build/win64`
+
+Results are in `build/win64`.
 
 ### macOS
+* Set up dependencies shown in `dependencies/macos/dependencies.txt`
 * Run `make macos`
-* Results are in `build/macos`
+
+Results are in `build/macos`.
 
 ### Release
+* Set up dependencies shown in `dependencies/win64/dependencies.txt`
+* Set up dependencies shown in `dependencies/macos/dependencies.txt`
 * Run `make release`
-* Results are in `build/release`
+
+Results are in `build/release`.
 
 # Special Thanks
 * KadeDev for [FNFDataAPI](https://github.com/KadeDev/FNFDataAPI/tree/main/FNFDataAPI), which was refrenced while developing the chart-reading system
