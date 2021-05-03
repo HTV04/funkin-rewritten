@@ -1,5 +1,5 @@
 # ![Logo](images/logo.png)
-*Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) in [*LÖVE*](https://love2d.org/) for Windows, macOS, and Linux!
+*Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) in [LÖVE](https://love2d.org/) for Windows, macOS, and Linux!
 
 *Friday Night Funkin' Rewritten* features:
 * A rewritten engine focused on speed, performance, and playability!
@@ -76,6 +76,24 @@ The settings file can be found in the following places on the following systems:
 * On Linux, the screen can tear a lot if Vsync is set to 1. Set it to 0 in the `settings.ini` file to fix this.
   * This is an issue with *LÖVE* rather than the game itself.
 * Game does not support 32-bit platforms because the amount of memory it uses.
+
+# Building
+## Unix-like
+### LOVE file
+* Run `make`
+* Results are in `build/lovefile`
+
+### Windows (64-bit)
+* Run `make win64`
+* Results are in `build/win64`
+
+### macOS
+* Run `make macos`
+* Results are in `build/macos`
+
+### Release
+* Run `make release`
+* Results are in `build/release`
 
 # Special Thanks
 * KadeDev for [FNFDataAPI](https://github.com/KadeDev/FNFDataAPI/tree/main/FNFDataAPI), which was refrenced while developing the chart-reading system
