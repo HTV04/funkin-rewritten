@@ -48,11 +48,13 @@ If you are using a controller, a controller with an Xbox button layout is recomm
 * 7 - Take Screenshot
   * Screenshot paths:
     * Windows - `%APPDATA%\funkin-rewritten\screenshots`
-    * Linux - `~/.local/share/love/funkin-rewritten/screenshots`
+    * macOS - `~/Library/Application Support/funkin-rewritten/screenshots`
+	* Linux - `~/.local/share/love/funkin-rewritten/screenshots`
 
 # Settings
 The settings file can be found in the following places on the following systems:
 * Windows - `%APPDATA%\funkin-rewritten\settings.ini`
+* macOS - `~/Library/Application Support/funkin-rewritten/settings.ini`
 * Linux - `~/.local/share/love/funkin-rewritten/settings.ini`
 
 # Progress
@@ -96,7 +98,7 @@ Results are in `build/win64`.
 
 Results are in `build/macos`.
 
-### Release
+### Release ZIPs
 * Set up dependencies shown in `dependencies/win64/dependencies.txt`
 * Set up dependencies shown in `dependencies/macos/dependencies.txt`
 * Run `make release`

@@ -24,10 +24,10 @@ macos: lovefile
 	@rm -rf build/macos
 	@mkdir -p build/macos
 	
-	@cp -r dependencies/macos/love.app build/macos/funkin-rewritten.app
+	@cp -r dependencies/macos/love.app "build/macos/Friday Night Funkin' Rewritten.app"
 	
-	@cp dependencies/macos/Info.plist build/macos/funkin-rewritten.app/Contents
-	@cp build/lovefile/funkin-rewritten.love build/macos/funkin-rewritten.app/Contents/Resources
+	@cp dependencies/macos/Info.plist "build/macos/Friday Night Funkin' Rewritten.app/Contents"
+	@cp build/lovefile/funkin-rewritten.love "build/macos/Friday Night Funkin' Rewritten.app/Contents/Resources"
 
 release: lovefile win64 macos
 	@rm -rf build/release
