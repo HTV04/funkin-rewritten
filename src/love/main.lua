@@ -50,9 +50,9 @@ settingsVer=1
 ]]
 	
 	if love.filesystem.getInfo("settings.ini") then
-		settings = ini.load("settings.ini")
+		settingsIni = ini.load("settings.ini")
 		
-		if not settings["Data"] or ini.readKey(settings, "Data", "settingsVer") ~= "1" then
+		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "1" then
 			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
 			
 			local success, message = love.filesystem.write("settings.ini", settingsStr)
@@ -73,36 +73,37 @@ settingsVer=1
 		end
 	end
 	
-	settings = ini.load("settings.ini")
+	settingsIni = ini.load("settings.ini")
+	settings = {}
 	
-	if ini.readKey(settings, "Video", "fullscreen") == "true" then
+	if ini.readKey(settingsIni, "Video", "fullscreen") == "true" then
 		love.window.setMode(
-			ini.readKey(settings, "Video", "width"),
-			ini.readKey(settings, "Video", "height"),
+			ini.readKey(settingsIni, "Video", "width"),
+			ini.readKey(settingsIni, "Video", "height"),
 			{
 				fullscreen = true,
-				fullscreentype = ini.readKey(settings, "Video", "fullscreenType"),
-				vsync = tonumber(ini.readKey(settings, "Video", "vsync"))
+				fullscreentype = ini.readKey(settingsIni, "Video", "fullscreenType"),
+				vsync = tonumber(ini.readKey(settingsIni, "Video", "vsync"))
 			}
 		)
 	else
 		love.window.setMode(
-			ini.readKey(settings, "Video", "width"),
-			ini.readKey(settings, "Video", "height"),
+			ini.readKey(settingsIni, "Video", "width"),
+			ini.readKey(settingsIni, "Video", "height"),
 			{
-				vsync = tonumber(ini.readKey(settings, "Video", "vsync")),
+				vsync = tonumber(ini.readKey(settingsIni, "Video", "vsync")),
 				resizable = true
 			}
 		)
 	end
 	
-	if ini.readKey(settings, "Game", "kadeInput") == "true" then
+	if ini.readKey(settingsIni, "Game", "kadeInput") == "true" then
 		settings.kadeInput = true
 	else
 		settings.kadeInput = false
 	end
 	
-	if ini.readKey(settings, "Advanced", "showFps") == "true" then
+	if ini.readKey(settingsIni, "Advanced", "showFps") == "true" then
 		settings.showFps = true
 	else
 		settings.showFps = false
