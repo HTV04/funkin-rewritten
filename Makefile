@@ -3,7 +3,7 @@ lovefile:
 	@mkdir -p build/lovefile
 	
 	@cd src/love; zip -r ../../build/lovefile/funkin-rewritten.love .
-	@zip build/lovefile/funkin-rewritten.love LICENSE
+	@zip -0 build/lovefile/funkin-rewritten.love LICENSE
 
 win64: lovefile
 	@rm -rf build/win64
@@ -33,9 +33,9 @@ release: lovefile win64 macos
 	@rm -rf build/release
 	@mkdir -p build/release
 	
-	@cd build/lovefile; zip -r ../release/funkin-rewritten-lovefile.zip .
-	@cd build/win64; zip -r ../release/funkin-rewritten-win64.zip .
-	@cd build/macos; zip -r ../release/funkin-rewritten-macos.zip .
+	@cd build/lovefile; zip -9 -r ../release/funkin-rewritten-lovefile.zip .
+	@cd build/win64; zip -9 -r ../release/funkin-rewritten-win64.zip .
+	@cd build/macos; zip -9 -r ../release/funkin-rewritten-macos.zip .
 
 clean:
 	@rm -rf build
