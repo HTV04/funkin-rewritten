@@ -1,22 +1,15 @@
 # ![Logo](images/logo.png)
-*Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) in [LÖVE](https://love2d.org/) for Windows, macOS, and Linux!
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/HTV04/funkin-rewritten?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/HTV04/funkin-rewritten/total?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues-raw/HTV04/funkin-rewritten?style=flat-square) ![GitHub](https://img.shields.io/github/license/HTV04/funkin-rewritten?style=flat-square)
+
+*Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) using [LÖVE](https://love2d.org/) for Windows, macOS, and Linux!
 
 *Friday Night Funkin' Rewritten* features:
-* A rewritten engine focused on speed, performance, and playability!
-* Better fullscreen support (proper Vsync, which means no screen tear)!
-* Controller support!
+* A rewritten engine focused on speed, performance, and playability
+* Better fullscreen support (proper Vsync, which means no screen tear)
+* Controller support
 * And more to come!
 
 Check it out on GameBanana: https://gamebanana.com/mods/55620
-
-# Overview
-*Friday Night Funkin'* is an awesome game, the gameplay, visuals, and music are amazing! However, I have a few pet peeves with the game engine. It feels weirdly sluggish at times, even on the desktop version. Fullscreen is also weird, the video is capped at 60 FPS but the game runs at a higher framerate, causing a lot of screen tear. Additionally, some things just feel wrong, like the arrows being off-center, and the "visual beats" (screen and UI zooming in to match the BPS) look really weird, especially on the UI.
-
-Others have tried to fix these issues by modifying the game's code since it's open-source. However, some of these modifications are closed-source, so nobody knows how these issues were fixed, and others are open-source, but still have similar performance issues to those mentioned above (especially the screen tear, what's up with that?).
-
-So, out of boredom, and since I want to give myself a challenge as an aspiring game developer, I decided to rewrite Friday Night Funkin' from scratch (well, mostly, anyway). I wanted to choose a framework that I was more familiar with and felt had good performance (no offense, HaxeFlixel), so I chose LÖVE, a very powerful framework for 2D games that uses Lua as its programming language.
-
-After about a month, I finally finished the first version of Friday Night Funkin' Rewritten! I designed it to feel and play as close to the original engine as possible while fixing the above issues, along with adding some other cool features! It's currently in beta, so it isn't finished yet. Try it out, and don't hesitate to give me feedback on how I can improve it!
 
 # Controls
 If you are using a controller, a controller with an Xbox button layout is recommended. Controller buttons will be remappable in a future update.
@@ -75,7 +68,7 @@ The settings file can be found in the following places on the following systems:
 # Known Issues
 * Sprite offsets are a little weird and may need to be redone.
 * On Linux, the screen can tear a lot if Vsync is set to 1. Set it to 0 in the `settings.ini` file to fix this.
-  * This is an issue with *LÖVE* rather than the game itself.
+  * This is an issue with LÖVE rather than the game itself.
 * Game does not support 32-bit platforms because the amount of memory it uses.
 
 # Building
