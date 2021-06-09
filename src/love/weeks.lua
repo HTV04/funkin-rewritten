@@ -1,5 +1,20 @@
 --[[----------------------------------------------------------------------------
-This file is part of Friday Night Funkin' Rewritten by HTV04
+This file is part of Friday Night Funkin' Rewritten
+
+Copyright (C) 2021  HTV04
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 weeks = {
@@ -246,7 +261,7 @@ weeks = {
 					Timer.cancel(camTimer)
 				end
 				if events[i].mustHitSection then
-					camTimer = Timer.tween(1.25, cam, {x = -boyfriend.x + 50, y = -boyfriend.y + 50}, "out-quad")
+					camTimer = Timer.tween(1.25, cam, {x = -boyfriend.x + 100, y = -boyfriend.y + 50}, "out-quad")
 				else
 					camTimer = Timer.tween(1.25, cam, {x = -enemy.x - 100, y = -enemy.y + 75}, "out-quad")
 				end
@@ -685,7 +700,11 @@ weeks = {
 			
 			audio.playSound(sounds["death"])
 			
-			boyfriend:animate("dies", false)
+			if fakeBoyfriend then
+				fakeBoyfriend:animate("dies", false)
+			else
+				boyfriend:animate("dies", false)
+			end
 			
 			Timer.clear()
 			Timer.tween(
@@ -698,7 +717,11 @@ weeks = {
 					inst:setLooping(true)
 					inst:play()
 					
-					boyfriend:animate("dead", true)
+					if fakeBoyfriend then
+						fakeBoyfriend:animate("dead", true)
+					else
+						boyfriend:animate("dead", true)
+					end
 				end
 			)
 		elseif health <= 20 then
@@ -742,7 +765,11 @@ weeks = {
 				love.graphics.scale(cam.sizeX, cam.sizeY)
 				love.graphics.translate(cam.x, cam.y)
 				
-				boyfriend:draw()
+				if fakeBoyfriend then
+					fakeBoyfriend:draw()
+				else
+					boyfriend:draw()
+				end
 			love.graphics.pop()
 			
 			return

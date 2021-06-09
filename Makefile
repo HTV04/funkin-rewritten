@@ -2,8 +2,7 @@ lovefile:
 	@rm -rf build/lovefile
 	@mkdir -p build/lovefile
 	
-	@cd src/love; zip -r ../../build/lovefile/funkin-rewritten.love .
-	@zip -0 build/lovefile/funkin-rewritten.love LICENSE
+	@cd src/love; zip -r -0 ../../build/lovefile/funkin-rewritten.love .
 
 win64: lovefile
 	@rm -rf build/win64

@@ -1,5 +1,5 @@
 # ![Logo](images/logo.png)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/HTV04/funkin-rewritten?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/HTV04/funkin-rewritten/total?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues-raw/HTV04/funkin-rewritten?style=flat-square) ![GitHub](https://img.shields.io/github/license/HTV04/funkin-rewritten?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/HTV04/funkin-rewritten?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/HTV04/funkin-rewritten/total?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/HTV04/funkin-rewritten?style=flat-square) ![GitHub](https://img.shields.io/github/license/HTV04/funkin-rewritten?style=flat-square)
 
 *Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) using [LÖVE](https://love2d.org/) for Windows, macOS, and Linux!
 
@@ -71,6 +71,11 @@ The settings file can be found in the following places on the following systems:
   * This is an issue with LÖVE rather than the game itself.
 * Game does not support 32-bit platforms because the amount of memory it uses.
 
+# License
+*Friday Night Funkin' Rewritten* is licensed under the terms of the GNU General Public License v3.
+
+This means that your derivative works (mods, forks, etc.) of FNF Rewritten must be open-source! The build methods shown in this README technically make your code open-source anyway, but uploading it to GitHub is advised.
+
 # Building
 ## Unix-like
 ### LOVE file
@@ -96,6 +101,9 @@ Results are in `build/macos`.
 * Run `make release`
 
 Results are in `build/release`.
+
+## Other
+Follow the official instructions for LÖVE game distribution for your platform: https://love2d.org/wiki/Game_Distribution
 
 # Special Thanks
 * KadeDev for [FNFDataAPI](https://github.com/KadeDev/FNFDataAPI/tree/main/FNFDataAPI), which was refrenced while developing the chart-reading system

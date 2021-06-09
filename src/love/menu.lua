@@ -1,10 +1,29 @@
 --[[----------------------------------------------------------------------------
-This file is part of Friday Night Funkin' Rewritten by HTV04
+This file is part of Friday Night Funkin' Rewritten
+
+Copyright (C) 2021  HTV04
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 menu = {
 	init = function()
+		songNum = 0
 		menuState = 0
+		
+		inMenu = true
+		
 		weekSongs = {
 			{
 				"Tutorial"
@@ -22,6 +41,11 @@ menu = {
 				"Pico",
 				"Philly Nice",
 				"Blammed"
+			},
+			{
+				"Satin Panties",
+				"High",
+				"M.I.L.F"
 			}
 		}
 		difficultyStrs = {
@@ -59,7 +83,7 @@ menu = {
 					weekNum = weekNum - 1
 					
 					if weekNum < 0 then
-						weekNum = 3
+						weekNum = 4
 					end
 				elseif menuState == 1 then
 					songNum = songNum - 1
@@ -80,7 +104,7 @@ menu = {
 				if menuState == 0 then
 					weekNum = weekNum + 1
 					
-					if weekNum > 3 then
+					if weekNum > 4 then
 						weekNum = 0
 					end
 				elseif menuState == 1 then
@@ -151,7 +175,7 @@ menu = {
 			
 			girlfriendTitle:draw()
 			
-			love.graphics.printf("By HTV04\nv1.0.0 beta 2\n\nOriginal game by ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, in association with Newgrounds", -525, 90, 450, "right", nil, 1, 1)
+			love.graphics.printf("By HTV04\nv1.0.0 beta 3\n\nOriginal game by ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, in association with Newgrounds", -525, 90, 450, "right", nil, 1, 1)
 			
 			graphics.setColor(1, 1, 0)
 			if menuState == 0 then

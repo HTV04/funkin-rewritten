@@ -1,5 +1,5 @@
-LICENSE text eol=crlf
 src/love/**/*.lua text eol=crlf
 src/love/*.lua text eol=crlf
+src/love/LICENSE.txt text eol=crlf
 
 dependencies/macos/Info.plist text eol=lf

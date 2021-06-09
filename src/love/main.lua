@@ -1,6 +1,20 @@
 --[[----------------------------------------------------------------------------
-Friday Night Funkin' Rewritten v1.0.0 beta 2
-By HTV04
+Friday Night Funkin' Rewritten v1.0.0 beta 3
+
+Copyright (C) 2021  HTV04
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 function love.load()
@@ -22,6 +36,7 @@ function love.load()
 	require "weeks.week1"
 	require "weeks.week2"
 	require "weeks.week3"
+	require "weeks.week4"
 	
 	-- Create, read, and apply settings
 	settingsStr = [[
@@ -115,9 +130,7 @@ settingsVer=1
 	-- Variables
 	font = love.graphics.newFont("fonts/vcr.ttf", 24)
 	
-	inMenu = true
 	weekNum = 0
-	songNum = 0
 	songDifficulty = 2
 	
 	storyMode = false

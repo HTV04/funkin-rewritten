@@ -116,7 +116,7 @@ Sprite = Class {
 				self.orientation,
 				self.sizeX,
 				self.sizeY,
-				width + self.anim.offsetX / 2 + self.offsetX,
+				width + self.anim.offsetX + self.offsetX,
 				height + self.anim.offsetY / 2 + self.offsetY,
 				self.shearX,
 				self.shearY
