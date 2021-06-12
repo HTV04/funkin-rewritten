@@ -17,55 +17,68 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local titleBG = Image(love.graphics.newImage("images/titleBG.png"))
+local logo = Image(love.graphics.newImage("images/logo.png"))
+
+local girlfriendTitle = love.filesystem.load("sprites/girlfriend-title.lua")()
+
+local weekIDs = {
+	"Tutorial",
+	"Week 1",
+	"Week 2",
+	"Week 3",
+	"Week 4"
+}
+local weekSongs = {
+	{
+		"Tutorial"
+	},
+	{
+		"Bopeebo",
+		"Fresh",
+		"Dadbattle"
+	},
+	{
+		"Spookeez",
+		"South"
+	},
+	{
+		"Pico",
+		"Philly Nice",
+		"Blammed"
+	},
+	{
+		"Satin Panties",
+		"High",
+		"M.I.L.F"
+	}
+}
+local difficultyStrs = {
+	"-easy",
+	"",
+	"-hard"
+}
+
+local selectSound = love.audio.newSource("sounds/scrollMenu.ogg", "static")
+local confirmSound = love.audio.newSource("sounds/confirmMenu.ogg", "static")
+
+local music = love.audio.newSource("music/freakyMenu.ogg", "stream")
+
+logo.x, logo.y = -350, -125
+logo.sizeX, logo.sizeY = 1.25, 1.25
+
+girlfriendTitle.x, girlfriendTitle.y = 300, -75
+
 menu = {
-	init = function()
-		songNum = 0
-		menuState = 0
+	load = function()
+		gameOver = false
+		storyMode = false
 		
+		inGame = false
 		inMenu = true
 		
-		weekSongs = {
-			{
-				"Tutorial"
-			},
-			{
-				"Bopeebo",
-				"Fresh",
-				"Dadbattle"
-			},
-			{
-				"Spookeez",
-				"South"
-			},
-			{
-				"Pico",
-				"Philly Nice",
-				"Blammed"
-			},
-			{
-				"Satin Panties",
-				"High",
-				"M.I.L.F"
-			}
-		}
-		difficultyStrs = {
-			"-easy",
-			"",
-			"-hard"
-		}
-		
-		selectSound = love.audio.newSource("sounds/scrollMenu.ogg", "static")
-		confirmSound = love.audio.newSource("sounds/confirmMenu.ogg", "static")
-		
-		titleBG = Image(love.graphics.newImage("images/titleBG.png"))
-		logo = Image(love.graphics.newImage("images/logo.png"))
-		
-		girlfriendTitle = love.filesystem.load("sprites/girlfriend-title.lua")()
-		
-		logo.x, logo.y = -350, -125
-		logo.sizeX, logo.sizeY = 1.25, 1.25
-		
-		girlfriendTitle.x, girlfriendTitle.y = 300, -75
+		songNum = 0
+		menuState = 0
 		
 		music = love.audio.newSource("music/freakyMenu.ogg", "stream")
 		music:setLooping(true)
@@ -79,45 +92,45 @@ menu = {
 			if input:pressed("left") then
 				audio.playSound(selectSound)
 				
-				if menuState == 0 then
-					weekNum = weekNum - 1
-					
-					if weekNum < 0 then
-						weekNum = 4
-					end
-				elseif menuState == 1 then
-					songNum = songNum - 1
-					
-					if songNum < 0 then
-						songNum = #weekSongs[weekNum + 1]
-					end
-				elseif menuState == 2 then
+				if menuState == 2 then
 					songDifficulty = songDifficulty - 1
 					
 					if songDifficulty < 1 then
 						songDifficulty = 3
 					end
+				elseif menuState == 1 then
+					songNum = songNum - 1
+					
+					if songNum < 0 then
+						songNum = #weekSongs[weekNum]
+					end
+				elseif menuState == 0 then
+					weekNum = weekNum - 1
+					
+					if weekNum < 1 then
+						weekNum = 5
+					end
 				end
 			elseif input:pressed("right") then
 				audio.playSound(selectSound)
 				
-				if menuState == 0 then
-					weekNum = weekNum + 1
-					
-					if weekNum > 4 then
-						weekNum = 0
-					end
-				elseif menuState == 1 then
-					songNum = songNum + 1
-					
-					if songNum > #weekSongs[weekNum + 1] then
-						songNum = 0
-					end
-				elseif menuState == 2 then
+				if menuState == 2 then
 					songDifficulty = songDifficulty + 1
 					
 					if songDifficulty > 3 then
 						songDifficulty = 1
+					end
+				elseif menuState == 1 then
+					songNum = songNum + 1
+					
+					if songNum > #weekSongs[weekNum] then
+						songNum = 0
+					end
+				elseif menuState == 0 then
+					weekNum = weekNum + 1
+					
+					if weekNum > 5 then
+						weekNum = 1
 					end
 				end
 			elseif input:pressed("confirm") then
@@ -143,7 +156,7 @@ menu = {
 								storyMode = true
 							end
 							
-							weeks[weekNum].init()
+							weekData[weekNum].init()
 						end
 					)
 				end
@@ -178,19 +191,7 @@ menu = {
 			love.graphics.printf("By HTV04\nv1.0.0 beta 3\n\nOriginal game by ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, in association with Newgrounds", -525, 90, 450, "right", nil, 1, 1)
 			
 			graphics.setColor(1, 1, 0)
-			if menuState == 0 then
-				if weekNum == 0 then
-					love.graphics.printf("Choose a week: < Tutorial >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				else
-					love.graphics.printf("Choose a week: < Week " .. weekNum .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				end
-			elseif menuState == 1 then
-				if songNum == 0 then
-					love.graphics.printf("Choose a song: < (Story Mode) >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				else
-					love.graphics.printf("Choose a song: < " .. weekSongs[weekNum + 1][songNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				end
-			elseif menuState == 2 then
+			if menuState == 2 then
 				if songDifficulty == 1 then
 					love.graphics.printf("Choose a difficulty: < Easy >", -640, 285, 853, "center", nil, 1.5, 1.5)
 				elseif songDifficulty == 2 then
@@ -198,6 +199,14 @@ menu = {
 				elseif songDifficulty == 3 then
 					love.graphics.printf("Choose a difficulty: < Hard >", -640, 285, 853, "center", nil, 1.5, 1.5)
 				end
+			elseif menuState == 1 then
+				if songNum == 0 then
+					love.graphics.printf("Choose a song: < (Story Mode) >", -640, 285, 853, "center", nil, 1.5, 1.5)
+				else
+					love.graphics.printf("Choose a song: < " .. weekSongs[weekNum][songNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
+				end
+			elseif menuState == 0 then
+				love.graphics.printf("Choose a week: < " .. weekIDs[weekNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
 			end
 			graphics.setColor(1, 1, 1)
 			

@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weeks[4] = {
+weekData[5] = {
 	init = function()
 		bpm = 100
 		
@@ -73,7 +73,7 @@ weeks[4] = {
 			sounds["miss"][i]:setVolume(0.25)
 		end
 		
-		weeks[4].load()
+		weekData[5].load()
 	end,
 	
 	load = function()
@@ -90,7 +90,7 @@ weeks[4] = {
 			voices = love.audio.newSource("music/Satin-Panties_Voices.ogg", "stream")
 		end
 		
-		weeks[4].initUI()
+		weekData[5].initUI()
 		
 		inst:play()
 		weeks.voicesPlay()
@@ -122,9 +122,9 @@ weeks[4] = {
 					
 					fakeBoyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weeks[4].load)
+					graphics.fadeOut(3, weekData[5].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weeks[4].stop)
+					graphics.fadeOut(1, weekData[5].stop)
 				end
 			end
 			
@@ -159,12 +159,12 @@ weeks[4] = {
 			if storyMode and songNum < 3 then
 				songNum = songNum + 1
 			else
-				graphics.fadeOut(1, weeks[4].stop)
+				graphics.fadeOut(1, weekData[5].stop)
 				
 				return
 			end
 			
-			weeks[4].load()
+			weekData[5].load()
 		end
 		
 		weeks.updateUI(dt)

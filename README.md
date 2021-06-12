@@ -1,5 +1,5 @@
 # ![Logo](images/logo.png)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/HTV04/funkin-rewritten?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/HTV04/funkin-rewritten/total?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/HTV04/funkin-rewritten?style=flat-square) ![GitHub](https://img.shields.io/github/license/HTV04/funkin-rewritten?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/HTV04/funkin-rewritten?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/HTV04/funkin-rewritten/total?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/HTV04/funkin-rewritten?style=flat-square) ![GitHub](https://img.shields.io/github/license/HTV04/funkin-rewritten?style=flat-square) ![Discord](https://img.shields.io/discord/852658576577003550?style=flat-square)
 
 *Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) using [LÖVE](https://love2d.org/) for Windows, macOS, and Linux!
 
@@ -61,9 +61,10 @@ The settings file can be found in the following places on the following systems:
 * No "3-2-1-Go!" intro yet.
 * See [Known Issues](#known-issues).
 
-**Weeks** - 3.8/8 Complete
-* Tutorial + Weeks 1-3 are implemented.
+**Weeks** - ~4/8 Complete
+* Tutorial + Weeks 1-4 are implemented.
 * Week 3's train is not implemented yet.
+* Week 4's passing car is not implemented yet.
 
 # Known Issues
 * Sprite offsets are a little weird and may need to be redone.
@@ -106,6 +107,6 @@ Results are in `build/release`.
 Follow the official instructions for LÖVE game distribution for your platform: https://love2d.org/wiki/Game_Distribution
 
 # Special Thanks
-* KadeDev for [FNFDataAPI](https://github.com/KadeDev/FNFDataAPI/tree/main/FNFDataAPI), which was refrenced while developing the chart-reading system
+* KadeDev for [FNFDataAPI](https://github.com/KadeDev/FNFDataAPI), which was refrenced while developing the chart-reading system
 * The devs of [BeatFever Mania](https://github.com/Sulunia/beatfever) for their music time interpolation code
 * ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, for making such an awesome game!

@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weeks[3] = {
+weekData[4] = {
 	init = function()
 		weeks.init()
 		
@@ -53,7 +53,7 @@ weeks[3] = {
 		
 		enemyIcon:animate("pico", false)
 		
-		weeks[3].load()
+		weekData[4].load()
 	end,
 	
 	load = function()
@@ -70,7 +70,7 @@ weeks[3] = {
 			voices = love.audio.newSource("music/Pico_Voices.ogg", "stream")
 		end
 		
-		weeks[3].initUI()
+		weekData[4].initUI()
 		
 		inst:play()
 		weeks.voicesPlay()
@@ -102,9 +102,9 @@ weeks[3] = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weeks[3].load)
+					graphics.fadeOut(3, weekData[4].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weeks[3].stop)
+					graphics.fadeOut(1, weekData[4].stop)
 				end
 			end
 			
@@ -143,12 +143,12 @@ weeks[3] = {
 			if storyMode and songNum < 3 then
 				songNum = songNum + 1
 			else
-				graphics.fadeOut(1, weeks[3].stop)
+				graphics.fadeOut(1, weekData[4].stop)
 				
 				return
 			end
 			
-			weeks[3].load()
+			weekData[4].load()
 		end
 		
 		weeks.updateUI(dt)

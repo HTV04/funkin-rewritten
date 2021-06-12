@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weeks[2] = {
+weekData[3] = {
 	init = function()
 		weeks.init()
 		
@@ -38,7 +38,7 @@ weeks[2] = {
 		
 		enemyIcon:animate("skid and pump", false)
 		
-		weeks[2].load()
+		weekData[3].load()
 	end,
 	
 	load = function()
@@ -52,7 +52,7 @@ weeks[2] = {
 			voices = love.audio.newSource("music/Spookeez_Voices.ogg", "stream")
 		end
 		
-		weeks[2].initUI()
+		weekData[3].initUI()
 		
 		inst:play()
 		weeks.voicesPlay()
@@ -82,9 +82,9 @@ weeks[2] = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weeks[2].load)
+					graphics.fadeOut(3, weekData[3].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weeks[2].stop)
+					graphics.fadeOut(1, weekData[3].stop)
 				end
 			end
 			
@@ -131,12 +131,12 @@ weeks[2] = {
 			if storyMode and songNum < 2 then
 				songNum = songNum + 1
 			else
-				graphics.fadeOut(1, weeks[2].stop)
+				graphics.fadeOut(1, weekData[3].stop)
 				
 				return
 			end
 			
-			weeks[2].load()
+			weekData[3].load()
 		end
 		
 		weeks.updateUI(dt)

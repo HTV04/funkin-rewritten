@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weeks[1] = {
+weekData[2] = {
 	init = function()
 		weeks.init()
 		
@@ -36,7 +36,7 @@ weeks[1] = {
 		
 		enemyIcon:animate("daddy dearest", false)
 		
-		weeks[1].load()
+		weekData[2].load()
 	end,
 	
 	load = function()
@@ -53,7 +53,7 @@ weeks[1] = {
 			voices = love.audio.newSource("music/Bopeebo_Voices.ogg", "stream")
 		end
 		
-		weeks[1].initUI()
+		weekData[2].initUI()
 		
 		inst:play()
 		weeks.voicesPlay()
@@ -85,9 +85,9 @@ weeks[1] = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weeks[1].load)
+					graphics.fadeOut(3, weekData[2].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weeks[1].stop)
+					graphics.fadeOut(1, weekData[2].stop)
 				end
 			end
 			
@@ -123,12 +123,12 @@ weeks[1] = {
 			if storyMode and songNum < 3 then
 				songNum = songNum + 1
 			else
-				graphics.fadeOut(1, weeks[1].stop)
+				graphics.fadeOut(1, weekData[2].stop)
 				
 				return
 			end
 			
-			weeks[1].load()
+			weekData[2].load()
 		end
 		
 		weeks.updateUI(dt)

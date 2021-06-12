@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weeks[0] = {
+weekData[1] = {
 	init = function(songNum)
 		bpm = 100
 		
@@ -64,7 +64,7 @@ weeks[0] = {
 		
 		enemyIcon:animate("girlfriend", false)
 		
-		weeks[0].load()
+		weekData[1].load()
 	end,
 	
 	load = function()
@@ -73,7 +73,7 @@ weeks[0] = {
 		inst = nil
 		voices = love.audio.newSource("music/Tutorial_Inst.ogg", "stream")
 		
-		weeks[0].initUI(songNum)
+		weekData[1].initUI(songNum)
 		
 		weeks.voicesPlay()
 	end,
@@ -100,9 +100,9 @@ weeks[0] = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weeks[0].load)
+					graphics.fadeOut(3, weekData[1].load)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weeks[0].stop)
+					graphics.fadeOut(1, weekData[1].stop)
 				end
 			end
 			
@@ -122,6 +122,7 @@ weeks[0] = {
 		end
 		
 		musicThres = math.floor(musicTime / 100) -- Since "musicTime" isn't precise, this is needed
+		musicPos = musicTime * 0.6 * speed
 		
 		for i = 1, #events do
 			if events[i].eventTime <= musicTime then
@@ -170,7 +171,7 @@ weeks[0] = {
 		if not graphics.isFading and not voices:isPlaying() then
 			storyMode = false
 			
-			graphics.fadeOut(1, weeks[0].stop)
+			graphics.fadeOut(1, weekData[1].stop)
 		end
 		
 		weeks.updateUI(dt)

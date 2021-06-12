@@ -32,6 +32,7 @@ function love.load()
 	require "weeks"
 	
 	-- Load week data
+	weekData = {}
 	require "weeks.tutorial"
 	require "weeks.week1"
 	require "weeks.week2"
@@ -57,17 +58,17 @@ vsync=1
 kadeInput=false
 
 [Advanced]
-showFps=false
+showDebug=false
 
 ; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings.
 [Data]
-settingsVer=1
+settingsVer=2
 ]]
 	
 	if love.filesystem.getInfo("settings.ini") then
 		settingsIni = ini.load("settings.ini")
 		
-		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "1" then
+		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "2" then
 			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
 			
 			local success, message = love.filesystem.write("settings.ini", settingsStr)
@@ -118,10 +119,10 @@ settingsVer=1
 		settings.kadeInput = false
 	end
 	
-	if ini.readKey(settingsIni, "Advanced", "showFps") == "true" then
-		settings.showFps = true
+	if ini.readKey(settingsIni, "Advanced", "showDebug") == "true" then
+		settings.showDebug = true
 	else
-		settings.showFps = false
+		settings.showDebug = false
 	end
 	
 	-- Screen init
@@ -130,19 +131,15 @@ settingsVer=1
 	-- Variables
 	font = love.graphics.newFont("fonts/vcr.ttf", 24)
 	
-	weekNum = 0
+	weekNum = 1
 	songDifficulty = 2
-	
-	storyMode = false
-	inGame = false
-	gameOver = false
 	
 	cam = {x = 0, y = 0, sizeX = 0.9, sizeY = 0.9}
 	camScale = {x = 0.9, y = 0.9}
 	uiScale = {x = 0.7, y = 0.7}
 	
 	-- Start menu
-	menu.init()
+	menu.load()
 end
 
 function love.keypressed(key)
@@ -165,7 +162,7 @@ function love.update(dt)
 	if inMenu then
 		menu.update(dt)
 	elseif inGame then
-		weeks[weekNum].update(dt)
+		weekData[weekNum].update(dt)
 	end
 	
 	Timer.update(dt)
@@ -182,13 +179,13 @@ function love.draw()
 			if inMenu then
 				menu.draw()
 			elseif inGame then
-				weeks[weekNum].draw()
+				weekData[weekNum].draw()
 			end
 		love.graphics.pop()
 		
 		love.graphics.setColor(1, 1, 1) -- Bypass fade effect
 		
-		if settings.showFps then
+		if settings.showDebug then
 			love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 5, 5, nil, 0.5, 0.5)
 		end
 	lovesize.finish()
