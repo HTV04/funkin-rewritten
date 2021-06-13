@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("images/BOYFRIEND.png"),
+	love.graphics.newImage("images/boyfriend.png"),
 	-- Automatically generated from BOYFRIEND.xml
 	{
 		{x = 0, y = 0, width = 439, height = 435, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: BF Dead Loop0000

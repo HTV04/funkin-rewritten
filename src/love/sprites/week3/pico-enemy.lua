@@ -20,7 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -- NOTE: Pico's sprites are flipped horizontally as an enemy!
 -- TODO: Maybe remove miss anim data?
 return Sprite (
-	love.graphics.newImage("images/Pico_FNF_assetss.png"), -- Not a typo ;)
+	love.graphics.newImage("images/pico.png"),
 	-- Automatically generated from Pico_FNF_assetss.xml
 	{
 		{x = 0, y = 0, width = 723, height = 382, offsetX = -13, offsetY = -9, offsetWidth = 736, offsetHeight = 392}, -- 1: Pico Down Note0000
@@ -198,11 +198,11 @@ return Sprite (
 		{x = 2242, y = 1495, width = 444, height = 530, offsetX = -4, offsetY = 0, offsetWidth = 451, offsetHeight = 531} -- 173: pico Up note miss0024
 	},
 	{
-		["down"] = {start = 1, stop = 11, speed = 24, offsetX = -200, offsetY = -70}, -- offsetX flipped
+		["down"] = {start = 1, stop = 11, speed = 24, offsetX = -200, offsetY = -70},
 		["idle"] = {start = 37, stop = 50, speed = 24, offsetX = 0, offsetY = 0},
 		["right"] = {start = 51, stop = 67, speed = 24, offsetX = 65, offsetY = 9}, -- Swapped
 		["left"] = {start = 93, stop = 109, speed = 24, offsetX = -68, offsetY = -7}, -- Swapped
-		["up"] = {start = 135, stop = 148, speed = 24, offsetX = 29, offsetY = 27} -- offsetX flipped
+		["up"] = {start = 135, stop = 148, speed = 24, offsetX = 29, offsetY = 27}
 	},
 	"idle",
 	true

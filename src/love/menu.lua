@@ -17,10 +17,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-local titleBG = Image(love.graphics.newImage("images/titleBG.png"))
-local logo = Image(love.graphics.newImage("images/logo.png"))
+local titleBG = Image(love.graphics.newImage("images/menu/title-bg.png"))
+local logo = Image(love.graphics.newImage("images/menu/logo.png"))
 
-local girlfriendTitle = love.filesystem.load("sprites/girlfriend-title.lua")()
+local girlfriendTitle = love.filesystem.load("sprites/menu/girlfriend-title.lua")()
 
 local weekIDs = {
 	"Tutorial",
@@ -59,15 +59,17 @@ local difficultyStrs = {
 	"-hard"
 }
 
-local selectSound = love.audio.newSource("sounds/scrollMenu.ogg", "static")
-local confirmSound = love.audio.newSource("sounds/confirmMenu.ogg", "static")
+local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
+local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
-local music = love.audio.newSource("music/freakyMenu.ogg", "stream")
+local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
 logo.x, logo.y = -350, -125
 logo.sizeX, logo.sizeY = 1.25, 1.25
 
 girlfriendTitle.x, girlfriendTitle.y = 300, -75
+
+music:setLooping(true)
 
 menu = {
 	load = function()
@@ -80,8 +82,6 @@ menu = {
 		songNum = 0
 		menuState = 0
 		
-		music = love.audio.newSource("music/freakyMenu.ogg", "stream")
-		music:setLooping(true)
 		music:play()
 	end,
 	

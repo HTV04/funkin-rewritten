@@ -26,29 +26,30 @@ weekData[5] = {
 		
 		sounds = {
 			["miss"] = {
-				love.audio.newSource("sounds/missnote1.ogg", "static"),
-				love.audio.newSource("sounds/missnote2.ogg", "static"),
-				love.audio.newSource("sounds/missnote3.ogg", "static")
+				love.audio.newSource("sounds/miss1.ogg", "static"),
+				love.audio.newSource("sounds/miss2.ogg", "static"),
+				love.audio.newSource("sounds/miss3.ogg", "static")
 			},
-			["death"] = love.audio.newSource("sounds/fnf_loss_sfx.ogg", "static")
+			["death"] = love.audio.newSource("sounds/death.ogg", "static")
 		}
 		
 		sheets = {
-			["icons"] = love.graphics.newImage("images/iconGrid.png")
+			["icons"] = love.graphics.newImage("images/icons.png"),
+			["notes"] = love.graphics.newImage("images/notes.png")
 		}
 		
 		sprites = {
 			["icons"] = love.filesystem.load("sprites/icons.lua")
 		}
 		
-		sunset = Image(love.graphics.newImage("images/limoSunset.png"))
+		sunset = Image(love.graphics.newImage("images/week4/sunset.png"))
 		
-		bgLimo = love.filesystem.load("sprites/bg-limo.lua")()
-		limoDancer = love.filesystem.load("sprites/limo-dancer.lua")()
-		girlfriend = love.filesystem.load("sprites/girlfriend-car.lua")()
-		limo = love.filesystem.load("sprites/limo.lua")()
-		enemy = love.filesystem.load("sprites/mommy-mearest.lua")()
-		boyfriend = love.filesystem.load("sprites/boyfriend-car.lua")()
+		bgLimo = love.filesystem.load("sprites/week4/bg-limo.lua")()
+		limoDancer = love.filesystem.load("sprites/week4/limo-dancer.lua")()
+		girlfriend = love.filesystem.load("sprites/week4/girlfriend-car.lua")()
+		limo = love.filesystem.load("sprites/week4/limo.lua")()
+		enemy = love.filesystem.load("sprites/week4/mommy-mearest.lua")()
+		boyfriend = love.filesystem.load("sprites/week4/boyfriend-car.lua")()
 		fakeBoyfriend = love.filesystem.load("sprites/boyfriend.lua")() -- Used for game over
 		
 		bgLimo.y = 250
@@ -80,14 +81,14 @@ weekData[5] = {
 		weeks.load()
 		
 		if songNum == 3 then
-			inst = love.audio.newSource("music/Milf_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Milf_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week4/milf-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week4/milf-voices.ogg", "stream")
 		elseif songNum == 2 then
-			inst = love.audio.newSource("music/High_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/High_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week4/high-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week4/high-voices.ogg", "stream")
 		else
-			inst = love.audio.newSource("music/Satin-Panties_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Satin-Panties_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week4/satin-panties-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week4/satin-panties-voices.ogg", "stream")
 		end
 		
 		weekData[5].initUI()
@@ -100,11 +101,11 @@ weekData[5] = {
 		weeks.initUI()
 		
 		if songNum == 3 then
-			weeks.generateNotes(love.filesystem.load("charts/milf" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week4/milf" .. songAppend .. ".lua")())
 		elseif songNum == 2 then
-			weeks.generateNotes(love.filesystem.load("charts/high" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week4/high" .. songAppend .. ".lua")())
 		else
-			weeks.generateNotes(love.filesystem.load("charts/satin-panties" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week4/satin-panties" .. songAppend .. ".lua")())
 		end
 	end,
 	
@@ -113,7 +114,7 @@ weekData[5] = {
 			if graphics.fade[1] == 1 then
 				if input:pressed("confirm") then
 					inst:stop()
-					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
+					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
 					inst:play()
 					
 					Timer.clear()

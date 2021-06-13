@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("images/gfCar.png"),
+	love.graphics.newImage("images/week4/girlfriend-car.png"),
 	-- Automatically generated from gfCar.xml
 	{
 		{x = 0, y = 0, width = 699, height = 634, offsetX = -2, offsetY = -15, offsetWidth = 774, offsetHeight = 649}, -- 1: GF Dancing Beat Hair blowing CAR0000

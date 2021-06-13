@@ -21,14 +21,14 @@ weekData[2] = {
 	init = function()
 		weeks.init()
 		
-		stageBack = Image(love.graphics.newImage("images/stageback.png"))
-		stageFront = Image(love.graphics.newImage("images/stagefront.png"))
-		curtains = Image(love.graphics.newImage("images/stagecurtains.png"))
+		stageBack = Image(love.graphics.newImage("images/week1/stage-back.png"))
+		stageFront = Image(love.graphics.newImage("images/week1/stage-front.png"))
+		curtains = Image(love.graphics.newImage("images/week1/curtains.png"))
 		
 		stageFront.y = 400
 		curtains.y = -100
 		
-		enemy = love.filesystem.load("sprites/daddy-dearest.lua")()
+		enemy = love.filesystem.load("sprites/week1/daddy-dearest.lua")()
 		
 		girlfriend.x, girlfriend.y = 30, -90
 		enemy.x, enemy.y = -380, -110
@@ -43,14 +43,14 @@ weekData[2] = {
 		weeks.load()
 		
 		if songNum == 3 then
-			inst = love.audio.newSource("music/Dadbattle_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Dadbattle_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week1/dadbattle-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week1/dadbattle-voices.ogg", "stream")
 		elseif songNum == 2 then
-			inst = love.audio.newSource("music/Fresh_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Fresh_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week1/fresh-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week1/fresh-voices.ogg", "stream")
 		else
-			inst = love.audio.newSource("music/Bopeebo_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Bopeebo_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week1/bopeebo-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week1/bopeebo-voices.ogg", "stream")
 		end
 		
 		weekData[2].initUI()
@@ -62,12 +62,12 @@ weekData[2] = {
 	initUI = function()
 		weeks.initUI()
 		
-		if songNum == 2 then
-			weeks.generateNotes(love.filesystem.load("charts/fresh" .. songAppend .. ".lua")())
-		elseif songNum == 3 then
-			weeks.generateNotes(love.filesystem.load("charts/dadbattle" .. songAppend .. ".lua")())
+		if songNum == 3 then
+			weeks.generateNotes(love.filesystem.load("charts/week1/dadbattle" .. songAppend .. ".lua")())
+		elseif songNum == 2 then
+			weeks.generateNotes(love.filesystem.load("charts/week1/fresh" .. songAppend .. ".lua")())
 		else
-			weeks.generateNotes(love.filesystem.load("charts/bopeebo" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week1/bopeebo" .. songAppend .. ".lua")())
 		end
 	end,
 	
@@ -76,7 +76,7 @@ weekData[2] = {
 			if not graphics.isFading then
 				if input:pressed("confirm") then
 					inst:stop()
-					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
+					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
 					inst:play()
 					
 					Timer.clear()

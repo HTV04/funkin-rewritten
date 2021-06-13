@@ -25,12 +25,12 @@ weekData[3] = {
 		camScale.x, camScale.y = 1.1, 1.1
 		
 		sounds["thunder"] = {
-			love.audio.newSource("sounds/thunder_1.ogg", "static"),
-			love.audio.newSource("sounds/thunder_2.ogg", "static")
+			love.audio.newSource("sounds/week2/thunder1.ogg", "static"),
+			love.audio.newSource("sounds/week2/thunder2.ogg", "static")
 		}
 		
-		hauntedHouse = love.filesystem.load("sprites/haunted-house.lua")()
-		enemy = love.filesystem.load("sprites/skid-and-pump.lua")()
+		hauntedHouse = love.filesystem.load("sprites/week2/haunted-house.lua")()
+		enemy = love.filesystem.load("sprites/week2/skid-and-pump.lua")()
 		
 		girlfriend.x, girlfriend.y = -200, 50
 		enemy.x, enemy.y = -610, 140
@@ -45,11 +45,11 @@ weekData[3] = {
 		weeks.load()
 		
 		if songNum == 2 then
-			inst = love.audio.newSource("music/South_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/South_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week2/south-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week2/south-voices.ogg", "stream")
 		else
-			inst = love.audio.newSource("music/Spookeez_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Spookeez_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week2/spookeez-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week2/spookeez-voices.ogg", "stream")
 		end
 		
 		weekData[3].initUI()
@@ -62,9 +62,9 @@ weekData[3] = {
 		weeks.initUI()
 		
 		if songNum == 2 then
-			weeks.generateNotes(love.filesystem.load("charts/south" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week2/south" .. songAppend .. ".lua")())
 		else
-			weeks.generateNotes(love.filesystem.load("charts/spookeez" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week2/spookeez" .. songAppend .. ".lua")())
 		end
 	end,
 	
@@ -73,7 +73,7 @@ weekData[3] = {
 			if not graphics.isFading then
 				if input:pressed("confirm") then
 					inst:stop()
-					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
+					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
 					inst:play()
 					
 					Timer.clear()

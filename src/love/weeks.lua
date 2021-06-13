@@ -39,15 +39,16 @@ weeks = {
 		
 		sounds = {
 			["miss"] = {
-				love.audio.newSource("sounds/missnote1.ogg", "static"),
-				love.audio.newSource("sounds/missnote2.ogg", "static"),
-				love.audio.newSource("sounds/missnote3.ogg", "static")
+				love.audio.newSource("sounds/miss1.ogg", "static"),
+				love.audio.newSource("sounds/miss2.ogg", "static"),
+				love.audio.newSource("sounds/miss3.ogg", "static")
 			},
-			["death"] = love.audio.newSource("sounds/fnf_loss_sfx.ogg", "static")
+			["death"] = love.audio.newSource("sounds/death.ogg", "static")
 		}
 		
 		sheets = {
-			["icons"] = love.graphics.newImage("images/iconGrid.png")
+			["icons"] = love.graphics.newImage("images/icons.png"),
+			["notes"] = love.graphics.newImage("images/notes.png")
 		}
 		
 		sprites = {
@@ -72,7 +73,7 @@ weeks = {
 	
 	load = function()
 		gameOver = false
-		cam.x, cam.y = -boyfriend.x + 50, -boyfriend.y + 50
+		cam.x, cam.y = -boyfriend.x + 100, -boyfriend.y + 50
 		
 		girlfriendFrameTimer = 0
 		
@@ -88,8 +89,6 @@ weeks = {
 		boyfriendNotes = {}
 		health = 50
 		score = 0
-		
-		sheets["notes"] = love.graphics.newImage("images/NOTE_assets.png")
 		
 		sprites["left arrow"] = love.filesystem.load("sprites/left-arrow.lua")
 		sprites["down arrow"] = love.filesystem.load("sprites/down-arrow.lua")
@@ -479,7 +478,7 @@ weeks = {
 				{x = -boyfriend.x, y = -boyfriend.y, sizeX = camScale.x, sizeY = camScale.y},
 				"out-quad",
 				function()
-					inst = love.audio.newSource("music/gameOver.ogg", "stream")
+					inst = love.audio.newSource("music/game-over.ogg", "stream")
 					inst:setLooping(true)
 					inst:play()
 					
@@ -580,12 +579,12 @@ weeks = {
 		end
 		
 		graphics.setColor(1, 0, 0)
-		love.graphics.rectangle("fill", -500, 350, 1000, 30)
+		love.graphics.rectangle("fill", -500, 350, 1000, 25)
 		graphics.setColor(0, 1, 0)
-		love.graphics.rectangle("fill", 500, 350, -health * 10, 30)
+		love.graphics.rectangle("fill", 500, 350, -health * 10, 25)
 		graphics.setColor(0, 0, 0)
 		love.graphics.setLineWidth(10)
-		love.graphics.rectangle("line", -500, 350, 1000, 30)
+		love.graphics.rectangle("line", -500, 350, 1000, 25)
 		love.graphics.setLineWidth(1)
 		graphics.setColor(1, 1, 1)
 		

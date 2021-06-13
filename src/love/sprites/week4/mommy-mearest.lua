@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("images/momCar.png"),
+	love.graphics.newImage("images/week4/mommy-mearest.png"),
 	-- Automatically generated from momCar.xml
 	{
 		{x = 0, y = 0, width = 452, height = 594, offsetX = -1, offsetY = -19, offsetWidth = 459, offsetHeight = 613}, -- 1: MOM DOWN POSE0000

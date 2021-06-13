@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("images/DADDY_DEAREST.png"),
+	love.graphics.newImage("images/week1/daddy-dearest.png"),
 	-- Automatically generated from DADDY_DEAREST.xml
 	{
 		{x = 1369, y = 0, width = 470, height = 730, offsetX = 0, offsetY = -5, offsetWidth = 470, offsetHeight = 735}, -- 1: Dad Sing Note DOWN0000

@@ -26,24 +26,25 @@ weekData[1] = {
 		
 		sounds = {
 			["miss"] = {
-				love.audio.newSource("sounds/missnote1.ogg", "static"),
-				love.audio.newSource("sounds/missnote2.ogg", "static"),
-				love.audio.newSource("sounds/missnote3.ogg", "static")
+				love.audio.newSource("sounds/miss1.ogg", "static"),
+				love.audio.newSource("sounds/miss2.ogg", "static"),
+				love.audio.newSource("sounds/miss3.ogg", "static")
 			},
-			["death"] = love.audio.newSource("sounds/fnf_loss_sfx.ogg", "static")
+			["death"] = love.audio.newSource("sounds/death.ogg", "static")
 		}
 		
 		sheets = {
-			["icons"] = love.graphics.newImage("images/iconGrid.png")
+			["icons"] = love.graphics.newImage("images/icons.png"),
+			["notes"] = love.graphics.newImage("images/notes.png")
 		}
 		
 		sprites = {
 			["icons"] = love.filesystem.load("sprites/icons.lua")
 		}
 		
-		stageBack = Image(love.graphics.newImage("images/stageback.png"))
-		stageFront = Image(love.graphics.newImage("images/stagefront.png"))
-		curtains = Image(love.graphics.newImage("images/stagecurtains.png"))
+		stageBack = Image(love.graphics.newImage("images/week1/stage-back.png"))
+		stageFront = Image(love.graphics.newImage("images/week1/stage-front.png"))
+		curtains = Image(love.graphics.newImage("images/week1/curtains.png"))
 		
 		stageFront.y = 400
 		curtains.y = -100
@@ -71,7 +72,7 @@ weekData[1] = {
 		weeks.load()
 		
 		inst = nil
-		voices = love.audio.newSource("music/Tutorial_Inst.ogg", "stream")
+		voices = love.audio.newSource("music/tutorial/tutorial.ogg", "stream")
 		
 		weekData[1].initUI(songNum)
 		
@@ -81,7 +82,7 @@ weekData[1] = {
 	initUI = function(songNum)
 		weeks.initUI()
 		
-		weeks.generateNotes(love.filesystem.load("charts/tutorial" .. songAppend .. ".lua")())
+		weeks.generateNotes(love.filesystem.load("charts/tutorial/tutorial" .. songAppend .. ".lua")())
 	end,
 	
 	update = function(dt)
@@ -91,7 +92,7 @@ weekData[1] = {
 					if inst then -- In case "confirm" is pressed before game over music starts
 						inst:stop()
 					end
-					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
+					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
 					inst:play()
 					
 					Timer.clear()

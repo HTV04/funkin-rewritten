@@ -33,18 +33,18 @@ weekData[4] = {
 		}
 		winColor = 1
 		
-		sky = Image(love.graphics.newImage("images/sky.png"))
-		city = Image(love.graphics.newImage("images/city.png"))
-		cityWindows = Image(love.graphics.newImage("images/city-windows.png"))
-		behindTrain = Image(love.graphics.newImage("images/behindTrain.png"))
-		street = Image(love.graphics.newImage("images/street.png"))
+		sky = Image(love.graphics.newImage("images/week3/sky.png"))
+		city = Image(love.graphics.newImage("images/week3/city.png"))
+		cityWindows = Image(love.graphics.newImage("images/week3/city-windows.png"))
+		behindTrain = Image(love.graphics.newImage("images/week3/behind-train.png"))
+		street = Image(love.graphics.newImage("images/week3/street.png"))
 		
 		behindTrain.y = -100
 		behindTrain.sizeX, behindTrain.sizeY = 1.25, 1.25
 		street.y = -100
 		street.sizeX, street.sizeY = 1.25, 1.25
 		
-		enemy = love.filesystem.load("sprites/pico-enemy.lua")()
+		enemy = love.filesystem.load("sprites/week3/pico-enemy.lua")()
 		
 		girlfriend.x, girlfriend.y = -70, -140
 		enemy.x, enemy.y = -480, 40
@@ -60,14 +60,14 @@ weekData[4] = {
 		weeks.load()
 		
 		if songNum == 3 then
-			inst = love.audio.newSource("music/Blammed_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Blammed_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week3/blammed-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week3/blammed-voices.ogg", "stream")
 		elseif songNum == 2 then
-			inst = love.audio.newSource("music/Philly_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Philly_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week3/philly-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week3/philly-voices.ogg", "stream")
 		else
-			inst = love.audio.newSource("music/Pico_Inst.ogg", "stream")
-			voices = love.audio.newSource("music/Pico_Voices.ogg", "stream")
+			inst = love.audio.newSource("music/week3/pico-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week3/pico-voices.ogg", "stream")
 		end
 		
 		weekData[4].initUI()
@@ -80,11 +80,11 @@ weekData[4] = {
 		weeks.initUI()
 		
 		if songNum == 3 then
-			weeks.generateNotes(love.filesystem.load("charts/blammed" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week3/blammed" .. songAppend .. ".lua")())
 		elseif songNum == 2 then
-			weeks.generateNotes(love.filesystem.load("charts/philly" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week3/philly" .. songAppend .. ".lua")())
 		else
-			weeks.generateNotes(love.filesystem.load("charts/pico" .. songAppend .. ".lua")())
+			weeks.generateNotes(love.filesystem.load("charts/week3/pico" .. songAppend .. ".lua")())
 		end
 	end,
 	
@@ -93,7 +93,7 @@ weekData[4] = {
 			if not graphics.isFading then
 				if input:pressed("confirm") then
 					inst:stop()
-					inst = love.audio.newSource("music/gameOverEnd.ogg", "stream")
+					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
 					inst:play()
 					
 					Timer.clear()

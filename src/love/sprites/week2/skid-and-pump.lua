@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("images/spooky_kids_assets.png"),
+	love.graphics.newImage("images/week2/skid-and-pump.png"),
 	-- Automatically generated from spooky_kids_assets.xml
 	{
 		{x = 0, y = 0, width = 556, height = 527, offsetX = 0, offsetY = -2, offsetWidth = 564, offsetHeight = 531}, -- 1: note sing left0000
