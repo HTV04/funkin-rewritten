@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-local titleBG = Image(love.graphics.newImage("images/menu/title-bg.png"))
-local logo = Image(love.graphics.newImage("images/menu/logo.png"))
+local titleBG = Image(love.graphics.newImage(graphics.imagePath("menu/title-bg")))
+local logo = Image(love.graphics.newImage(graphics.imagePath("menu/logo")))
 
 local girlfriendTitle = love.filesystem.load("sprites/menu/girlfriend-title.lua")()
 

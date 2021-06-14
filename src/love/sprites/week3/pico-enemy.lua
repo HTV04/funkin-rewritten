@@ -20,7 +20,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 -- NOTE: Pico's sprites are flipped horizontally as an enemy!
 -- TODO: Maybe remove miss anim data?
 return Sprite (
-	love.graphics.newImage("images/pico.png"),
+	love.graphics.newImage(graphics.imagePath("pico")),
 	-- Automatically generated from Pico_FNF_assetss.xml
 	{
 		{x = 0, y = 0, width = 723, height = 382, offsetX = -13, offsetY = -9, offsetWidth = 736, offsetHeight = 392}, -- 1: Pico Down Note0000

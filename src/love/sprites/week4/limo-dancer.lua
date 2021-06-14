@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("images/week4/limo-dancer.png"),
+	love.graphics.newImage(graphics.imagePath("week4/limo-dancer")),
 	-- Automatically generated from limoDancer.xml
 	{
 		{x = 0, y = 0, width = 394, height = 394, offsetX = 0, offsetY = -15, offsetWidth = 517, offsetHeight = 410}, -- 1: bg dancer sketch PINK0000

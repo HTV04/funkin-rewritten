@@ -34,15 +34,15 @@ weekData[5] = {
 		}
 		
 		sheets = {
-			["icons"] = love.graphics.newImage("images/icons.png"),
-			["notes"] = love.graphics.newImage("images/notes.png")
+			["icons"] = love.graphics.newImage(graphics.imagePath("icons")),
+			["notes"] = love.graphics.newImage(graphics.imagePath("notes"))
 		}
 		
 		sprites = {
 			["icons"] = love.filesystem.load("sprites/icons.lua")
 		}
 		
-		sunset = Image(love.graphics.newImage("images/week4/sunset.png"))
+		sunset = Image(love.graphics.newImage(graphics.imagePath("week4/sunset")))
 		
 		bgLimo = love.filesystem.load("sprites/week4/bg-limo.lua")()
 		limoDancer = love.filesystem.load("sprites/week4/limo-dancer.lua")()

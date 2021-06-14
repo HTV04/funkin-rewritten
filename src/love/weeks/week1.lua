@@ -21,9 +21,9 @@ weekData[2] = {
 	init = function()
 		weeks.init()
 		
-		stageBack = Image(love.graphics.newImage("images/week1/stage-back.png"))
-		stageFront = Image(love.graphics.newImage("images/week1/stage-front.png"))
-		curtains = Image(love.graphics.newImage("images/week1/curtains.png"))
+		stageBack = Image(love.graphics.newImage(graphics.imagePath("week1/stage-back")))
+		stageFront = Image(love.graphics.newImage(graphics.imagePath("week1/stage-front")))
+		curtains = Image(love.graphics.newImage(graphics.imagePath("week1/curtains")))
 		
 		stageFront.y = 400
 		curtains.y = -100

@@ -25,8 +25,13 @@ audio = {
 }
 
 graphics = {
+	imageType = "png",
 	fade = {1}, -- Have to make this a table for "Timer.tween"
 	isFading = false,
+	
+	imagePath = function(path)
+		return "images/" .. graphics.imageType .. "/" .. path .. "." .. graphics.imageType
+	end,
 	
 	fadeOut = function(duration, func)
 		if graphics.fadeTimer then

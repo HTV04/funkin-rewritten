@@ -34,17 +34,17 @@ weekData[1] = {
 		}
 		
 		sheets = {
-			["icons"] = love.graphics.newImage("images/icons.png"),
-			["notes"] = love.graphics.newImage("images/notes.png")
+			["icons"] = love.graphics.newImage(graphics.imagePath("icons")),
+			["notes"] = love.graphics.newImage(graphics.imagePath("notes"))
 		}
 		
 		sprites = {
 			["icons"] = love.filesystem.load("sprites/icons.lua")
 		}
 		
-		stageBack = Image(love.graphics.newImage("images/week1/stage-back.png"))
-		stageFront = Image(love.graphics.newImage("images/week1/stage-front.png"))
-		curtains = Image(love.graphics.newImage("images/week1/curtains.png"))
+		stageBack = Image(love.graphics.newImage(graphics.imagePath("week1/stage-back")))
+		stageFront = Image(love.graphics.newImage(graphics.imagePath("week1/stage-front")))
+		curtains = Image(love.graphics.newImage(graphics.imagePath("week1/curtains")))
 		
 		stageFront.y = 400
 		curtains.y = -100

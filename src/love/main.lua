@@ -25,42 +25,40 @@ function love.load()
 	lovesize = require "lib.lovesize"
 	Timer = require "lib.timer"
 	
-	-- Load engine
+	-- Load objects
 	require "classes"
 	require "modules"
-	require "menu"
-	require "weeks"
-	
-	-- Load week data
-	weekData = {}
-	require "weeks.tutorial"
-	require "weeks.week1"
-	require "weeks.week2"
-	require "weeks.week3"
-	require "weeks.week4"
 	
 	-- Create, read, and apply settings
 	settingsStr = [[
 ; Friday Night Funkin' Rewritten Settings
 
 [Video]
-; Screen/window width and height (you should change this to your device's screen resolution if you are using the "exclusive" fullscreen type).
+; Screen/window width and height (you should change this to your device's screen resolution if you are using the "exclusive" fullscreen type)
+; NOTE: These settings will be ignored if using the "desktop" fullscreen type
 width=1280
 height=720
 
-; Fullscreen settings. If you don't want Vsync (60 FPS cap), set "fullscreenType" to "exclusive", and set "vsync" is set to "0".
+; Fullscreen settings, if you don't want Vsync (60 FPS cap), set "fullscreenType" to "exclusive", and set "vsync" is set to "0"
 fullscreen=false
 fullscreenType=desktop
 vsync=1
 
+; Use hardware-compressed image formats to save RAM, disabling this may improve performance at the cost of eating your RAM for breakfast (and increasing load times)
+; WARNING: Don't disable this on 32-bit versions of the game, or the game will quickly run out of memory (thanks to the 2 GB RAM cap)
+; NOTE: If hardware compression is not supported on your device, this option will be silently disabled
+hardwareCompression=true
+
 [Game]
-; "Kade Input" disables anti-spam, but counts "Shit" inputs as misses.
+; "Kade Input" disables anti-spam, but counts "Shit" inputs as misses
+; NOTE: Currently unfinished, some aspects of this input mode still need to be implemented, like mash violations
 kadeInput=false
 
 [Advanced]
+; Show debug info on the screen at all times
 showDebug=false
 
-; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings.
+; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings!
 [Data]
 settingsVer=2
 ]]
@@ -113,6 +111,12 @@ settingsVer=2
 		)
 	end
 	
+	if ini.readKey(settingsIni, "Video", "hardwareCompression") == "true" then
+		if love.graphics.getImageFormats()["DXT5"] then
+			graphics.imageType = "dds"
+		end
+	end
+	
 	if ini.readKey(settingsIni, "Game", "kadeInput") == "true" then
 		settings.kadeInput = true
 	else
@@ -124,6 +128,18 @@ settingsVer=2
 	else
 		settings.showDebug = false
 	end
+	
+	-- Load engine
+	require "menu"
+	require "weeks"
+	
+	-- Load week data
+	weekData = {}
+	require "weeks.tutorial"
+	require "weeks.week1"
+	require "weeks.week2"
+	require "weeks.week3"
+	require "weeks.week4"
 	
 	-- Screen init
 	lovesize.set(1280, 720)

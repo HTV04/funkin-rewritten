@@ -23,5 +23,5 @@ function love.conf(t)
 	--t.console = true
 	
 	t.window.title = "Friday Night Funkin' Rewritten"
-	t.window.icon = "images/icon.png"
+	t.window.icon = "icon.png"
 end

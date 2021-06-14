@@ -33,11 +33,11 @@ weekData[4] = {
 		}
 		winColor = 1
 		
-		sky = Image(love.graphics.newImage("images/week3/sky.png"))
-		city = Image(love.graphics.newImage("images/week3/city.png"))
-		cityWindows = Image(love.graphics.newImage("images/week3/city-windows.png"))
-		behindTrain = Image(love.graphics.newImage("images/week3/behind-train.png"))
-		street = Image(love.graphics.newImage("images/week3/street.png"))
+		sky = Image(love.graphics.newImage(graphics.imagePath("week3/sky")))
+		city = Image(love.graphics.newImage(graphics.imagePath("week3/city")))
+		cityWindows = Image(love.graphics.newImage(graphics.imagePath("week3/city-windows")))
+		behindTrain = Image(love.graphics.newImage(graphics.imagePath("week3/behind-train")))
+		street = Image(love.graphics.newImage(graphics.imagePath("week3/street")))
 		
 		behindTrain.y = -100
 		behindTrain.sizeX, behindTrain.sizeY = 1.25, 1.25

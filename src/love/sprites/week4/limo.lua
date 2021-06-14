@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("images/week4/limo.png"),
+	love.graphics.newImage(graphics.imagePath("week4/limo")),
 	-- Automatically generated from limoDrive.xml
 	{
 		{x = 0, y = 0, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Limo stage0000

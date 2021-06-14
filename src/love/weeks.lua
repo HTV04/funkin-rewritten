@@ -47,8 +47,8 @@ weeks = {
 		}
 		
 		sheets = {
-			["icons"] = love.graphics.newImage("images/icons.png"),
-			["notes"] = love.graphics.newImage("images/notes.png")
+			["icons"] = love.graphics.newImage(graphics.imagePath("icons")),
+			["notes"] = love.graphics.newImage(graphics.imagePath("notes"))
 		}
 		
 		sprites = {
@@ -393,7 +393,7 @@ weeks = {
 							score = score + 350
 						elseif notePos <= 80 then -- "Good"
 							score = score + 200
-						elseif notePos <= 120 then -- "Bad"
+						elseif notePos <= 110 then -- "Bad"
 							score = score + 100
 						else -- "Shit"
 							if settings.kadeInput then
