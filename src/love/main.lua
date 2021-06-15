@@ -44,8 +44,8 @@ fullscreen=false
 fullscreenType=desktop
 vsync=1
 
-; Use hardware-compressed image formats to save RAM, disabling this may improve performance at the cost of eating your RAM for breakfast (and increasing load times)
-; WARNING: Don't disable this on 32-bit versions of the game, or the game will quickly run out of memory (thanks to the 2 GB RAM cap)
+; Use hardware-compressed image formats to save RAM, disabling this will make the game eat your RAM for breakfast (and increase load times)
+; WARNING: Don't disable this on 32-bit versions of the game, or the game will quickly run out of memory and crash (thanks to the 2 GB RAM cap)
 ; NOTE: If hardware compression is not supported on your device, this option will be silently disabled
 hardwareCompression=true
 

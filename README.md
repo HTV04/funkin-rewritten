@@ -4,12 +4,14 @@
 *Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) using [LÖVE](https://love2d.org/) for Windows, macOS, and Linux!
 
 *Friday Night Funkin' Rewritten* features:
-* A rewritten engine focused on speed, performance, and playability
-* Better fullscreen support (proper Vsync, which means no screen tear)
+* A rewritten engine focused on performance and playability
+* MUCH less memory usage than the original game
+* Better fullscreen support
 * Controller support
 * And more to come!
 
 Check it out on GameBanana: https://gamebanana.com/mods/55620
+Join the Discord server: https://discord.gg/tQGzN2Wu48
 
 # Controls
 If you are using a controller, a controller with an Xbox button layout is recommended. Controller buttons will be remappable in a future update.
@@ -90,6 +92,12 @@ Results are in `build/lovefile`.
 
 Results are in `build/win64`.
 
+### Windows (32-bit)
+* Set up dependencies shown in `dependencies/win32/dependencies.txt`
+* Run `make win32`
+
+Results are in `build/win32`.
+
 ### macOS
 * Set up dependencies shown in `dependencies/macos/dependencies.txt`
 * Run `make macos`
@@ -98,6 +106,7 @@ Results are in `build/macos`.
 
 ### Release ZIPs
 * Set up dependencies shown in `dependencies/win64/dependencies.txt`
+* Set up dependencies shown in `dependencies/win32/dependencies.txt`
 * Set up dependencies shown in `dependencies/macos/dependencies.txt`
 * Run `make release`
 
