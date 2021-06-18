@@ -11,6 +11,7 @@
 * And more to come!
 
 Check it out on GameBanana: https://gamebanana.com/mods/55620
+
 Join the Discord server for updates: https://discord.gg/tQGzN2Wu48
 
 # Controls
