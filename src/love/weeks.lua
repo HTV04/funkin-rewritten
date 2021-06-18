@@ -384,36 +384,40 @@ weeks = {
 				if #boyfriendNote > 0 then
 					local musicPos = musicTime * 0.6 * speed
 					
-					if boyfriendNote[1].anim.name == "on" and boyfriendNote[1].x == boyfriendArrow.x and boyfriendNote[1].y - musicPos <= -260 then
-						local notePos = math.abs(-400 - (boyfriendNote[1].y - musicPos))
-						
-						voices:setVolume(1)
-						
-						if notePos <= 30 then -- "Sick"
-							score = score + 350
-						elseif notePos <= 80 then -- "Good"
-							score = score + 200
-						elseif notePos <= 110 then -- "Bad"
-							score = score + 100
-						else -- "Shit"
-							if settings.kadeInput then
-								success = false
-							else
-								score = score + 50
+					for i = 1, #boyfriendNote do
+						if boyfriendNote[i] and boyfriendNote[i].anim.name == "on" and boyfriendNote[i].x == boyfriendArrow.x and boyfriendNote[i].y - musicPos <= -260 then
+							local notePos = math.abs(-400 - (boyfriendNote[i].y - musicPos))
+							
+							voices:setVolume(1)
+							
+							if notePos <= 30 then -- "Sick"
+								score = score + 350
+							elseif notePos <= 70 then -- "Good"
+								score = score + 200
+							elseif notePos <= 110 then -- "Bad"
+								score = score + 100
+							else -- "Shit"
+								if settings.kadeInput then
+									success = false
+								else
+									score = score + 50
+								end
 							end
-						end
-						
-						table.remove(boyfriendNote, 1)
-						
-						if not settings.kadeInput or success then
-							boyfriendArrow:animate("confirm", false)
 							
-							boyfriend:animate(curAnim, false)
-							boyfriendFrameTimer = 0
+							table.remove(boyfriendNote, i)
 							
-							health = health + 1
+							if not settings.kadeInput or success then
+								boyfriendArrow:animate("confirm", false)
+								
+								boyfriend:animate(curAnim, false)
+								boyfriendFrameTimer = 0
+								
+								health = health + 1
+								
+								success = true
+							end
 							
-							success = true
+							break
 						end
 					end
 				end
