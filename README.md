@@ -64,7 +64,7 @@ The settings file can be found in the following places on the following systems:
 * No "3-2-1-Go!" intro yet.
 * See [Known Issues](#known-issues).
 
-**Weeks** - ~4/8 Complete
+**Weeks** - ~5/8 Complete
 * Tutorial + Weeks 1-4 are implemented.
 * Week 3's train is not implemented yet.
 * Week 4's passing car is not implemented yet.
