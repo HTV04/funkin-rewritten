@@ -73,7 +73,6 @@ The settings file can be found in the following places on the following systems:
 * Sprite offsets are a little weird and may need to be redone.
 * On Linux, the screen can tear a lot if Vsync is set to 1. Set it to 0 in the `settings.ini` file to fix this.
   * This is an issue with LÖVE rather than the game itself.
-* Game does not support 32-bit platforms because the amount of memory it uses.
 
 # License
 *Friday Night Funkin' Rewritten* is licensed under the terms of the GNU General Public License v3.
