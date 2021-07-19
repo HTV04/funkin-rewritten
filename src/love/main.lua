@@ -1,5 +1,5 @@
 --[[----------------------------------------------------------------------------
-Friday Night Funkin' Rewritten v1.0.0 beta 3
+Friday Night Funkin' Rewritten v1.0.0
 
 Copyright (C) 2021  HTV04
 
@@ -23,6 +23,7 @@ function love.load()
 	Class = require "lib.class"
 	ini = require "lib.ini"
 	lovesize = require "lib.lovesize"
+	Gamestate = require "lib.gamestate"
 	Timer = require "lib.timer"
 	
 	-- Load objects
@@ -39,34 +40,43 @@ function love.load()
 width=1280
 height=720
 
-; Fullscreen settings, if you don't want Vsync (60 FPS cap), set "fullscreenType" to "exclusive", and set "vsync" is set to "0"
+; Fullscreen settings, if you don't want Vsync (60 FPS cap), set "fullscreenType" to "exclusive" and "vsync" to "0"
 fullscreen=false
 fullscreenType=desktop
 vsync=1
 
 ; Use hardware-compressed image formats to save RAM, disabling this will make the game eat your RAM for breakfast (and increase load times)
 ; WARNING: Don't disable this on 32-bit versions of the game, or the game will quickly run out of memory and crash (thanks to the 2 GB RAM cap)
-; NOTE: If hardware compression is not supported on your device, this option will be silently disabled
+; NOTE: If hardware compression is not supported on your device, this option will be silently ignored
 hardwareCompression=true
 
+[Audio]
+; Master volume
+; Possible values: 0.0-1.0
+volume=1.0
+
 [Game]
+; "Downscroll" makes arrows scroll down instead of up, and also moves some aspects of the UI around
+downscroll=false
+
 ; "Kade Input" disables anti-spam, but counts "Shit" inputs as misses
 ; NOTE: Currently unfinished, some aspects of this input mode still need to be implemented, like mash violations
 kadeInput=false
 
 [Advanced]
-; Show debug info on the screen at all times
+; Show debug info on the screen
+; Possible values: false, fps, detailed
 showDebug=false
 
 ; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings!
 [Data]
-settingsVer=2
+settingsVer=3
 ]]
 	
 	if love.filesystem.getInfo("settings.ini") then
 		settingsIni = ini.load("settings.ini")
 		
-		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "2" then
+		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3" then
 			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
 			
 			local success, message = love.filesystem.write("settings.ini", settingsStr)
@@ -110,36 +120,49 @@ settingsVer=2
 			}
 		)
 	end
-	
 	if ini.readKey(settingsIni, "Video", "hardwareCompression") == "true" then
+		settings.hardwareCompression = true
+		
 		if love.graphics.getImageFormats()["DXT5"] then
 			graphics.imageType = "dds"
 		end
+	else
+		settings.hardwareCompression = false
 	end
 	
+	love.audio.setVolume(tonumber(ini.readKey(settingsIni, "Audio", "volume")))
+	
+	if ini.readKey(settingsIni, "Game", "downscroll") == "true" then
+		settings.downscroll = true
+	else
+		settings.downscroll = false
+	end
 	if ini.readKey(settingsIni, "Game", "kadeInput") == "true" then
 		settings.kadeInput = true
 	else
 		settings.kadeInput = false
 	end
 	
-	if ini.readKey(settingsIni, "Advanced", "showDebug") == "true" then
-		settings.showDebug = true
+	if ini.readKey(settingsIni, "Advanced", "showDebug") == "fps" or ini.readKey(settingsIni, "Advanced", "showDebug") == "detailed" then
+		settings.showDebug = ini.readKey(settingsIni, "Advanced", "showDebug")
 	else
 		settings.showDebug = false
 	end
 	
 	-- Load engine
+	require "debug-menu"
 	require "menu"
 	require "weeks"
 	
 	-- Load week data
-	weekData = {}
-	require "weeks.tutorial"
-	require "weeks.week1"
-	require "weeks.week2"
-	require "weeks.week3"
-	require "weeks.week4"
+	weekData = {
+		require "weeks.tutorial",
+		require "weeks.week1",
+		require "weeks.week2",
+		require "weeks.week3",
+		require "weeks.week4",
+		require "weeks.week5"
+	}
 	
 	-- Screen init
 	lovesize.set(1280, 720)
@@ -150,24 +173,36 @@ settingsVer=2
 	weekNum = 1
 	songDifficulty = 2
 	
+	spriteTimers = {
+		0, -- Girlfriend
+		0, -- Enemy
+		0 -- Boyfriend
+	}
+	
 	cam = {x = 0, y = 0, sizeX = 0.9, sizeY = 0.9}
 	camScale = {x = 0.9, y = 0.9}
 	uiScale = {x = 0.7, y = 0.7}
 	
-	-- Start menu
-	menu.load()
+	musicTime = 0
+	health = 0
+	
+	Gamestate.switch(menu)
 end
 
 function love.keypressed(key)
-	if key == "7" then
+	if key == "6" then
 		love.filesystem.createDirectory("screenshots")
 		
 		love.graphics.captureScreenshot("screenshots/" .. os.time() .. ".png")
+	elseif key == "7" then
+		Gamestate.switch(debugMenu)
+	else
+		Gamestate.keypressed(key)
 	end
 end
 
 function love.resize(width, height)
-    lovesize.resize(width, height)
+	lovesize.resize(width, height)
 end
 
 function love.update(dt)
@@ -175,11 +210,7 @@ function love.update(dt)
 	
 	input:update()
 	
-	if inMenu then
-		menu.update(dt)
-	elseif inGame then
-		weekData[weekNum].update(dt)
-	end
+	Gamestate.update(dt)
 	
 	Timer.update(dt)
 end
@@ -189,20 +220,38 @@ function love.draw()
 	love.graphics.setFont(font)
 	
 	lovesize.begin()
-		love.graphics.push()
-			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
-			
-			if inMenu then
-				menu.draw()
-			elseif inGame then
-				weekData[weekNum].draw()
-			end
-		love.graphics.pop()
+		-- TODO: Make Gamestates center themselves if needed instead of using this workaround
+		if Gamestate.current() == debugMenu then
+			Gamestate.draw()
+		else
+			love.graphics.push()
+				love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
+				
+				Gamestate.draw()
+			love.graphics.pop()
+		end
 		
 		love.graphics.setColor(1, 1, 1) -- Bypass fade effect
-		
-		if settings.showDebug then
-			love.graphics.print("FPS: " .. tostring(love.timer.getFPS()), 5, 5, nil, 0.5, 0.5)
-		end
 	lovesize.finish()
+	
+	-- Debug output
+	if settings.showDebug then
+		local debugStr
+		
+		if settings.showDebug == "detailed" then
+			debugStr = "FPS: " .. tostring(love.timer.getFPS()) ..
+			"\nLUA MEM USAGE (KB): " .. tostring(math.floor(collectgarbage("count"))) ..
+			"\nGRAPHICS MEM USAGE (MB): " .. tostring(math.floor(love.graphics.getStats().texturememory / 1048576)) ..
+			
+			"\n\nsettings.hardwareCompression: " .. tostring(settings.hardwareCompression) ..
+			"\ngraphics.imageType: " .. tostring(graphics.imageType) ..
+			
+			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
+			"\nhealth: " .. tostring(health)
+		else
+			debugStr = "FPS: " .. tostring(love.timer.getFPS())
+		end
+		
+		love.graphics.print(debugStr, 5, 5, nil, 0.5, 0.5)
+	end
 end

@@ -17,9 +17,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weekData[3] = {
-	init = function()
-		weeks.init()
+local hauntedHouse
+
+return {
+	enter = function(self)
+		weeks:enter()
 		
 		cam.sizeX, cam.sizeY = 1.1, 1.1
 		camScale.x, camScale.y = 1.1, 1.1
@@ -38,11 +40,11 @@ weekData[3] = {
 		
 		enemyIcon:animate("skid and pump", false)
 		
-		weekData[3].load()
+		self:load()
 	end,
 	
-	load = function()
-		weeks.load()
+	load = function(self)
+		weeks:load()
 		
 		if songNum == 2 then
 			inst = love.audio.newSource("music/week2/south-inst.ogg", "stream")
@@ -52,23 +54,23 @@ weekData[3] = {
 			voices = love.audio.newSource("music/week2/spookeez-voices.ogg", "stream")
 		end
 		
-		weekData[3].initUI()
+		self:initUI()
 		
 		inst:play()
-		weeks.voicesPlay()
+		weeks:voicesPlay()
 	end,
 	
-	initUI = function()
-		weeks.initUI()
+	initUI = function(self)
+		weeks:initUI()
 		
 		if songNum == 2 then
-			weeks.generateNotes(love.filesystem.load("charts/week2/south" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week2/south" .. songAppend .. ".lua")())
 		else
-			weeks.generateNotes(love.filesystem.load("charts/week2/spookeez" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week2/spookeez" .. songAppend .. ".lua")())
 		end
 	end,
 	
-	update = function(dt)
+	update = function(self, dt)
 		if gameOver then
 			if not graphics.isFading then
 				if input:pressed("confirm") then
@@ -82,9 +84,9 @@ weekData[3] = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weekData[3].load)
+					graphics.fadeOut(3, function() self:load() end)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weekData[3].stop)
+					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
 				end
 			end
 			
@@ -93,7 +95,7 @@ weekData[3] = {
 			return
 		end
 		
-		weeks.update(dt)
+		weeks:update(dt)
 		
 		hauntedHouse:update(dt)
 		
@@ -104,18 +106,9 @@ weekData[3] = {
 			audio.playSound(sounds["thunder"][love.math.random(2)])
 			
 			hauntedHouse:animate("lightning", false)
-			
-			girlfriend:animate("fear", true)
-			girlfriendFrameTimer = 0
-			boyfriend:animate("shaking", true)
-			boyfriendFrameTimer = 0
+			weeks:safeAnimate(girlfriend, "fear", true, 1)
+			weeks:safeAnimate(boyfriend, "shaking", true, 3)
 		end
-		
-		if enemyFrameTimer >= 15 then
-			enemy:animate("idle", true)
-			enemyFrameTimer = 0
-		end
-		enemyFrameTimer = enemyFrameTimer + 24 * dt
 		
 		if health >= 80 then
 			if enemyIcon.anim.name == "skid and pump" then
@@ -127,25 +120,23 @@ weekData[3] = {
 			end
 		end
 		
-		if not graphics.isFading and not voices:isPlaying() then
+		if not graphics.isFading and not inst:isPlaying() and not voices:isPlaying() then
 			if storyMode and songNum < 2 then
 				songNum = songNum + 1
-			else
-				graphics.fadeOut(1, weekData[3].stop)
 				
-				return
+				self:load()
+			else
+				graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
 			end
-			
-			weekData[3].load()
 		end
 		
-		weeks.updateUI(dt)
+		weeks:updateUI(dt)
 	end,
 	
-	draw = function()
-		weeks.draw()
+	draw = function(self)
+		weeks:draw()
 		
-		if not inGame or gameOver then return end
+		if gameOver then return end
 		
 		love.graphics.push()
 			love.graphics.scale(cam.sizeX, cam.sizeY)
@@ -161,18 +152,19 @@ weekData[3] = {
 				enemy:draw()
 				boyfriend:draw()
 			love.graphics.pop()
+			weeks:drawRating(0.9)
 		love.graphics.pop()
 		
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			weeks.drawUI()
+			weeks:drawUI()
 		love.graphics.pop()
 	end,
 	
-	stop = function()
+	leave = function(self)
 		hauntedHouse = nil
 		
-		weeks.stop()
+		weeks:leave()
 	end
 }

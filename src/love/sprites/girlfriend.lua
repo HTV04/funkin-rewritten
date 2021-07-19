@@ -275,15 +275,17 @@ return Sprite (
 		{x = 2836, y = 5294, width = 699, height = 636, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 252: gf sad0079
 	},
 	{
-		["idle"] = {start = 22, stop = 51, speed = 24, offsetX = 0, offsetY = -9},
-		["hair landing"] = {start = 52, stop = 81, speed = 24, offsetX = -11, offsetY = -9},
-		["hair blowing"] = {start = 82, stop = 111, speed = 24, offsetX = 45, offsetY = -8},
-		["down"] = {start = 112, stop = 131, speed = 24, offsetX = 0, offsetY = -20},
-		["fear"] = {start = 132, stop = 135, speed = 24, offsetX = -2, offsetY = -17},
-		["right"] = {start = 136, stop = 150, speed = 24, offsetX = 0, offsetY = -20},
-		["up"] = {start = 151, stop = 157, speed = 24, offsetX = 0, offsetY = 4},
-		["left"] = {start = 158, stop = 172, speed = 24, offsetX = 0, offsetY = -19}
+		["cheer"] = {start = 1, stop = 21, speed = 24, offsetX = 0, offsetY = 5},
+		["idle"] = {start = 22, stop = 51, speed = 24, offsetX = 0, offsetY = 0},
+		["hair landing"] = {start = 52, stop = 81, speed = 24, offsetX = 0, offsetY = 0},
+		["hair blowing"] = {start = 82, stop = 111, speed = 24, offsetX = 22, offsetY = 0},
+		["down"] = {start = 112, stop = 131, speed = 24, offsetX = 0, offsetY = -5},
+		["fear"] = {start = 132, stop = 135, speed = 24, offsetX = 0, offsetY = -4},
+		["right"] = {start = 136, stop = 150, speed = 24, offsetX = 0, offsetY = -5},
+		["up"] = {start = 151, stop = 157, speed = 24, offsetX = 0, offsetY = 7},
+		["left"] = {start = 158, stop = 172, speed = 24, offsetX = 0, offsetY = -5},
+		["sad"] = {start = 173, stop = 252, speed = 24, offsetX = 0, offsetY = -6}
 	},
 	"idle",
-	true
+	false
 )

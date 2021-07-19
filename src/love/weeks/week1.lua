@@ -17,9 +17,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weekData[2] = {
-	init = function()
-		weeks.init()
+local stageBack, stageFront, curtains
+
+return {
+	enter = function(self)
+		weeks:enter()
 		
 		stageBack = Image(love.graphics.newImage(graphics.imagePath("week1/stage-back")))
 		stageFront = Image(love.graphics.newImage(graphics.imagePath("week1/stage-front")))
@@ -36,11 +38,11 @@ weekData[2] = {
 		
 		enemyIcon:animate("daddy dearest", false)
 		
-		weekData[2].load()
+		self:load()
 	end,
 	
-	load = function()
-		weeks.load()
+	load = function(self)
+		weeks:load()
 		
 		if songNum == 3 then
 			inst = love.audio.newSource("music/week1/dadbattle-inst.ogg", "stream")
@@ -53,25 +55,25 @@ weekData[2] = {
 			voices = love.audio.newSource("music/week1/bopeebo-voices.ogg", "stream")
 		end
 		
-		weekData[2].initUI()
+		self:initUI()
 		
 		inst:play()
-		weeks.voicesPlay()
+		weeks:voicesPlay()
 	end,
 	
-	initUI = function()
-		weeks.initUI()
+	initUI = function(self)
+		weeks:initUI()
 		
 		if songNum == 3 then
-			weeks.generateNotes(love.filesystem.load("charts/week1/dadbattle" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week1/dadbattle" .. songAppend .. ".lua")())
 		elseif songNum == 2 then
-			weeks.generateNotes(love.filesystem.load("charts/week1/fresh" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week1/fresh" .. songAppend .. ".lua")())
 		else
-			weeks.generateNotes(love.filesystem.load("charts/week1/bopeebo" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week1/bopeebo" .. songAppend .. ".lua")())
 		end
 	end,
 	
-	update = function(dt)
+	update = function(self, dt)
 		if gameOver then
 			if not graphics.isFading then
 				if input:pressed("confirm") then
@@ -85,9 +87,9 @@ weekData[2] = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weekData[2].load)
+					graphics.fadeOut(3, function() self:load() end)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weekData[2].stop)
+					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
 				end
 			end
 			
@@ -96,17 +98,10 @@ weekData[2] = {
 			return
 		end
 		
-		weeks.update(dt)
-		
-		if enemyFrameTimer >= 12 then
-			enemy:animate("idle", true)
-			enemyFrameTimer = 0
-		end
-		enemyFrameTimer = enemyFrameTimer + 24 * dt
+		weeks:update(dt)
 		
 		if songNum == 1 and musicThres ~= oldMusicThres and math.fmod(musicTime + 500, 480000 / bpm) < 100 then
 			boyfriend:animate("hey", false)
-			boyfriendFrameTimer = 0
 		end
 		
 		if health >= 80 then
@@ -119,25 +114,23 @@ weekData[2] = {
 			end
 		end
 		
-		if not graphics.isFading and not voices:isPlaying() then
+		if not graphics.isFading and not inst:isPlaying() and not voices:isPlaying() then
 			if storyMode and songNum < 3 then
 				songNum = songNum + 1
-			else
-				graphics.fadeOut(1, weekData[2].stop)
 				
-				return
+				self:load()
+			else
+				graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
 			end
-			
-			weekData[2].load()
 		end
 		
-		weeks.updateUI(dt)
+		weeks:updateUI(dt)
 	end,
 	
-	draw = function()
-		weeks.draw()
+	draw = function(self)
+		weeks:draw()
 		
-		if not inGame or gameOver then return end
+		if gameOver then return end
 		
 		love.graphics.push()
 			love.graphics.scale(cam.sizeX, cam.sizeY)
@@ -160,20 +153,21 @@ weekData[2] = {
 				
 				curtains:draw()
 			love.graphics.pop()
+			weeks:drawRating(0.9)
 		love.graphics.pop()
 		
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			weeks.drawUI()
+			weeks:drawUI()
 		love.graphics.pop()
 	end,
 	
-	stop = function()
+	leave = function(self)
 		stageBack = nil
 		stageFront = nil
 		curtains = nil
 		
-		weeks.stop()
+		weeks:leave()
 	end
 }

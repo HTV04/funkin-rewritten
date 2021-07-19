@@ -87,13 +87,13 @@ return Sprite (
 		{x = 5466, y = 1648, width = 455, height = 857, offsetX = -6, offsetY = -4, offsetWidth = 473, offsetHeight = 861} -- 64: Mom Up Pose0014
 	},
 	{
-		["down"] = {start = 1, stop = 15, speed = 24, offsetX = 20, offsetY = -160},
+		["down"] = {start = 1, stop = 15, speed = 24, offsetX = -1, offsetY = -60},
 		["idle"] = {start = 16, stop = 29, speed = 24, offsetX = 0, offsetY = 0},
-		["left"] = {start = 30, stop = 39, speed = 24, offsetX = 250, offsetY = -23},
-		-- It's called "Mom Pose Left" but it's for right poses lol
-		["right"] = {start = 40, stop = 49, speed = 24, offsetX = 10, offsetY = -60},
-		["up"] = {start = 50, stop = 64, speed = 24, offsetX = 14, offsetY = 71}
+		["left"] = {start = 30, stop = 39, speed = 24, offsetX = 195, offsetY = -18},
+		-- Frames are called "Mom Pose Left" but they're for right poses lol
+		["right"] = {start = 40, stop = 49, speed = 24, offsetX = 41, offsetY = -30},
+		["up"] = {start = 50, stop = 64, speed = 24, offsetX = 2, offsetY = 58}
 	},
 	"idle",
-	true
+	false
 )

@@ -109,12 +109,12 @@ return Sprite (
 		{x = 1809, y = 581, width = 437, height = 533, offsetX = 0, offsetY = 0, offsetWidth = 442, offsetHeight = 533} -- 86: spooky sing right0024
 	},
 	{
-		["left"] = {start = 1, stop = 15, speed = 24, offsetX = 130, offsetY = -10},
-		["down"] = {start = 16, stop = 40, speed = 24, offsetX = -50, offsetY = -130},
-		["up"] = {start = 41, stop = 45, speed = 24, offsetX = -20, offsetY = 26},
+		["left"] = {start = 1, stop = 15, speed = 24, offsetX = 78, offsetY = -7},
+		["down"] = {start = 16, stop = 40, speed = 24, offsetX = -66, offsetY = -69},
+		["up"] = {start = 41, stop = 45, speed = 24, offsetX = 21, offsetY = 14},
 		["idle"] = {start = 46, stop = 61, speed = 24, offsetX = 0, offsetY = 0},
-		["right"] = {start = 62, stop = 86, speed = 24, offsetX = -130, offsetY = -14}
+		["right"] = {start = 62, stop = 86, speed = 24, offsetX = -128, offsetY = -5}
 	},
 	"idle",
-	true
+	false
 )

@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-    sheets["icons"],
+    images["icons"],
 	{
 		{x = 0, y = 0, width = 150, height = 150, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Boyfriend
 		{x = 150, y = 0, width = 150, height = 150, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Boyfriend Losing
@@ -63,8 +63,8 @@ return Sprite (
 		["boyfriend (old)"] = {start = 15, stop = 15, speed = 0, offsetX = 0, offsetY = 0},
 		["boyfrined losing (old)"] = {start = 16, stop = 16, speed = 0, offsetX = 0, offsetY = 0},
 		["girlfriend"] = {start = 17, stop = 17, speed = 0, offsetX = 0, offsetY = 0},
-		["daddy dearest and mommy mearest"] = {start = 18, stop = 18, speed = 0, offsetX = 0, offsetY = 0},
-		["daddy dearest and mommy mearest losing"] = {start = 19, stop = 19, speed = 0, offsetX = 0, offsetY = 0},
+		["dearest duo"] = {start = 18, stop = 18, speed = 0, offsetX = 0, offsetY = 0},
+		["dearest duo losing"] = {start = 19, stop = 19, speed = 0, offsetX = 0, offsetY = 0},
 		["monster"] = {start = 20, stop = 20, speed = 0, offsetX = 0, offsetY = 0},
 		["monster losing"] = {start = 21, stop = 21, speed = 0, offsetX = 0, offsetY = 0},
 		["boyfriend (pixel)"] = {start = 22, stop = 22, speed = 0, offsetX = 0, offsetY = 0},

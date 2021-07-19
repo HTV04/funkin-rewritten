@@ -17,9 +17,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-weekData[4] = {
-	init = function()
-		weeks.init()
+local sky, city, cityWindows, behindTrain, street
+local winColors, winColor
+
+return {
+	enter = function(self)
+		weeks:enter()
 		
 		cam.sizeX, cam.sizeY = 1, 1
 		camScale.x, camScale.y = 1, 1
@@ -53,42 +56,42 @@ weekData[4] = {
 		
 		enemyIcon:animate("pico", false)
 		
-		weekData[4].load()
+		self:load()
 	end,
 	
-	load = function()
-		weeks.load()
+	load = function(self)
+		weeks:load()
 		
 		if songNum == 3 then
 			inst = love.audio.newSource("music/week3/blammed-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week3/blammed-voices.ogg", "stream")
 		elseif songNum == 2 then
-			inst = love.audio.newSource("music/week3/philly-inst.ogg", "stream")
-			voices = love.audio.newSource("music/week3/philly-voices.ogg", "stream")
+			inst = love.audio.newSource("music/week3/philly-nice-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week3/philly-nice-voices.ogg", "stream")
 		else
 			inst = love.audio.newSource("music/week3/pico-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week3/pico-voices.ogg", "stream")
 		end
 		
-		weekData[4].initUI()
+		self:initUI()
 		
 		inst:play()
-		weeks.voicesPlay()
+		weeks:voicesPlay()
 	end,
 	
-	initUI = function()
-		weeks.initUI()
+	initUI = function(self)
+		weeks:initUI()
 		
 		if songNum == 3 then
-			weeks.generateNotes(love.filesystem.load("charts/week3/blammed" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week3/blammed" .. songAppend .. ".lua")())
 		elseif songNum == 2 then
-			weeks.generateNotes(love.filesystem.load("charts/week3/philly" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week3/philly-nice" .. songAppend .. ".lua")())
 		else
-			weeks.generateNotes(love.filesystem.load("charts/week3/pico" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week3/pico" .. songAppend .. ".lua")())
 		end
 	end,
 	
-	update = function(dt)
+	update = function(self, dt)
 		if gameOver then
 			if not graphics.isFading then
 				if input:pressed("confirm") then
@@ -102,9 +105,9 @@ weekData[4] = {
 					
 					boyfriend:animate("dead confirm", false)
 					
-					graphics.fadeOut(3, weekData[4].load)
+					graphics.fadeOut(3, function() self:load() end)
 				elseif input:pressed("gameBack") then
-					graphics.fadeOut(1, weekData[4].stop)
+					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
 				end
 			end
 			
@@ -113,7 +116,7 @@ weekData[4] = {
 			return
 		end
 		
-		weeks.update(dt)
+		weeks:update(dt)
 		
 		if musicThres ~= oldMusicThres and math.fmod(musicTime, 240000 / bpm) < 100 then
 			winColor = winColor + 1
@@ -122,12 +125,6 @@ weekData[4] = {
 				winColor = 1
 			end
 		end
-		
-		if enemyFrameTimer >= 13 then
-			enemy:animate("idle", true)
-			enemyFrameTimer = 0
-		end
-		enemyFrameTimer = enemyFrameTimer + 24 * dt
 		
 		if health >= 80 then
 			if enemyIcon.anim.name == "pico" then
@@ -139,27 +136,25 @@ weekData[4] = {
 			end
 		end
 		
-		if not graphics.isFading and not voices:isPlaying() then
+		if not graphics.isFading and not inst:isPlaying() and not voices:isPlaying() then
 			if storyMode and songNum < 3 then
 				songNum = songNum + 1
-			else
-				graphics.fadeOut(1, weekData[4].stop)
 				
-				return
+				self:load()
+			else
+				graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
 			end
-			
-			weekData[4].load()
 		end
 		
-		weeks.updateUI(dt)
+		weeks:updateUI(dt)
 	end,
 	
-	draw = function()
+	draw = function(self)
 		local curWinColor = winColors[winColor]
 		
-		weeks.draw()
+		weeks:draw()
 		
-		if not inGame or gameOver then return end
+		if gameOver then return end
 		
 		love.graphics.push()
 			love.graphics.scale(cam.sizeX, cam.sizeY)
@@ -173,7 +168,7 @@ weekData[4] = {
 				
 				city:draw()
 				graphics.setColor(curWinColor[1] / 255, curWinColor[2] / 255, curWinColor[3] / 255)
-					cityWindows:draw()
+				cityWindows:draw()
 				graphics.setColor(1, 1, 1)
 			love.graphics.pop()
 			love.graphics.push()
@@ -190,21 +185,23 @@ weekData[4] = {
 				enemy:draw()
 				boyfriend:draw()
 			love.graphics.pop()
+			weeks:drawRating(0.9)
 		love.graphics.pop()
 		
 		love.graphics.push()
 			love.graphics.scale(uiScale.x, uiScale.y)
 			
-			weeks.drawUI()
+			weeks:drawUI()
 		love.graphics.pop()
 	end,
 	
-	stop = function()
+	leave = function(self)
 		sky = nil
 		city = nil
+		cityWindows = nil
 		behindTrain = nil
 		street = nil
 		
-		weeks.stop()
+		weeks:leave()
 	end
 }

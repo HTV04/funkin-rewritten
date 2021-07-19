@@ -1,7 +1,7 @@
 # ![Logo](images/logo.png)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/HTV04/funkin-rewritten?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/HTV04/funkin-rewritten/total?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/HTV04/funkin-rewritten?style=flat-square) ![GitHub](https://img.shields.io/github/license/HTV04/funkin-rewritten?style=flat-square) ![Discord](https://img.shields.io/discord/852658576577003550?style=flat-square)
 
-*Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) using [LÖVE](https://love2d.org/) for Windows, macOS, and Linux!
+*Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) using [LÖVE](https://love2d.org/) for Windows, macOS, Linux.
 
 *Friday Night Funkin' Rewritten* features:
 * A rewritten engine focused on performance and playability
@@ -13,7 +13,7 @@
 Join the Discord server for updates: https://discord.gg/tQGzN2Wu48
 
 # Controls
-If you are using a controller, a controller with an Xbox button layout is recommended. Controller buttons will be remappable in a future update.
+If using a controller, a controller with an Xbox button layout is recommended. Controller buttons will be remappable in a future update.
 
 ## Menus
 ### Keyboard
@@ -39,11 +39,12 @@ If you are using a controller, a controller with an Xbox button layout is recomm
 
 ## Debug
 ### Keyboard
-* 7 - Take Screenshot
+* 6 - Take screenshot
   * Screenshot paths:
     * Windows - `%APPDATA%\funkin-rewritten\screenshots`
     * macOS - `~/Library/Application Support/funkin-rewritten/screenshots`
 	* Linux - `~/.local/share/love/funkin-rewritten/screenshots`
+* 7 - Open debug menu
 
 # Settings
 The settings file can be found in the following places on the following systems:
@@ -52,33 +53,27 @@ The settings file can be found in the following places on the following systems:
 * Linux - `~/.local/share/love/funkin-rewritten/settings.ini`
 
 # Progress
-**Menus** - 25% Complete
+**Menus** - 50% Complete
 * A proper menu has not been implemented yet. For now, a placeholder menu has been implemented.
 
-**Game Engine** - 80% Complete
-* Engine is in parity with Week 6's.
+**Game Engine** - 90% Complete
+* Engine is in close parity with the original game's Week 6 update.
 * No pause menu yet.
-* Girlfriend is missing her accuracy and combo reactions.
 * No "3-2-1-Go!" intro yet.
-* See [Known Issues](#known-issues).
 
-**Weeks** - ~5/8 Complete
-* Tutorial + Weeks 1-4 are implemented.
+**Weeks** - ~6/8 Complete
+* Tutorial + Weeks 1-5 are implemented.
 * Week 3's train is not implemented yet.
 * Week 4's passing car is not implemented yet.
-
-# Known Issues
-* Sprite offsets are a little weird and may need to be redone.
-* On Linux, the screen can tear a lot if Vsync is set to 1. Set it to 0 in the `settings.ini` file to fix this.
-  * This is an issue with LÖVE rather than the game itself.
+* Weeks 6-7 are not implemented yet.
 
 # License
-*Friday Night Funkin' Rewritten* is licensed under the terms of the GNU General Public License v3.
+*Friday Night Funkin' Rewritten* is licensed under the terms of the GNU General Public License v3, with the exception of most of the images, music, and sounds, which are proprietary. While FNF Rewritten's code is FOSS, use its assets at your own risk.
 
-This means that your derivative works (mods, forks, etc.) of FNF Rewritten must be open-source! The build methods shown in this README technically make your code open-source anyway, but uploading it to GitHub is advised.
+Also, derivative works (mods, forks, etc.) of FNF Rewritten must be open-source. The build methods shown in this README technically make one's code open-source anyway, but uploading it to GitHub or a similar platform is advised.
 
 # Building
-## Unix-like
+## Unix-like (macOS, Linux, etc.)
 ### LOVE file
 * Run `make`
 
@@ -116,4 +111,4 @@ Follow the official instructions for LÖVE game distribution for your platform: 
 # Special Thanks
 * KadeDev for [FNFDataAPI](https://github.com/KadeDev/FNFDataAPI), which was refrenced while developing the chart-reading system
 * The devs of [BeatFever Mania](https://github.com/Sulunia/beatfever) for their music time interpolation code
-* ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, for making such an awesome game!
+* Funkin' Crew (ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er), for making such an awesome game!

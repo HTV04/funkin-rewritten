@@ -43,11 +43,11 @@ return Sprite (
 		{x = 0, y = 6545, width = 2114, height = 1079, offsetX = 0, offsetY = 0, offsetWidth = 2114, offsetHeight = 1090}, -- 20: halloweem bg lightning strike0018
 		{x = 2124, y = 6545, width = 2114, height = 1078, offsetX = 0, offsetY = 0, offsetWidth = 2114, offsetHeight = 1090}, -- 21: halloweem bg lightning strike0019
 		{x = 4248, y = 6545, width = 2114, height = 1078, offsetX = 0, offsetY = 0, offsetWidth = 2114, offsetHeight = 1090}, -- 22: halloweem bg lightning strike0020
-		{x = 0, y = 0, width = 2114, height = 1075, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 23: halloweem bg lightning strike0029
+		{x = 0, y = 0, width = 2114, height = 1075, offsetX = 0, offsetY = 0, offsetWidth = 2114, offsetHeight = 1091} -- 23: halloweem bg lightning strike0029 -- Fixed
 	},
 	{
 		["normal"] = {start = 1, stop = 1, speed = 0, offsetX = 0, offsetY = 0},
-		["lightning"] = {start = 2, stop = 23, speed = 24, offsetX = 0, offsetY = 0}
+		["lightning"] = {start = 2, stop = 23, speed = 24, offsetX = 0, offsetY = -8}
 	},
 	"normal",
 	false

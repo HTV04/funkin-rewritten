@@ -68,12 +68,12 @@ return Sprite (
 		{x = 1369, y = 730, width = 419, height = 767, offsetX = -6, offsetY = 0, offsetWidth = 429, offsetHeight = 767} -- 45: Dad idle dance0012
 	},
 	{
-		["down"] = {start = 1, stop = 7, speed = 24, offsetX = 0, offsetY = -30},
-		["left"] = {start = 8, stop = 8, speed = 24, offsetX = -10, offsetY = 10},
-		["right"] = {start = 9, stop = 27, speed = 24, offsetX = 0, offsetY = 27},
-		["up"] = {start = 28, stop = 32, speed = 24, offsetX = -6, offsetY = 50},
+		["down"] = {start = 1, stop = 7, speed = 24, offsetX = -19, offsetY = -14},
+		["left"] = {start = 8, stop = 8, speed = 24, offsetX = 18, offsetY = 5},
+		["right"] = {start = 9, stop = 27, speed = 24, offsetX = -21, offsetY = 13},
+		["up"] = {start = 28, stop = 32, speed = 24, offsetX = 1, offsetY = 24},
 		["idle"] = {start = 33, stop = 45, speed = 24, offsetX = 0, offsetY = 0}
 	},
 	"idle",
-	true
+	false
 )

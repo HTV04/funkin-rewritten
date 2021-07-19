@@ -71,10 +71,30 @@ graphics = {
 		)
 	end,
 	
+	cancelTimer = function()
+		if graphics.fadeTimer then
+			Timer.cancel(graphics.fadeTimer)
+			
+			graphics.isFading = false
+		end
+	end,
+	
+	clear = function(r, g, b, a, s, d)
+		local fade = graphics.fade[1]
+		
+		love.graphics.clear(fade * r, fade * g, fade * b, a, s, d)
+	end,
+	
 	setColor = function(r, g, b, a)
 		local fade = graphics.fade[1]
 		
 		love.graphics.setColor(fade * r, fade * g, fade * b, a)
+	end,
+	
+	setBackgroundColor = function(r, g, b, a)
+		local fade = graphics.fade[1]
+		
+		love.graphics.setBackgroundColor(fade * r, fade * g, fade * b, a)
 	end,
 	
 	getColor = function()

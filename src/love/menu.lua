@@ -27,7 +27,8 @@ local weekIDs = {
 	"Week 1",
 	"Week 2",
 	"Week 3",
-	"Week 4"
+	"Week 4",
+	"Week 5"
 }
 local weekSongs = {
 	{
@@ -51,6 +52,11 @@ local weekSongs = {
 		"Satin Panties",
 		"High",
 		"M.I.L.F"
+	},
+	{
+		"Cocoa",
+		"Eggnog",
+		"Winter Horrorland"
 	}
 }
 local difficultyStrs = {
@@ -65,27 +71,30 @@ local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
 logo.x, logo.y = -350, -125
-logo.sizeX, logo.sizeY = 1.25, 1.25
 
 girlfriendTitle.x, girlfriendTitle.y = 300, -75
 
 music:setLooping(true)
 
 menu = {
-	load = function()
+	enter = function(self)
 		gameOver = false
 		storyMode = false
-		
-		inGame = false
-		inMenu = true
 		
 		songNum = 0
 		menuState = 0
 		
+		cam.sizeX, cam.sizeY = 0.9, 0.9
+		camScale.x, camScale.y = 0.9, 0.9
+		
+		graphics.cancelTimer()
+		graphics.fade[1] = 0
+		graphics.fadeIn(0.5)
+		
 		music:play()
 	end,
 	
-	update = function(dt)
+	update = function(self, dt)
 		girlfriendTitle:update(dt)
 		
 		if not graphics.isFading then
@@ -108,7 +117,7 @@ menu = {
 					weekNum = weekNum - 1
 					
 					if weekNum < 1 then
-						weekNum = 5
+						weekNum = #weekIDs
 					end
 				end
 			elseif input:pressed("right") then
@@ -129,7 +138,7 @@ menu = {
 				elseif menuState == 0 then
 					weekNum = weekNum + 1
 					
-					if weekNum > 5 then
+					if weekNum > #weekIDs then
 						weekNum = 1
 					end
 				end
@@ -144,19 +153,16 @@ menu = {
 					menuState = 2 -- So menuState isn't an "invalid" value
 					
 					graphics.fadeOut(
-						1,
+						0.5,
 						function()
 							songAppend = difficultyStrs[songDifficulty]
-							
-							inMenu = false
-							inGame = true
 							
 							if songNum == 0 then
 								songNum = 1
 								storyMode = true
 							end
 							
-							weekData[weekNum].init()
+							Gamestate.switch(weekData[weekNum])
 						end
 					)
 				end
@@ -172,13 +178,13 @@ menu = {
 				elseif menuState < 0 then
 					menuState = 0 -- So menuState isn't an "invalid" value
 					
-					graphics.fadeOut(1, love.event.quit)
+					graphics.fadeOut(0.5, love.event.quit)
 				end
 			end
 		end
 	end,
 	
-	draw = function()
+	draw = function(self)
 		titleBG:draw()
 		
 		love.graphics.push()
@@ -188,7 +194,18 @@ menu = {
 			
 			girlfriendTitle:draw()
 			
-			love.graphics.printf("By HTV04\nv1.0.0 beta 3\n\nOriginal game by ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er, in association with Newgrounds", -525, 90, 450, "right", nil, 1, 1)
+			love.graphics.printf(
+				"v1.0.0\n" ..
+				"Developed by HTV04\n\n" ..
+				"Original game by Funkin' Crew, in association with Newgrounds",
+				-525,
+				90,
+				450,
+				"right",
+				nil,
+				1,
+				1
+			)
 			
 			graphics.setColor(1, 1, 0)
 			if menuState == 2 then
@@ -224,5 +241,11 @@ menu = {
 				end
 			end
 		love.graphics.pop()
+	end,
+	
+	leave = function(self)
+		music:stop()
+		
+		Timer.clear()
 	end
 }

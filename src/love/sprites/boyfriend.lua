@@ -520,21 +520,21 @@ return Sprite (
 	},
 	-- TODO: Add missing animations "pre-attack", "attack", and "dodge"
 	{
-		["dead"] = {start = 1, stop = 34, speed = 24, offsetX = 37, offsetY = 5},
-		["dead confirm"] = {start = 35, stop = 68, speed = 24, offsetX = 37, offsetY = 69},
-		["hey"] = {start = 69, stop = 94, speed = 24, offsetX = 7, offsetY = 4},
-		["down"] = {start = 95, stop = 124, speed = 24, offsetX = -10, offsetY = -50},
-		["miss down"] = {start = 125, stop = 153, speed = 24, offsetX = -11, offsetY = -19},
-		["left"] = {start = 154, stop = 168, speed = 24, offsetX = 12, offsetY = -6},
-		["miss left"] = {start = 169, stop = 202, speed = 24, offsetX = 12, offsetY = 24},
-		["right"] = {start = 203, stop = 264, speed = 24, offsetX = -38, offsetY = -7},
-		["miss right"] = {start = 265, stop = 310, speed = 24, offsetX = -30, offsetY = 21},
-		["up"] = {start = 311, stop = 325, speed = 24, offsetX = -29, offsetY = 27},
-		["miss up"] = {start = 326, stop = 349, speed = 24, offsetX = -29, offsetY = 27},
-		["dies"] = {start = 350, stop = 407, speed = 24, offsetX = 37, offsetY = 11},
-		["idle"] = {start = 427, stop = 440, speed = 24, offsetX = -5, offsetY = 0},
-		["shaking"] = {start = 441, stop = 444, speed = 24, offsetX = -4, offsetY = 0}
+		["dead"] = {start = 1, stop = 34, speed = 24, offsetX = 14, offsetY = -12},
+		["dead confirm"] = {start = 35, stop = 68, speed = 24, offsetX = 14, offsetY = 20},
+		["hey"] = {start = 69, stop = 94, speed = 24, offsetX = 0, offsetY = 0},
+		["down"] = {start = 95, stop = 124, speed = 24, offsetX = -4, offsetY = -24},
+		["miss down"] = {start = 125, stop = 153, speed = 24, offsetX = 6, offsetY = -11},
+		["left"] = {start = 154, stop = 168, speed = 24, offsetX = 20, offsetY = -4},
+		["miss left"] = {start = 169, stop = 202, speed = 24, offsetX = 20, offsetY = 8},
+		["right"] = {start = 203, stop = 264, speed = 24, offsetX = -41, offsetY = -3},
+		["miss right"] = {start = 265, stop = 310, speed = 24, offsetX = -41, offsetY = 10},
+		["up"] = {start = 311, stop = 325, speed = 24, offsetX = -21, offsetY = 13},
+		["miss up"] = {start = 326, stop = 349, speed = 24, offsetX = -18, offsetY = 11},
+		["dies"] = {start = 350, stop = 407, speed = 24, offsetX = 14, offsetY = -11},
+		["idle"] = {start = 427, stop = 440, speed = 24, offsetX = 0, offsetY = 0},
+		["shaking"] = {start = 441, stop = 444, speed = 24, offsetX = 0, offsetY = 0}
 	},
 	"idle",
-	true
+	false
 )
