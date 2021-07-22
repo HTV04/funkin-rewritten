@@ -110,18 +110,18 @@ graphics = {
 
 input = baton.new {
 	controls = {
-		left = {"key:left", "axis:leftx-", "button:dpleft"},
-		down = {"key:down", "axis:lefty+", "button:dpdown"},
-		up = {"key:up", "axis:lefty-", "button:dpup"},
-		right = {"key:right", "axis:leftx+", "button:dpright"},
-		confirm = {"key:return", "button:a"},
-		back = {"key:escape", "button:b"},
+		left = {"axis:leftx-", "button:dpleft"},
+		down = {"axis:lefty+", "button:dpdown"},
+		up = {"axis:lefty-", "button:dpup"},
+		right = {"axis:leftx+", "button:dpright"},
+		confirm = {"button:a"},
+		back = {"button:b"},
 		
-		gameLeft = {"key:a", "key:left", "axis:triggerleft+", "axis:leftx-", "axis:rightx-", "button:dpleft", "button:x"},
-		gameDown = {"key:s", "key:down", "axis:lefty+", "axis:righty+", "button:leftshoulder", "button:dpdown", "button:a"},
-		gameUp = {"key:w", "key:up", "axis:lefty-", "axis:righty-", "button:rightshoulder", "button:dpup", "button:y"},
-		gameRight = {"key:d", "key:right", "axis:triggerright+", "axis:leftx+", "axis:rightx+", "button:dpright", "button:b"},
-		gameBack = {"key:escape", "button:start"},
+		gameLeft = {"axis:triggerleft+", "axis:leftx-", "axis:rightx-", "button:dpleft", "button:y"},
+		gameDown = {"axis:lefty+", "axis:righty+", "button:leftshoulder", "button:dpdown", "button:b"},
+		gameUp = {"axis:lefty-", "axis:righty-", "button:rightshoulder", "button:dpup", "button:x"},
+		gameRight = {"axis:triggerright+", "axis:leftx+", "axis:rightx+", "button:dpright", "button:a"},
+		gameBack = {"button:start"},
 	},
 	joystick = love.joystick.getJoysticks()[1]
 }

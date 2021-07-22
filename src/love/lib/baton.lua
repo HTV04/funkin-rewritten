@@ -1,5 +1,5 @@
 local baton = {
-	_VERSION = 'Baton v1.0.2',
+	_VERSION = 'Baton v1.0.2-potionfix',
 	_DESCRIPTION = 'Input library for LÖVE.',
 	_URL = 'https://github.com/tesselode/baton',
 	_LICENSE = [[
@@ -66,19 +66,22 @@ local sourceFunction = {keyboardMouse = {}, joystick = {}}
 
 -- checks whether a keyboard key is down or not
 function sourceFunction.keyboardMouse.key(key)
-	return love.keyboard.isDown(key) and 1 or 0
+	--return love.keyboard.isDown(key) and 1 or 0
+	return 0 -- broken in LÖVE Potion
 end
 
 -- checks whether a keyboard key is down or not,
 -- but it takes a scancode as an input
 function sourceFunction.keyboardMouse.sc(sc)
-	return love.keyboard.isScancodeDown(sc) and 1 or 0
+	--return love.keyboard.isScancodeDown(sc) and 1 or 0
+	return 0 -- broken in LÖVE Potion
 end
 
 -- checks whether a mouse buttons is down or not.
 -- note that baton doesn't detect mouse movement, just the buttons
 function sourceFunction.keyboardMouse.mouse(button)
-	return love.mouse.isDown(tonumber(button)) and 1 or 0
+	--return love.mouse.isDown(tonumber(button)) and 1 or 0
+	return 0 -- broken in LÖVE Potion
 end
 
 -- checks the position of a joystick axis

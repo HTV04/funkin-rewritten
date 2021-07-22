@@ -195,7 +195,7 @@ return {
 			girlfriendTitle:draw()
 			
 			love.graphics.printf(
-				"v1.0.0\n" ..
+				"v1.0.0-switch\n" ..
 				"Developed by HTV04\n\n" ..
 				"Original game by Funkin' Crew, in association with Newgrounds",
 				-525,
@@ -228,17 +228,9 @@ return {
 			graphics.setColor(1, 1, 1)
 			
 			if menuState <= 0 then
-				if input:getActiveDevice() == "joy" then
-					love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Exit", -640, 350, 1280, "center", nil, 1, 1)
-				else
-					love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Exit", -640, 350, 1280, "center", nil, 1, 1)
-				end
+				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Exit", -640, 350, 1280, "center", nil, 1, 1)
 			else
-				if input:getActiveDevice() == "joy" then
-					love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-				else
-					love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
-				end
+				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
 			end
 		love.graphics.pop()
 	end,

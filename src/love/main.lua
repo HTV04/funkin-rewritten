@@ -1,5 +1,5 @@
 --[[----------------------------------------------------------------------------
-Friday Night Funkin' Rewritten v1.0.0
+Friday Night Funkin' Rewritten v1.0.0-switch
 
 Copyright (C) 2021  HTV04
 
@@ -34,27 +34,6 @@ function love.load()
 	settingsStr = [[
 ; Friday Night Funkin' Rewritten Settings
 
-[Video]
-; Screen/window width and height (you should change this to your device's screen resolution if you are using the "exclusive" fullscreen type)
-; NOTE: These settings will be ignored if using the "desktop" fullscreen type
-width=1280
-height=720
-
-; Fullscreen settings, if you don't want Vsync (60 FPS cap), set "fullscreenType" to "exclusive" and "vsync" to "0"
-fullscreen=false
-fullscreenType=desktop
-vsync=1
-
-; Use hardware-compressed image formats to save RAM, disabling this will make the game eat your RAM for breakfast (and increase load times)
-; WARNING: Don't disable this on 32-bit versions of the game, or the game will quickly run out of memory and crash (thanks to the 2 GB RAM cap)
-; NOTE: If hardware compression is not supported on your device, this option will be silently ignored
-hardwareCompression=true
-
-[Audio]
-; Master volume
-; Possible values: 0.0-1.0
-volume=1.0
-
 [Game]
 ; "Downscroll" makes arrows scroll down instead of up, and also moves some aspects of the UI around
 downscroll=false
@@ -70,13 +49,13 @@ showDebug=false
 
 ; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings!
 [Data]
-settingsVer=3
+settingsVer=3-switch
 ]]
 	
 	if love.filesystem.getInfo("settings.ini") then
 		settingsIni = ini.load("settings.ini")
 		
-		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3" then
+		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3-switch" then
 			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
 			
 			local success, message = love.filesystem.write("settings.ini", settingsStr)
@@ -100,38 +79,6 @@ settingsVer=3
 	settingsIni = ini.load("settings.ini")
 	settings = {}
 	
-	if ini.readKey(settingsIni, "Video", "fullscreen") == "true" then
-		love.window.setMode(
-			ini.readKey(settingsIni, "Video", "width"),
-			ini.readKey(settingsIni, "Video", "height"),
-			{
-				fullscreen = true,
-				fullscreentype = ini.readKey(settingsIni, "Video", "fullscreenType"),
-				vsync = tonumber(ini.readKey(settingsIni, "Video", "vsync"))
-			}
-		)
-	else
-		love.window.setMode(
-			ini.readKey(settingsIni, "Video", "width"),
-			ini.readKey(settingsIni, "Video", "height"),
-			{
-				vsync = tonumber(ini.readKey(settingsIni, "Video", "vsync")),
-				resizable = true
-			}
-		)
-	end
-	if ini.readKey(settingsIni, "Video", "hardwareCompression") == "true" then
-		settings.hardwareCompression = true
-		
-		if love.graphics.getImageFormats()["DXT5"] then
-			graphics.imageType = "dds"
-		end
-	else
-		settings.hardwareCompression = false
-	end
-	
-	love.audio.setVolume(tonumber(ini.readKey(settingsIni, "Audio", "volume")))
-	
 	if ini.readKey(settingsIni, "Game", "downscroll") == "true" then
 		settings.downscroll = true
 	else
@@ -150,7 +97,6 @@ settingsVer=3
 	end
 	
 	-- Load engine
-	debugMenu = require "debug-menu"
 	menu = require "menu"
 	weeks = require "weeks"
 	
@@ -189,18 +135,6 @@ settingsVer=3
 	Gamestate.switch(menu)
 end
 
-function love.keypressed(key)
-	if key == "6" then
-		love.filesystem.createDirectory("screenshots")
-		
-		love.graphics.captureScreenshot("screenshots/" .. os.time() .. ".png")
-	elseif key == "7" then
-		Gamestate.switch(debugMenu)
-	else
-		Gamestate.keypressed(key)
-	end
-end
-
 function love.resize(width, height)
 	lovesize.resize(width, height)
 end
@@ -220,16 +154,12 @@ function love.draw()
 	love.graphics.setFont(font)
 	
 	lovesize.begin()
-		-- TODO: Make Gamestates center themselves if needed instead of using this workaround
-		if Gamestate.current() == debugMenu then
+		-- TODO: Make Gamestates center themselves if needed
+		love.graphics.push()
+			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
+			
 			Gamestate.draw()
-		else
-			love.graphics.push()
-				love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
-				
-				Gamestate.draw()
-			love.graphics.pop()
-		end
+		love.graphics.pop()
 		
 		love.graphics.setColor(1, 1, 1) -- Bypass fade effect
 	lovesize.finish()
@@ -242,9 +172,6 @@ function love.draw()
 			debugStr = "FPS: " .. tostring(love.timer.getFPS()) ..
 			"\nLUA MEM USAGE (KB): " .. tostring(math.floor(collectgarbage("count"))) ..
 			"\nGRAPHICS MEM USAGE (MB): " .. tostring(math.floor(love.graphics.getStats().texturememory / 1048576)) ..
-			
-			"\n\nsettings.hardwareCompression: " .. tostring(settings.hardwareCompression) ..
-			"\ngraphics.imageType: " .. tostring(graphics.imageType) ..
 			
 			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
 			"\nhealth: " .. tostring(health)

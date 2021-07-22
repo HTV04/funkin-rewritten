@@ -1,4 +1,4 @@
 *.lua text eol=crlf
 *.sh text eol=lf
-dependencies/macos/Info.plist text eol=lf
 src/love/LICENSE.txt text eol=crlf
+src/resources/lovepotion-save/settings.ini text eol=lf
