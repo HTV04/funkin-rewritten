@@ -21,7 +21,7 @@ local menuID, selection
 local curDir, dirTable
 local sprite, spriteAnims, overlaySprite
 
-debugMenu = {
+return {
 	spriteViewerSearch = function(self, dir)
 		svMode = 1
 		
@@ -53,6 +53,10 @@ debugMenu = {
 			},
 			{2}
 		}
+		
+		graphics.cancelTimer()
+		graphics.fade[1] = 0
+		graphics.fadeIn(0.5)
 	end,
 	
 	keypressed = function(self, key)
@@ -160,7 +164,7 @@ debugMenu = {
 		end
 		
 		if input:pressed("back") then
-			graphics.fadeOut(1, love.event.quit)
+			graphics.fadeOut(0.5, love.event.quit)
 		end
 	end,
 	

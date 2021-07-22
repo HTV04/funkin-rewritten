@@ -150,9 +150,9 @@ settingsVer=3
 	end
 	
 	-- Load engine
-	require "debug-menu"
-	require "menu"
-	require "weeks"
+	debugMenu = require "debug-menu"
+	menu = require "menu"
+	weeks = require "weeks"
 	
 	-- Load week data
 	weekData = {

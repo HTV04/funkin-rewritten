@@ -76,7 +76,7 @@ girlfriendTitle.x, girlfriendTitle.y = 300, -75
 
 music:setLooping(true)
 
-menu = {
+return {
 	enter = function(self)
 		gameOver = false
 		storyMode = false

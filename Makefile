@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# Friday Night Funkin' Rewritten Makefile v1.0
+# Friday Night Funkin' Rewritten Makefile v1.1
 # 
 # Copyright (C) 2021  HTV04
 # 
@@ -55,16 +55,20 @@ win32: lovefile
 
 macos: lovefile
 	@rm -rf build/macos
-	@mkdir -p build/macos
+	@mkdir -p "build/macos/Friday Night Funkin' Rewritten.app"
 	
-	@cp -r dependencies/macos/love.app "build/macos/Friday Night Funkin' Rewritten.app"
+	@cp -r dependencies/macos/love.app/. "build/macos/Friday Night Funkin' Rewritten.app"
 	
 	@cp dependencies/macos/Info.plist "build/macos/Friday Night Funkin' Rewritten.app/Contents"
 	@cp build/lovefile/funkin-rewritten.love "build/macos/Friday Night Funkin' Rewritten.app/Contents/Resources"
 
 release: lovefile win64 win32 macos
-	@rm -rf build/release
 	@mkdir -p build/release
+	
+	@rm -f build/release/funkin-rewritten-lovefile.zip
+	@rm -f build/release/funkin-rewritten-win64.zip
+	@rm -f build/release/funkin-rewritten-win32.zip
+	@rm -f build/release/funkin-rewritten-macos.zip
 	
 	@cd build/lovefile; zip -9 -r ../release/funkin-rewritten-lovefile.zip .
 	@cd build/win64; zip -9 -r ../release/funkin-rewritten-win64.zip .

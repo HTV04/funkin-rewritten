@@ -34,7 +34,7 @@ local inputList = {
 
 local ratingTimers = {}
 
-weeks = {
+return {
 	enter = function(self)
 		useAltAnims = false
 		
@@ -429,7 +429,7 @@ weeks = {
 			for j = 2, #enemyNotes[i] do
 				local index = j - offset
 				
-				if enemyNotes[i][index].anim.name == "on" and enemyNotes[i][index - 1].anim.name == "on" and enemyNotes[i][index].y - enemyNotes[i][index - 1].y <= 10 then
+				if enemyNotes[i][index].anim.name == "on" and enemyNotes[i][index - 1].anim.name == "on" and ((settings.downscroll and enemyNotes[i][index].y - enemyNotes[i][index - 1].y >= -10) or (not settings.downscroll and enemyNotes[i][index].y - enemyNotes[i][index - 1].y <= 10)) then
 					table.remove(enemyNotes[i], index)
 					
 					offset = offset + 1
@@ -442,7 +442,7 @@ weeks = {
 			for j = 2, #boyfriendNotes[i] do
 				local index = j - offset
 				
-				if boyfriendNotes[i][index].anim.name == "on" and boyfriendNotes[i][index - 1].anim.name == "on" and boyfriendNotes[i][index].y - boyfriendNotes[i][index - 1].y <= 10 then
+				if boyfriendNotes[i][index].anim.name == "on" and boyfriendNotes[i][index - 1].anim.name == "on" and ((settings.downscroll and boyfriendNotes[i][index].y - boyfriendNotes[i][index - 1].y >= -10) or (not settings.downscroll and boyfriendNotes[i][index].y - boyfriendNotes[i][index - 1].y <= 10)) then
 					table.remove(boyfriendNotes[i], index)
 					
 					offset = offset + 1

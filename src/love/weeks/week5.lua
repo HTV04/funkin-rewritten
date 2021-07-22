@@ -126,8 +126,6 @@ return {
 				
 				graphics.cancelTimer()
 				graphics.fade[1] = 1
-				
-				audio.playSound(sounds["lights on"])
 			else
 				cam.sizeX, cam.sizeY = 0.9, 0.9
 			end
@@ -171,6 +169,8 @@ return {
 					weeks:voicesPlay()
 				end
 			)
+			
+			audio.playSound(sounds["lights on"])
 		else
 			inst:play()
 			weeks:voicesPlay()

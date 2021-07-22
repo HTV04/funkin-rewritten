@@ -1,19 +1,19 @@
 # ![Logo](images/logo.png)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/HTV04/funkin-rewritten?style=flat-square) ![GitHub all releases](https://img.shields.io/github/downloads/HTV04/funkin-rewritten/total?style=flat-square) ![GitHub issues](https://img.shields.io/github/issues/HTV04/funkin-rewritten?style=flat-square) ![GitHub](https://img.shields.io/github/license/HTV04/funkin-rewritten?style=flat-square) ![Discord](https://img.shields.io/discord/852658576577003550?style=flat-square)
 
-*Friday Night Funkin' Rewritten* is a rewrite of [*Friday Night Funkin'*](https://ninja-muffin24.itch.io/funkin) using [LÖVE](https://love2d.org/) for Windows, macOS, Linux.
+Friday Night Funkin' Rewritten is a rewrite of [Friday Night Funkin'](https://ninja-muffin24.itch.io/funkin) built on [LÖVE](https://love2d.org/) for Windows, macOS, and Linux, as well as previously unsupported platforms, like the Nintendo Switch!
 
-*Friday Night Funkin' Rewritten* features:
+Friday Night Funkin' Rewritten features:
 * A rewritten engine focused on performance and playability
-* MUCH less memory usage than the original game
-* Better fullscreen support
+* Much less memory usage than the original game
 * Controller support
+* Other cool features, like downscroll
 * And more to come!
 
 Join the Discord server for updates: https://discord.gg/tQGzN2Wu48
 
 # Controls
-If using a controller, a controller with an Xbox button layout is recommended. Controller buttons will be remappable in a future update.
+If using a controller on a PC, a controller with an Xbox button layout is recommended. Controller buttons will be remappable in a future update.
 
 ## Menus
 ### Keyboard
@@ -37,7 +37,7 @@ If using a controller, a controller with an Xbox button layout is recommended. C
 * A - Confirm (Game Over)
 * Start - Exit
 
-## Debug
+## Debug (PC only)
 ### Keyboard
 * 6 - Take screenshot
   * Screenshot paths:
@@ -51,6 +51,7 @@ The settings file can be found in the following places on the following systems:
 * Windows - `%APPDATA%\funkin-rewritten\settings.ini`
 * macOS - `~/Library/Application Support/funkin-rewritten/settings.ini`
 * Linux - `~/.local/share/love/funkin-rewritten/settings.ini`
+* Nintendo Switch - `/switch/funkin-rewritten-switch/save/settings.ini`
 
 # Progress
 **Menus** - 50% Complete
@@ -73,6 +74,8 @@ The settings file can be found in the following places on the following systems:
 Also, derivative works (mods, forks, etc.) of FNF Rewritten must be open-source. The build methods shown in this README technically make one's code open-source anyway, but uploading it to GitHub or a similar platform is advised.
 
 # Building
+To build the Nintendo Switch version of FNF Rewritten, switch to the `switch` branch and follow the instructions in the README.
+
 ## Unix-like (macOS, Linux, etc.)
 ### LOVE file
 * Run `make`
@@ -110,5 +113,7 @@ Follow the official instructions for LÖVE game distribution for your platform: 
 
 # Special Thanks
 * KadeDev for [FNFDataAPI](https://github.com/KadeDev/FNFDataAPI), which was refrenced while developing the chart-reading system
-* The devs of [BeatFever Mania](https://github.com/Sulunia/beatfever) for their music time interpolation code
+* The developers of [BeatFever Mania](https://github.com/Sulunia/beatfever) for their music time interpolation code
+* The developers of the [LÖVE](https://love2d.org/) framework
+* TurtleP for his work on [LÖVE Potion](https://github.com/lovebrew/LovePotion)
 * Funkin' Crew (ninjamuffin99, PhantomArcade, kawaisprite, and evilsk8er), for making such an awesome game!
