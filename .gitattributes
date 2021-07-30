@@ -1,4 +1,7 @@
-*.lua text eol=crlf
+* text=auto eol=crlf
+
 *.sh text eol=lf
+
 dependencies/macos/Info.plist text eol=lf
-src/love/LICENSE.txt text eol=crlf
+LICENSE text eol=lf
+Makefile text eol=lf
