@@ -1,0 +1,5 @@
+LÖVE Potion: https://github.com/lovebrew/LovePotion/releases
+	Download it, extract it, and copy the LOVEPotion.elf file to .
+
+lovepotion-shaders: https://github.com/HTV04/lovepotion-shaders
+	Download it, extract it, and copy the DKSH files to ./romfs/shaders

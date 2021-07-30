@@ -1,4 +1,6 @@
-*.lua text eol=crlf
+* text eol=crlf
+
 *.sh text eol=lf
-src/love/LICENSE.txt text eol=crlf
-src/resources/lovepotion-save/settings.ini text eol=lf
+
+LICENSE text eol=lf
+Makefile text eol=lf

@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# Friday Night Funkin' Rewritten Makefile v1.1-switch
+# Friday Night Funkin' Rewritten Makefile v1.2-switch
 # 
 # Copyright (C) 2021  HTV04
 # 
@@ -19,19 +19,17 @@
 
 lovefile-switch:
 	@rm -rf build/lovefile-switch
-	@mkdir -p build/lovefile-switch
+	@mkdir -p build/lovefile-switch/switch
 	
-	@cd src/love; zip -r -9 ../../build/lovefile-switch/funkin-rewritten.love .
+	@cd src/love; zip -r -9 ../../build/lovefile-switch/switch/funkin-rewritten.love .
 
-switch:
+switch: lovefile-switch
 	@rm -rf build/switch
-	@mkdir -p build/switch/funkin-rewritten/save
+	@mkdir -p build/switch/switch/funkin-rewritten
 	
-	@~/.local/bin/lovebrew
+	@elf2nro dependencies/switch/LOVEPotion.elf build/switch/switch/funkin-rewritten/funkin-rewritten.nro --icon=dependencies/switch/icon.jpg --nacp=dependencies/switch/funkin-rewritten.nacp --romfsdir=dependencies/switch/romfs
 	
-	@rm -rf build/switch/romfs build/switch/funkin-rewritten.nacp build/switch/game.love
-	@mv build/switch/funkin-rewritten.nro build/switch/funkin-rewritten
-	@cp -r resources/lovepotion-save/. build/switch/funkin-rewritten/save
+	@cat build/lovefile-switch/switch/funkin-rewritten.love >> build/switch/switch/funkin-rewritten/funkin-rewritten.nro
 
 release: lovefile-switch switch
 	@mkdir -p build/release

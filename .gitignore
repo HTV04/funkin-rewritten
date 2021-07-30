@@ -8,14 +8,10 @@
 build/*
 
 # Dependencies
-dependencies/macos/*
-dependencies/win32/*
-dependencies/win64/*
-
-!dependencies/macos/dependencies.txt
-!dependencies/macos/Info.plist
-!dependencies/win32/dependencies.txt
-!dependencies/win64/dependencies.txt
+dependencies/macos/love.app/*
+dependencies/switch/LOVEPotion.elf
+dependencies/win32/love/*
+dependencies/win64/love/*
 
 # Tools
 tools/funkin-json/*
