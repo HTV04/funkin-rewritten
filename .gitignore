@@ -10,6 +10,7 @@ build/*
 # Dependencies
 dependencies/macos/love.app/*
 dependencies/switch/LOVEPotion.elf
+dependencies/switch/romfs/*
 dependencies/win32/love/*
 dependencies/win64/love/*
 
