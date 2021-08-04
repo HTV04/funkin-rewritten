@@ -150,6 +150,8 @@ return {
 				if menuState > 2 then
 					music:stop()
 					
+					isLoading = true
+					
 					menuState = 2 -- So menuState isn't an "invalid" value
 					
 					graphics.fadeOut(
@@ -163,6 +165,8 @@ return {
 							end
 							
 							Gamestate.switch(weekData[weekNum])
+							
+							isLoading = false
 						end
 					)
 				end
@@ -185,17 +189,13 @@ return {
 	end,
 	
 	draw = function(self)
-		titleBG:draw()
-		
 		love.graphics.push()
-			love.graphics.scale(cam.sizeX, cam.sizeY)
+			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
 			
-			logo:draw()
-			
-			girlfriendTitle:draw()
+			titleBG:draw()
 			
 			love.graphics.printf(
-				"v1.0.0-switch\n" ..
+				"v1.0.1-switch\n" ..
 				"Developed by HTV04\n\n" ..
 				"Original game by Funkin' Crew, in association with Newgrounds",
 				-525,
@@ -233,6 +233,10 @@ return {
 				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
 			end
 		love.graphics.pop()
+		
+		if isLoading then
+			love.graphics.print("Loading...", lovesize.getWidth() - 175, lovesize.getHeight() - 50)
+		end
 	end,
 	
 	leave = function(self)

@@ -133,7 +133,9 @@ return {
 		if gameOver then return end
 		
 		love.graphics.push()
+			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
 			love.graphics.scale(cam.sizeX, cam.sizeY)
+			
 			love.graphics.push()
 				love.graphics.translate(cam.x * 0.9, cam.y * 0.9)
 				
@@ -156,11 +158,7 @@ return {
 			weeks:drawRating(0.9)
 		love.graphics.pop()
 		
-		love.graphics.push()
-			love.graphics.scale(uiScale.x, uiScale.y)
-			
-			weeks:drawUI()
-		love.graphics.pop()
+		weeks:drawUI()
 	end,
 	
 	leave = function(self)

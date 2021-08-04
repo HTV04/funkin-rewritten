@@ -429,7 +429,7 @@ return {
 			for j = 2, #enemyNotes[i] do
 				local index = j - offset
 				
-				if enemyNotes[i][index].anim.name == "on" and enemyNotes[i][index - 1].anim.name == "on" and ((settings.downscroll and enemyNotes[i][index].y - enemyNotes[i][index - 1].y >= -10) or (not settings.downscroll and enemyNotes[i][index].y - enemyNotes[i][index - 1].y <= 10)) then
+				if enemyNotes[i][index].anim.name == "on" and enemyNotes[i][index - 1].anim.name == "on" and ((not settings.downscroll and enemyNotes[i][index].y - enemyNotes[i][index - 1].y <= 10) or (settings.downscroll and enemyNotes[i][index].y - enemyNotes[i][index - 1].y >= -10)) then
 					table.remove(enemyNotes[i], index)
 					
 					offset = offset + 1
@@ -442,7 +442,7 @@ return {
 			for j = 2, #boyfriendNotes[i] do
 				local index = j - offset
 				
-				if boyfriendNotes[i][index].anim.name == "on" and boyfriendNotes[i][index - 1].anim.name == "on" and ((settings.downscroll and boyfriendNotes[i][index].y - boyfriendNotes[i][index - 1].y >= -10) or (not settings.downscroll and boyfriendNotes[i][index].y - boyfriendNotes[i][index - 1].y <= 10)) then
+				if boyfriendNotes[i][index].anim.name == "on" and boyfriendNotes[i][index - 1].anim.name == "on" and ((not settings.downscroll and boyfriendNotes[i][index].y - boyfriendNotes[i][index - 1].y <= 10) or (settings.downscroll and boyfriendNotes[i][index].y - boyfriendNotes[i][index - 1].y >= -10)) then
 					table.remove(boyfriendNotes[i], index)
 					
 					offset = offset + 1
@@ -567,7 +567,7 @@ return {
 			end
 			
 			if #enemyNote > 0 then
-				if (settings.downscroll and enemyNote[1].y - musicPos >= 400) or (not settings.downscroll and enemyNote[1].y - musicPos <= -400) then
+				if (not settings.downscroll and enemyNote[1].y - musicPos <= -400) or (settings.downscroll and enemyNote[1].y - musicPos >= 400) then
 					voices:setVolume(1)
 					
 					enemyArrow:animate("confirm", false)
@@ -583,7 +583,7 @@ return {
 			end
 			
 			if #boyfriendNote > 0 then
-				if (settings.downscroll and boyfriendNote[1].y - musicPos > 485) or (not settings.downscroll and boyfriendNote[1].y - musicPos < -485) then
+				if (not settings.downscroll and boyfriendNote[1].y - musicPos < -500) or (settings.downscroll and boyfriendNote[1].y - musicPos > 500) then
 					if inst then
 						voices:setVolume(0)
 					end
@@ -609,7 +609,7 @@ return {
 				if #boyfriendNote > 0 then
 					for i = 1, #boyfriendNote do
 						if boyfriendNote[i] and boyfriendNote[i].anim.name == "on" then
-							if (settings.downscroll and boyfriendNote[i].y - musicPos >= 310) or (not settings.downscroll and boyfriendNote[i].y - musicPos <= -310) then
+							if (not settings.downscroll and boyfriendNote[i].y - musicPos <= -280) or (settings.downscroll and boyfriendNote[i].y - musicPos >= 280) then
 								local notePos
 								local ratingAnim
 								
@@ -624,10 +624,10 @@ return {
 								if notePos <= 30 then -- "Sick"
 									score = score + 350
 									ratingAnim = "sick"
-								elseif notePos <= 50 then -- "Good"
+								elseif notePos <= 70 then -- "Good"
 									score = score + 200
 									ratingAnim = "good"
-								elseif notePos <= 80 then -- "Bad"
+								elseif notePos <= 90 then -- "Bad"
 									score = score + 100
 									ratingAnim = "bad"
 								else -- "Shit"
@@ -694,7 +694,7 @@ return {
 			
 			if #boyfriendNote > 0 then
 				if input:down(curInput) then
-					if ((settings.downscroll and boyfriendNote[1].y - musicPos >= 400) or (not settings.downscroll and boyfriendNote[1].y - musicPos <= -400)) and (boyfriendNote[1].anim.name == "hold" or boyfriendNote[1].anim.name == "end") then
+					if ((not settings.downscroll and boyfriendNote[1].y - musicPos <= -400) or (settings.downscroll and boyfriendNote[1].y - musicPos >= 400)) and (boyfriendNote[1].anim.name == "hold" or boyfriendNote[1].anim.name == "end") then
 						voices:setVolume(1)
 						
 						table.remove(boyfriendNote, 1)
@@ -779,17 +779,19 @@ return {
 	draw = function(self)
 		if gameOver then
 			love.graphics.push()
-				love.graphics.scale(cam.sizeX, cam.sizeY)
-				love.graphics.translate(cam.x, cam.y)
+				love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
 				
-				if fakeBoyfriend then
-					fakeBoyfriend:draw()
-				else
-					boyfriend:draw()
-				end
+				love.graphics.push()
+					love.graphics.scale(cam.sizeX, cam.sizeY)
+					love.graphics.translate(cam.x, cam.y)
+					
+					if fakeBoyfriend then
+						fakeBoyfriend:draw()
+					else
+						boyfriend:draw()
+					end
+				love.graphics.pop()
 			love.graphics.pop()
-			
-			return
 		end
 	end,
 	
@@ -807,62 +809,87 @@ return {
 	end,
 	
 	drawUI = function(self)
-		local downscrollOffset = 0
-		
-		if settings.downscroll then
-			downscrollOffset = 750
-		end
-		
-		for i = 1, 4 do
-			if enemyArrows[i].anim.name == "off" then
-				graphics.setColor(0.6, 0.6, 0.6)
-			end
-			enemyArrows[i]:draw()
-			graphics.setColor(1, 1, 1)
-			boyfriendArrows[i]:draw()
+		love.graphics.push()
+			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
+			love.graphics.scale(0.7, 0.7)
 			
-			love.graphics.push()
-				love.graphics.translate(0, -musicPos)
+			for i = 1, 4 do
+				if enemyArrows[i].anim.name == "off" then
+					graphics.setColor(0.6, 0.6, 0.6)
+				end
+				enemyArrows[i]:draw()
+				graphics.setColor(1, 1, 1)
+				boyfriendArrows[i]:draw()
 				
-				for j = #enemyNotes[i], 1, -1 do
-					if enemyNotes[i][j].y - musicPos <= 560 then
-						local animName = enemyNotes[i][j].anim.name
-						
-						if animName == "hold" or animName == "end" then
-							graphics.setColor(1, 1, 1, 0.5)
+				love.graphics.push()
+					love.graphics.translate(0, -musicPos)
+					
+					for j = #enemyNotes[i], 1, -1 do
+						if (not settings.downscroll and enemyNotes[i][j].y - musicPos <= 560) or (settings.downscroll and enemyNotes[i][j].y - musicPos >= -560) then
+							local animName = enemyNotes[i][j].anim.name
+							
+							if animName == "hold" or animName == "end" then
+								graphics.setColor(1, 1, 1, 0.5)
+							end
+							enemyNotes[i][j]:draw()
+							graphics.setColor(1, 1, 1)
 						end
-						enemyNotes[i][j]:draw()
-						graphics.setColor(1, 1, 1)
 					end
-				end
-				for j = #boyfriendNotes[i], 1, -1 do
-					if (settings.offset and boyfriendNotes[i][j].y - musicPos >= -560) or (not settings.offset and boyfriendNotes[i][j].y - musicPos <= 560) then
-						local animName = boyfriendNotes[i][j].anim.name
-						
-						if animName == "hold" or animName == "end" then
-							graphics.setColor(1, 1, 1, 0.5)
+					for j = #boyfriendNotes[i], 1, -1 do
+						if (not settings.downscroll and boyfriendNotes[i][j].y - musicPos <= 560) or (settings.downscroll and boyfriendNotes[i][j].y - musicPos >= -560) then
+							local animName = boyfriendNotes[i][j].anim.name
+							
+							if settings.downscroll then
+								if animName == "hold" or animName == "end" then
+									graphics.setColor(1, 1, 1, math.min(0.5, (500 - (boyfriendNotes[i][j].y - musicPos)) / 150))
+								else
+									graphics.setColor(1, 1, 1, math.min(1, (500 - (boyfriendNotes[i][j].y - musicPos)) / 75))
+								end
+							else
+								if animName == "hold" or animName == "end" then
+									graphics.setColor(1, 1, 1, math.min(0.5, (500 + (boyfriendNotes[i][j].y - musicPos)) / 150))
+								else
+									graphics.setColor(1, 1, 1, math.min(1, (500 + (boyfriendNotes[i][j].y - musicPos)) / 75))
+								end
+							end
+							boyfriendNotes[i][j]:draw()
 						end
-						boyfriendNotes[i][j]:draw()
-						graphics.setColor(1, 1, 1)
 					end
-				end
-			love.graphics.pop()
-		end
-		
-		graphics.setColor(1, 0, 0)
-		love.graphics.rectangle("fill", -500, 350 - downscrollOffset, 1000, 25)
-		graphics.setColor(0, 1, 0)
-		love.graphics.rectangle("fill", 500, 350 - downscrollOffset, -health * 10, 25)
-		graphics.setColor(0, 0, 0)
-		love.graphics.setLineWidth(10)
-		love.graphics.rectangle("line", -500, 350 - downscrollOffset, 1000, 25)
-		love.graphics.setLineWidth(1)
-		graphics.setColor(1, 1, 1)
-		
-		boyfriendIcon:draw()
-		enemyIcon:draw()
-		
-		love.graphics.print("Score: " .. score, 300, 400 - downscrollOffset)
+					graphics.setColor(1, 1, 1)
+				love.graphics.pop()
+			end
+			
+			if settings.downscroll then
+				graphics.setColor(1, 0, 0)
+				love.graphics.rectangle("fill", -500, -400, 1000, 25)
+				graphics.setColor(0, 1, 0)
+				love.graphics.rectangle("fill", 500, -400, -health * 10, 25)
+				graphics.setColor(0, 0, 0)
+				love.graphics.setLineWidth(10)
+				love.graphics.rectangle("line", -500, -400, 1000, 25)
+				love.graphics.setLineWidth(1)
+				graphics.setColor(1, 1, 1)
+			else
+				graphics.setColor(1, 0, 0)
+				love.graphics.rectangle("fill", -500, 350, 1000, 25)
+				graphics.setColor(0, 1, 0)
+				love.graphics.rectangle("fill", 500, 350, -health * 10, 25)
+				graphics.setColor(0, 0, 0)
+				love.graphics.setLineWidth(10)
+				love.graphics.rectangle("line", -500, 350, 1000, 25)
+				love.graphics.setLineWidth(1)
+				graphics.setColor(1, 1, 1)
+			end
+			
+			boyfriendIcon:draw()
+			enemyIcon:draw()
+			
+			if settings.downscroll then
+				love.graphics.print("Score: " .. score, 300, -350)
+			else
+				love.graphics.print("Score: " .. score, 300, 400)
+			end
+		love.graphics.pop()
 	end,
 	
 	leave = function(self)

@@ -1,5 +1,5 @@
 --[[----------------------------------------------------------------------------
-Friday Night Funkin' Rewritten v1.0.0-switch
+Friday Night Funkin' Rewritten v1.0.1-switch
 
 Copyright (C) 2021  HTV04
 
@@ -115,6 +115,7 @@ settingsVer=3-switch
 	
 	-- Variables
 	font = love.graphics.newFont("fonts/vcr.ttf", 24)
+	isLoading = false
 	
 	weekNum = 1
 	songDifficulty = 2
@@ -150,18 +151,19 @@ function love.update(dt)
 end
 
 function love.draw()
-	graphics.setColor(1, 1, 1)
+	local loveWidth = lovesize.getWidth()
+	local loveHeight = lovesize.getHeight()
+	
 	love.graphics.setFont(font)
 	
 	lovesize.begin()
-		-- TODO: Make Gamestates center themselves if needed
-		love.graphics.push()
-			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
-			
-			Gamestate.draw()
-		love.graphics.pop()
+		graphics.setColor(1, 1, 1) -- Fade effect on
+		Gamestate.draw()
+		love.graphics.setColor(1, 1, 1) -- Fade effect off
 		
-		love.graphics.setColor(1, 1, 1) -- Bypass fade effect
+		if isLoading then
+			love.graphics.print("Loading...", loveWidth - 175, loveHeight - 50)
+		end
 	lovesize.finish()
 	
 	-- Debug output
