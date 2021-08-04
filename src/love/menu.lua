@@ -249,10 +249,6 @@ return {
 				end
 			love.graphics.pop()
 		love.graphics.pop()
-		
-		if isLoading then
-			love.graphics.print("Loading...", lovesize.getWidth() - 175, lovesize.getHeight() - 50)
-		end
 	end,
 	
 	leave = function(self)

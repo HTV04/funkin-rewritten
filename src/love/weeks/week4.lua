@@ -170,6 +170,12 @@ return {
 		limoDancer:update(dt)
 		limo:update(dt)
 		
+		if musicThres ~= oldMusicThres and math.fmod(musicTime, 120000 / bpm) < 100 then
+			limoDancer:animate("anim", false)
+			
+			limoDancer.anim.speed = 14.4 / (60 / bpm)
+		end
+		
 		if health >= 80 then
 			if enemyIcon.anim.name == "mommy mearest" then
 				enemyIcon:animate("mommy mearest losing", false)
