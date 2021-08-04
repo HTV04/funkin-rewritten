@@ -283,7 +283,7 @@ return {
 		if gameOver then return end
 		
 		love.graphics.push()
-			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)	
+			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
 			love.graphics.scale(cam.sizeX, cam.sizeY)
 			
 			love.graphics.push()

@@ -56,5 +56,5 @@ return Sprite (
 		["anim"] = {start = 1, stop = 30, speed = 24, offsetX = 0, offsetY = 0}
 	},
 	"anim",
-	true
+	false
 )

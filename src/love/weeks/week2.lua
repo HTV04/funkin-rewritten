@@ -110,6 +110,12 @@ return {
 			weeks:safeAnimate(boyfriend, "shaking", true, 3)
 		end
 		
+		if musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 / bpm) < 100 then
+			if enemy.anim.name == "idle" then
+				enemy.anim.speed = 14.4 / (120 / bpm)
+			end
+		end
+		
 		if health >= 80 then
 			if enemyIcon.anim.name == "skid and pump" then
 				enemyIcon:animate("skid and pump losing", false)
