@@ -27,7 +27,7 @@ switch: lovefile-switch
 	@rm -rf build/switch
 	@mkdir -p build/switch/switch/funkin-rewritten
 	
-	@elf2nro dependencies/switch/LOVEPotion.elf build/switch/switch/funkin-rewritten/funkin-rewritten.nro --icon=dependencies/switch/icon.jpg --nacp=dependencies/switch/funkin-rewritten.nacp --romfsdir=dependencies/switch/romfs
+	@elf2nro resources/switch/LOVEPotion.elf build/switch/switch/funkin-rewritten/funkin-rewritten.nro --icon=resources/switch/icon.jpg --nacp=resources/switch/funkin-rewritten.nacp --romfsdir=resources/switch/romfs
 	
 	@cat build/lovefile-switch/switch/funkin-rewritten.love >> build/switch/switch/funkin-rewritten/funkin-rewritten.nro
 

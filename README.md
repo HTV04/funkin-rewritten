@@ -13,21 +13,23 @@ Building the Switch port of FNF Rewritten as a LOVE file is recommended since it
 ### LOVE file (Nintendo Switch)
 * Run `make`
 
-Results are in `build/lovefile-switch`.
+Results are in `./build/lovefile-switch`.
 
 ### Nintendo Switch
 * Set up [devkitPro](https://devkitpro.org/wiki/Getting_Started)
   * Install the `switch-dev` package
+* Set up dependencies shown in `./resources/switch/dependencies.txt`
 * Run `make switch`
 
-Results are in `build/switch`.
+Results are in `./build/switch`.
 
 ### Release ZIPs
 * Set up [devkitPro](https://devkitpro.org/wiki/Getting_Started)
   * Install the `switch-dev` package
+* Set up dependencies shown in `./resources/switch/dependencies.txt`
 * Run `make release`
 
-Results are in `build/release`.
+Results are in `./build/release`.
 
 ## Other
 Follow the official instructions for LÖVE Potion game distribution for your platform: https://lovebrew.org/#/packaging
