@@ -194,49 +194,53 @@ return {
 			
 			titleBG:draw()
 			
-			love.graphics.printf(
-				"v1.0.1-switch\n" ..
-				"Developed by HTV04\n\n" ..
-				"Original game by Funkin' Crew, in association with Newgrounds",
-				-525,
-				90,
-				450,
-				"right",
-				nil,
-				1,
-				1
-			)
-			
-			graphics.setColor(1, 1, 0)
-			if menuState == 2 then
-				if songDifficulty == 1 then
-					love.graphics.printf("Choose a difficulty: < Easy >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				elseif songDifficulty == 2 then
-					love.graphics.printf("Choose a difficulty: < Normal >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				elseif songDifficulty == 3 then
-					love.graphics.printf("Choose a difficulty: < Hard >", -640, 285, 853, "center", nil, 1.5, 1.5)
+			love.graphics.push()
+				love.graphics.scale(cam.sizeX, cam.sizeY)
+				
+				logo:draw()
+				
+				girlfriendTitle:draw()
+				
+				love.graphics.printf(
+					"v1.0.1-switch\n" ..
+					"Developed by HTV04\n\n" ..
+					"Original game by Funkin' Crew, in association with Newgrounds",
+					-525,
+					90,
+					450,
+					"right",
+					nil,
+					1,
+					1
+				)
+				
+				graphics.setColor(1, 1, 0)
+				if menuState == 2 then
+					if songDifficulty == 1 then
+						love.graphics.printf("Choose a difficulty: < Easy >", -640, 285, 853, "center", nil, 1.5, 1.5)
+					elseif songDifficulty == 2 then
+						love.graphics.printf("Choose a difficulty: < Normal >", -640, 285, 853, "center", nil, 1.5, 1.5)
+					elseif songDifficulty == 3 then
+						love.graphics.printf("Choose a difficulty: < Hard >", -640, 285, 853, "center", nil, 1.5, 1.5)
+					end
+				elseif menuState == 1 then
+					if songNum == 0 then
+						love.graphics.printf("Choose a song: < (Story Mode) >", -640, 285, 853, "center", nil, 1.5, 1.5)
+					else
+						love.graphics.printf("Choose a song: < " .. weekSongs[weekNum][songNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
+					end
+				elseif menuState == 0 then
+					love.graphics.printf("Choose a week: < " .. weekIDs[weekNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
 				end
-			elseif menuState == 1 then
-				if songNum == 0 then
-					love.graphics.printf("Choose a song: < (Story Mode) >", -640, 285, 853, "center", nil, 1.5, 1.5)
+				graphics.setColor(1, 1, 1)
+				
+				if menuState <= 0 then
+					love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Exit", -640, 350, 1280, "center", nil, 1, 1)
 				else
-					love.graphics.printf("Choose a song: < " .. weekSongs[weekNum][songNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
+					love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
 				end
-			elseif menuState == 0 then
-				love.graphics.printf("Choose a week: < " .. weekIDs[weekNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
-			end
-			graphics.setColor(1, 1, 1)
-			
-			if menuState <= 0 then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Exit", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-			end
+			love.graphics.pop()
 		love.graphics.pop()
-		
-		if isLoading then
-			love.graphics.print("Loading...", lovesize.getWidth() - 175, lovesize.getHeight() - 50)
-		end
 	end,
 	
 	leave = function(self)
