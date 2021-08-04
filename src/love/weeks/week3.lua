@@ -50,7 +50,7 @@ return {
 		enemy = love.filesystem.load("sprites/week3/pico-enemy.lua")()
 		
 		girlfriend.x, girlfriend.y = -70, -140
-		enemy.x, enemy.y = -480, 40
+		enemy.x, enemy.y = -480, 50
 		enemy.sizeX = -1 -- Reverse, reverse!
 		boyfriend.x, boyfriend.y = 165, 50
 		
@@ -157,7 +157,9 @@ return {
 		if gameOver then return end
 		
 		love.graphics.push()
+			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
 			love.graphics.scale(cam.sizeX, cam.sizeY)
+			
 			love.graphics.push()
 				love.graphics.translate(cam.x * 0.25, cam.y * 0.25)
 				
@@ -188,11 +190,7 @@ return {
 			weeks:drawRating(0.9)
 		love.graphics.pop()
 		
-		love.graphics.push()
-			love.graphics.scale(uiScale.x, uiScale.y)
-			
-			weeks:drawUI()
-		love.graphics.pop()
+		weeks:drawUI()
 	end,
 	
 	leave = function(self)

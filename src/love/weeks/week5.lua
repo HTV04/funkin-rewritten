@@ -278,14 +278,14 @@ return {
 	end,
 	
 	draw = function(self)
-		local downscrollOffset = 0
-		
 		weeks:draw()
 		
 		if gameOver then return end
 		
 		love.graphics.push()
+			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)	
 			love.graphics.scale(cam.sizeX, cam.sizeY)
+			
 			love.graphics.push()
 				love.graphics.translate(cam.x * 0.5, cam.y * 0.5)
 				
@@ -321,14 +321,11 @@ return {
 			love.graphics.pop()
 			weeks:drawRating(0.9)
 		love.graphics.pop()
-		
+			
 		if not scaryIntro then
 			love.graphics.push()
-				love.graphics.scale(uiScale.x, uiScale.y)
-				
-				if settings.downscroll then
-					downscrollOffset = 750
-				end
+				love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
+				love.graphics.scale(0.7, 0.7)
 				
 				for i = 1, 4 do
 					if enemyArrows[i].anim.name == "off" then
@@ -342,7 +339,7 @@ return {
 						love.graphics.translate(0, -musicPos)
 						
 						for j = #enemyNotes[i], 1, -1 do
-							if enemyNotes[i][j].y - musicPos <= 560 then
+							if (not settings.downscroll and enemyNotes[i][j].y - musicPos <= 560) or (settings.downscroll and enemyNotes[i][j].y - musicPos >= -560) then
 								local animName = enemyNotes[i][j].anim.name
 								
 								if animName == "hold" or animName == "end" then
@@ -353,35 +350,63 @@ return {
 							end
 						end
 						for j = #boyfriendNotes[i], 1, -1 do
-							if (settings.offset and boyfriendNotes[i][j].y - musicPos >= -560) or (not settings.offset and boyfriendNotes[i][j].y - musicPos <= 560) then
+							if (not settings.downscroll and boyfriendNotes[i][j].y - musicPos <= 560) or (settings.downscroll and boyfriendNotes[i][j].y - musicPos >= -560) then
 								local animName = boyfriendNotes[i][j].anim.name
 								
-								if animName == "hold" or animName == "end" then
-									graphics.setColor(1, 1, 1, 0.5)
+								if settings.downscroll then
+									if animName == "hold" or animName == "end" then
+										graphics.setColor(1, 1, 1, math.min(0.5, (500 - (boyfriendNotes[i][j].y - musicPos)) / 150))
+									else
+										graphics.setColor(1, 1, 1, math.min(1, (500 - (boyfriendNotes[i][j].y - musicPos)) / 75))
+									end
+								else
+									if animName == "hold" or animName == "end" then
+										graphics.setColor(1, 1, 1, math.min(0.5, (500 + (boyfriendNotes[i][j].y - musicPos)) / 150))
+									else
+										graphics.setColor(1, 1, 1, math.min(1, (500 + (boyfriendNotes[i][j].y - musicPos)) / 75))
+									end
 								end
 								boyfriendNotes[i][j]:draw()
-								graphics.setColor(1, 1, 1)
 							end
 						end
+						graphics.setColor(1, 1, 1)
 					love.graphics.pop()
 				end
 				
-				graphics.setColor(1, 0, 0)
-				love.graphics.rectangle("fill", -500, 350 - downscrollOffset, 1000, 25)
-				graphics.setColor(0, 1, 0)
-				love.graphics.rectangle("fill", 500, 350 - downscrollOffset, -health * 10, 25)
-				graphics.setColor(0, 0, 0)
-				love.graphics.setLineWidth(10)
-				love.graphics.rectangle("line", -500, 350 - downscrollOffset, 1000, 25)
-				love.graphics.setLineWidth(1)
-				graphics.setColor(1, 1, 1)
+				if settings.downscroll then
+					graphics.setColor(1, 0, 0)
+					love.graphics.rectangle("fill", -500, -400, 1000, 25)
+					graphics.setColor(0, 1, 0)
+					love.graphics.rectangle("fill", 500, -400, -health * 10, 25)
+					graphics.setColor(0, 0, 0)
+					love.graphics.setLineWidth(10)
+					love.graphics.rectangle("line", -500, -400, 1000, 25)
+					love.graphics.setLineWidth(1)
+					graphics.setColor(1, 1, 1)
+				else
+					graphics.setColor(1, 0, 0)
+					love.graphics.rectangle("fill", -500, 350, 1000, 25)
+					graphics.setColor(0, 1, 0)
+					love.graphics.rectangle("fill", 500, 350, -health * 10, 25)
+					graphics.setColor(0, 0, 0)
+					love.graphics.setLineWidth(10)
+					love.graphics.rectangle("line", -500, 350, 1000, 25)
+					love.graphics.setLineWidth(1)
+					graphics.setColor(1, 1, 1)
+				end
 				
 				boyfriendIcon:draw()
 				enemyIcon:draw()
 				
-				graphics.setColor(0, 0, 0)
-				love.graphics.print("Score: " .. score, 300, 400 - downscrollOffset)
-				graphics.setColor(1, 1, 1)
+				if settings.downscroll then
+					graphics.setColor(0, 0, 0)
+					love.graphics.print("Score: " .. score, 300, -350)
+					graphics.setColor(1, 1, 1)
+				else
+					graphics.setColor(0, 0, 0)
+					love.graphics.print("Score: " .. score, 300, 400)
+					graphics.setColor(1, 1, 1)
+				end
 			love.graphics.pop()
 		end
 	end,
