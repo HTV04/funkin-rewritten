@@ -80,33 +80,33 @@ To build the Nintendo Switch version of FNF Rewritten, switch to the `switch` br
 ### LOVE file
 * Run `make`
 
-Results are in `build/lovefile`.
+Results are in `./build/lovefile`.
 
 ### Windows (64-bit)
-* Set up dependencies shown in `dependencies/win64/dependencies.txt`
+* Set up dependencies shown in `./resources/win64/dependencies.txt`
 * Run `make win64`
 
-Results are in `build/win64`.
+Results are in `./build/win64`.
 
 ### Windows (32-bit)
-* Set up dependencies shown in `dependencies/win32/dependencies.txt`
+* Set up dependencies shown in `./resources/win32/dependencies.txt`
 * Run `make win32`
 
-Results are in `build/win32`.
+Results are in `./build/win32`.
 
 ### macOS
-* Set up dependencies shown in `dependencies/macos/dependencies.txt`
+* Set up dependencies shown in `./resources/macos/dependencies.txt`
 * Run `make macos`
 
-Results are in `build/macos`.
+Results are in `./build/macos`.
 
 ### Release ZIPs
-* Set up dependencies shown in `dependencies/win64/dependencies.txt`
-* Set up dependencies shown in `dependencies/win32/dependencies.txt`
-* Set up dependencies shown in `dependencies/macos/dependencies.txt`
+* Set up dependencies shown in `./resources/win64/dependencies.txt`
+* Set up dependencies shown in `./resources/win32/dependencies.txt`
+* Set up dependencies shown in `./resources/macos/dependencies.txt`
 * Run `make release`
 
-Results are in `build/release`.
+Results are in `./build/release`.
 
 ## Other
 Follow the official instructions for LÖVE game distribution for your platform: https://love2d.org/wiki/Game_Distribution
