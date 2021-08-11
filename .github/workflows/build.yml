@@ -64,8 +64,7 @@ jobs:
       
       - name: Setup love-11.3-macos
         run: |
-          curl -L --remote-name https://github.com/love2d/love/releases/download/11.3/love-11.3-macos.zip
-          unzip love-11.3-macos.zip -d resources/macos
+          unzip resources/macos/love.zip -d resources/macos
       
       - name: Build
         run: |

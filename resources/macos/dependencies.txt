@@ -1,2 +1,2 @@
-LÖVE 11.3 for macOS: https://github.com/love2d/love/releases/download/11.3/love-11.3-macos.zip
-	Download it, extract it, and copy the love.app directory to .
+LÖVE 11.3 for macOS: ./love.zip
+	Extract it, and copy the "love.app" directory to .

@@ -59,7 +59,6 @@ macos: lovefile
 	
 	@cp -r resources/macos/love.app/. "build/macos/Friday Night Funkin' Rewritten.app"
 	
-	@cp resources/macos/Info.plist "build/macos/Friday Night Funkin' Rewritten.app/Contents"
 	@cp build/lovefile/funkin-rewritten.love "build/macos/Friday Night Funkin' Rewritten.app/Contents/Resources"
 
 release: lovefile win64 win32 macos
