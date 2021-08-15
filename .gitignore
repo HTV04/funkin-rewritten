@@ -9,6 +9,8 @@ build/*
 
 # Dependencies
 resources/macos/love.app/*
+resources/switch/LOVEPotion.elf
+resources/switch/romfs/*
 resources/win32/love/*
 resources/win64/love/*
 

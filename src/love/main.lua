@@ -25,11 +25,13 @@ function love.load()
 	lovesize = require "lib.lovesize"
 	Gamestate = require "lib.gamestate"
 	Timer = require "lib.timer"
-	
-	-- Load objects
-	require "classes"
-	require "modules"
-	
+
+	-- Load modules
+	engine = require "modules.engine"
+	audio = require "modules.audio"
+	graphics = require "modules.graphics"
+	input = require "modules.input"
+
 	-- Create, read, and apply settings
 	settingsStr = [[
 ; Friday Night Funkin' Rewritten Settings
@@ -72,15 +74,15 @@ showDebug=false
 [Data]
 settingsVer=3
 ]]
-	
+
 	if love.filesystem.getInfo("settings.ini") then
 		settingsIni = ini.load("settings.ini")
-		
+
 		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3" then
 			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
-			
+
 			local success, message = love.filesystem.write("settings.ini", settingsStr)
-			
+
 			if success then
 				love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
 			else
@@ -89,17 +91,17 @@ settingsVer=3
 		end
 	else
 		local success, message = love.filesystem.write("settings.ini", settingsStr)
-		
+
 		if success then
 			love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
 		else
 			love.window.showMessageBox("Error", message)
 		end
 	end
-	
+
 	settingsIni = ini.load("settings.ini")
 	settings = {}
-	
+
 	if ini.readKey(settingsIni, "Video", "fullscreen") == "true" then
 		love.window.setMode(
 			ini.readKey(settingsIni, "Video", "width"),
@@ -122,16 +124,16 @@ settingsVer=3
 	end
 	if ini.readKey(settingsIni, "Video", "hardwareCompression") == "true" then
 		settings.hardwareCompression = true
-		
+
 		if love.graphics.getImageFormats()["DXT5"] then
-			graphics.imageType = "dds"
+			graphics.setImageType("dds")
 		end
 	else
 		settings.hardwareCompression = false
 	end
-	
+
 	love.audio.setVolume(tonumber(ini.readKey(settingsIni, "Audio", "volume")))
-	
+
 	if ini.readKey(settingsIni, "Game", "downscroll") == "true" then
 		settings.downscroll = true
 	else
@@ -142,18 +144,18 @@ settingsVer=3
 	else
 		settings.kadeInput = false
 	end
-	
+
 	if ini.readKey(settingsIni, "Advanced", "showDebug") == "fps" or ini.readKey(settingsIni, "Advanced", "showDebug") == "detailed" then
 		settings.showDebug = ini.readKey(settingsIni, "Advanced", "showDebug")
 	else
 		settings.showDebug = false
 	end
-	
+
 	-- Load engine
 	debugMenu = require "debug-menu"
 	menu = require "menu"
 	weeks = require "weeks"
-	
+
 	-- Load week data
 	weekData = {
 		require "weeks.tutorial",
@@ -163,37 +165,39 @@ settingsVer=3
 		require "weeks.week4",
 		require "weeks.week5"
 	}
-	
+
 	-- Screen init
 	lovesize.set(1280, 720)
-	
+
+	graphics.loveResize(love.graphics.getWidth(), love.graphics.getHeight())
+
 	-- Variables
 	font = love.graphics.newFont("fonts/vcr.ttf", 24)
 	isLoading = false
-	
+
 	weekNum = 1
 	songDifficulty = 2
-	
+
 	spriteTimers = {
 		0, -- Girlfriend
 		0, -- Enemy
 		0 -- Boyfriend
 	}
-	
+
 	cam = {x = 0, y = 0, sizeX = 0.9, sizeY = 0.9}
 	camScale = {x = 0.9, y = 0.9}
 	uiScale = {x = 0.7, y = 0.7}
-	
+
 	musicTime = 0
 	health = 0
-	
+
 	Gamestate.switch(menu)
 end
 
 function love.keypressed(key)
 	if key == "6" then
 		love.filesystem.createDirectory("screenshots")
-		
+
 		love.graphics.captureScreenshot("screenshots/" .. os.time() .. ".png")
 	elseif key == "7" then
 		Gamestate.switch(debugMenu)
@@ -204,52 +208,35 @@ end
 
 function love.resize(width, height)
 	lovesize.resize(width, height)
+
+	graphics.loveResize(width, height)
 end
 
 function love.update(dt)
 	dt = math.min(dt, 1 / 30)
-	
+
 	input:update()
-	
+
 	Gamestate.update(dt)
-	
+
 	Timer.update(dt)
 end
 
 function love.draw()
-	local loveWidth = lovesize.getWidth()
-	local loveHeight = lovesize.getHeight()
-	
 	love.graphics.setFont(font)
-	
+
 	lovesize.begin()
 		graphics.setColor(1, 1, 1) -- Fade effect on
 		Gamestate.draw()
 		love.graphics.setColor(1, 1, 1) -- Fade effect off
-		
+
 		if isLoading then
-			love.graphics.print("Loading...", loveWidth - 175, loveHeight - 50)
+			love.graphics.print("Loading...", graphics.loveWidth() - 175, graphics.loveHeight() - 50)
 		end
 	lovesize.finish()
-	
+
 	-- Debug output
 	if settings.showDebug then
-		local debugStr
-		
-		if settings.showDebug == "detailed" then
-			debugStr = "FPS: " .. tostring(love.timer.getFPS()) ..
-			"\nLUA MEM USAGE (KB): " .. tostring(math.floor(collectgarbage("count"))) ..
-			"\nGRAPHICS MEM USAGE (MB): " .. tostring(math.floor(love.graphics.getStats().texturememory / 1048576)) ..
-			
-			"\n\nsettings.hardwareCompression: " .. tostring(settings.hardwareCompression) ..
-			"\ngraphics.imageType: " .. tostring(graphics.imageType) ..
-			
-			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
-			"\nhealth: " .. tostring(health)
-		else
-			debugStr = "FPS: " .. tostring(love.timer.getFPS())
-		end
-		
-		love.graphics.print(debugStr, 5, 5, nil, 0.5, 0.5)
+		love.graphics.print(engine.getDebugStr(settings.showDebug), 5, 5, nil, 0.5, 0.5)
 	end
 end

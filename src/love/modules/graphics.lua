@@ -1,0 +1,303 @@
+--[[----------------------------------------------------------------------------
+This file is part of Friday Night Funkin' Rewritten
+
+Copyright (C) 2021  HTV04
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+------------------------------------------------------------------------------]]
+
+local imageType = "png"
+local fade = {1}
+local isFading = false
+
+local fadeTimer
+
+local loveWidth, loveHeight
+
+return {
+	imagePath = function(path)
+		return "images/" .. imageType .. "/" .. path .. "." .. imageType
+	end,
+	setImageType = function(type)
+		imageType = type
+	end,
+	getImageType = function()
+		return imageType
+	end,
+
+	newImage = function(imageData)
+		local image, width, height
+
+		local object = {
+			x = 0,
+			y = 0,
+			orientation = 0,
+			sizeX = 1,
+			sizeY = 1,
+			offsetX = 0,
+			offsetY = 0,
+			shearX = 0,
+			shearY = 0,
+
+			setImage = function(self, imageData)
+				image = imageData
+				width = image:getWidth()
+				height = image:getHeight()
+			end,
+
+			getImage = function(self)
+				return image
+			end,
+
+			draw = function(self)
+				love.graphics.draw(
+					image,
+					self.x,
+					self.y,
+					self.orientation,
+					self.sizeX,
+					self.sizeY,
+					width / 2 + self.offsetX,
+					height / 2 + self.offsetY,
+					self.shearX,
+					self.shearY
+				)
+			end
+		}
+
+		object:setImage(imageData)
+
+		return object
+	end,
+
+	newSprite = function(imageData, frameData, animData, animName, loopAnim)
+		local sheet, sheetWidth, sheetHeight
+
+		local frames = {}
+		local frame
+		local anims = animData
+		local anim = {
+			name = nil,
+			start = nil,
+			stop = nil,
+			speed = nil,
+			offsetX = nil,
+			offsetY = nil
+		}
+
+		local isAnimated
+		local isLooped
+
+		local object = {
+			x = 0,
+			y = 0,
+			orientation = 0,
+			sizeX = 1,
+			sizeY = 1,
+			offsetX = 0,
+			offsetY = 0,
+			shearX = 0,
+			shearY = 0,
+
+			setSheet = function(self, imageData)
+				sheet = imageData
+				sheetWidth = sheet:getWidth()
+				sheetHeight = sheet:getHeight()
+			end,
+
+			getSheet = function(self)
+				return sheet
+			end,
+
+			animate = function(self, animName, loopAnim)
+				anim.name = animName
+				anim.start = anims[animName].start
+				anim.stop = anims[animName].stop
+				anim.speed = anims[animName].speed
+				anim.offsetX = anims[animName].offsetX
+				anim.offsetY = anims[animName].offsetY
+
+				frame = anim.start
+				isLooped = loopAnim
+
+				isAnimated = true
+			end,
+			getAnimName = function(self)
+				return anim.name
+			end,
+			setAnimSpeed = function(self, speed)
+				anim.speed = speed
+			end,
+			isAnimated = function(self)
+				return isAnimated
+			end,
+			isLooped = function(self)
+				return isLooped
+			end,
+
+			update = function(self, dt)
+				if isAnimated then
+					frame = frame + anim.speed * dt
+				end
+
+				if isAnimated and frame > anim.stop then
+					if isLooped then
+						frame = anim.start
+					else
+						isAnimated = false
+					end
+				end
+			end,
+			draw = function(self)
+				local flooredFrame = math.floor(frame)
+
+				if flooredFrame <= anim.stop then
+					local width, height
+
+					if frameData[flooredFrame].offsetWidth == 0 then
+						width = frameData[flooredFrame].width / 2
+					else
+						width = frameData[flooredFrame].offsetWidth / 2 + frameData[flooredFrame].offsetX
+					end
+					if frameData[flooredFrame].offsetHeight == 0 then
+						height = frameData[flooredFrame].height / 2
+					else
+						height = frameData[flooredFrame].offsetHeight / 2 + frameData[flooredFrame].offsetY
+					end
+
+					love.graphics.draw(
+						sheet,
+						frames[flooredFrame],
+						self.x,
+						self.y,
+						self.orientation,
+						self.sizeX,
+						self.sizeY,
+						width + anim.offsetX + self.offsetX,
+						height + anim.offsetY + self.offsetY,
+						self.shearX,
+						self.shearY
+					)
+				end
+			end
+		}
+
+		object:setSheet(imageData)
+
+		for i = 1, #frameData do
+			table.insert(
+				frames,
+				love.graphics.newQuad(
+					frameData[i].x,
+					frameData[i].y,
+					frameData[i].width,
+					frameData[i].height,
+					sheetWidth,
+					sheetHeight
+				)
+			)
+		end
+
+		object:animate(animName, loopAnim)
+
+		return object
+	end,
+
+	setFade = function(value)
+		if fadeTimer then
+			Timer.cancel(fadeTimer)
+
+			isFading = false
+		end
+
+		fade[1] = value
+	end,
+	getFade = function(value)
+		return fade[1]
+	end,
+	fadeOut = function(duration, func)
+		if fadeTimer then
+			Timer.cancel(fadeTimer)
+		end
+
+		isFading = true
+
+		fadeTimer = Timer.tween(
+			duration,
+			fade,
+			{0},
+			"linear",
+			function()
+				isFading = false
+
+				if func then func() end
+			end
+		)
+	end,
+	fadeIn = function(duration, func)
+		if fadeTimer then
+			Timer.cancel(fadeTimer)
+		end
+
+		isFading = true
+
+		fadeTimer = Timer.tween(
+			duration,
+			fade,
+			{1},
+			"linear",
+			function()
+				isFading = false
+
+				if func then func() end
+			end
+		)
+	end,
+	isFading = function()
+		return isFading
+	end,
+
+	loveResize = function(width, height)
+		loveWidth = width
+		loveHeight = height
+	end,
+	loveWidth = function()
+		return loveWidth
+	end,
+	loveHeight = function()
+		return loveHeight
+	end,
+
+	clear = function(r, g, b, a, s, d)
+		local fade = fade[1]
+
+		love.graphics.clear(fade * r, fade * g, fade * b, a, s, d)
+	end,
+	setColor = function(r, g, b, a)
+		local fade = fade[1]
+
+		love.graphics.setColor(fade * r, fade * g, fade * b, a)
+	end,
+	setBackgroundColor = function(r, g, b, a)
+		local fade = fade[1]
+
+		love.graphics.setBackgroundColor(fade * r, fade * g, fade * b, a)
+	end,
+	getColor = function()
+		local r, g, b, a = love.graphics.getColor()
+		local fade = fade[1]
+
+		return r / fade, g / fade, b / fade, a
+	end
+}

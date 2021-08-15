@@ -17,18 +17,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return graphics.newSprite(
-	love.graphics.newImage(graphics.imagePath("week4/limo")),
-	-- Automatically generated from limoDrive.xml
-	{
-		{x = 0, y = 0, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Limo stage0000
-		{x = 0, y = 656, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Limo stage0001
-		{x = 0, y = 1312, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 3: Limo stage0002
-		{x = 0, y = 0, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 4: Limo stage0003
-	},
-	{
-		["anim"] = {start = 1, stop = 4, speed = 24, offsetX = 0, offsetY = 0}
-	},
-	"anim",
-	true
-)
+return {
+	playSound = function(sound)
+		sound:stop()
+		sound:play()
+	end
+}

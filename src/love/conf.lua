@@ -21,7 +21,7 @@ function love.conf(t)
 	t.identity = "funkin-rewritten"
 	t.version = "11.3"
 	--t.console = true
-	
-	t.window.title = "Friday Night Funkin' Rewritten v1.0.1"
+
+	t.window.title = "Friday Night Funkin' Rewritten v1.1.0"
 	t.window.icon = "icon.png"
 end

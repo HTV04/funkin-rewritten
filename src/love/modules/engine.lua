@@ -17,18 +17,31 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return graphics.newSprite(
-	love.graphics.newImage(graphics.imagePath("week4/limo")),
-	-- Automatically generated from limoDrive.xml
-	{
-		{x = 0, y = 0, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Limo stage0000
-		{x = 0, y = 656, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Limo stage0001
-		{x = 0, y = 1312, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 3: Limo stage0002
-		{x = 0, y = 0, width = 2048, height = 646, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 4: Limo stage0003
-	},
-	{
-		["anim"] = {start = 1, stop = 4, speed = 24, offsetX = 0, offsetY = 0}
-	},
-	"anim",
-	true
-)
+return {
+	setLoading = function(state)
+		loading = state
+	end,
+	getLoading = function()
+		return loading
+	end,
+
+	getDebugStr = function(type)
+		local debugStr
+
+		if type == "detailed" then
+			debugStr = "FPS: " .. tostring(love.timer.getFPS()) ..
+			"\nLUA MEM USAGE (KB): " .. tostring(math.floor(collectgarbage("count"))) ..
+			"\nGRAPHICS MEM USAGE (MB): " .. tostring(math.floor(love.graphics.getStats().texturememory / 1048576)) ..
+
+			"\n\nsettings.hardwareCompression: " .. tostring(settings.hardwareCompression) ..
+			"\ngraphics.getImageType(): " .. tostring(graphics.getImageType()) ..
+
+			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
+			"\nhealth: " .. tostring(health)
+		else
+			debugStr = "FPS: " .. tostring(love.timer.getFPS())
+		end
+
+		return debugStr
+	end
+}
