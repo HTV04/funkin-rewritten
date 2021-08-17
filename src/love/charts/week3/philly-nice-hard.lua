@@ -19,2680 +19,2596 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 -- Automatically generated from philly-hard.json
 return {
-	speed = 2.000000000000001,
+	speed = 2.0,
 	{
 		mustHitSection = true,
-		bpm = 95,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 2914.285714285713,
+				noteTime = 2914.28564,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 3085.7142857142853,
+				noteTime = 3085.71436,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 3428.5714285714284,
+				noteTime = 3428.57129,
 				noteType = 1,
-				noteLength = 236.8421052631579
+				noteLength = 257.142853
 			},
 			{
-				noteTime = 3771.4285714285697,
+				noteTime = 3771.42847,
 				noteType = 3,
-				noteLength = 157.89473684210526
+				noteLength = 171.428574
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 4285.7142857142835,
+				noteTime = 4285.71436,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 4457.142857142856,
+				noteTime = 4457.14258,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 4799.999999999999,
+				noteTime = 4800.0,
 				noteType = 1,
-				noteLength = 236.8421052631579
+				noteLength = 257.142853
 			},
 			{
-				noteTime = 5142.85714285714,
+				noteTime = 5142.857,
 				noteType = 3,
-				noteLength = 157.89473684210526
+				noteLength = 171.428574
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 5657.142857142854,
+				noteTime = 5657.14258,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 5828.571428571427,
+				noteTime = 5828.57129,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 6171.42857142857,
+				noteTime = 6171.42871,
 				noteType = 1,
-				noteLength = 236.8421052631579
+				noteLength = 257.142853
 			},
 			{
-				noteTime = 6514.285714285711,
+				noteTime = 6514.28564,
 				noteType = 3,
-				noteLength = 157.89473684210526
+				noteLength = 171.428574
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 6865.714285714285,
+				noteTime = 6857.14258,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 7028.571428571427,
+				noteTime = 7028.57129,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 7199.999999999999,
+				noteTime = 7200.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 7628.571428571427,
+				noteTime = 7542.857,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 7885.7142857142835,
+				noteTime = 7885.71436,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 8057.142857142857,
+				noteTime = 8057.14258,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 8399.999999999998,
+				noteTime = 8400.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 8571.42857142857,
+				noteTime = 8571.429,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 8914.285714285714,
+				noteTime = 8914.285,
 				noteType = 1,
-				noteLength = 236.8421052631579
+				noteLength = 257.142853
 			},
 			{
-				noteTime = 9257.142857142855,
+				noteTime = 9257.143,
 				noteType = 3,
-				noteLength = 157.89473684210526
+				noteLength = 171.428574
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 9771.428571428569,
+				noteTime = 9771.429,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 9942.857142857141,
+				noteTime = 9942.857,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 10285.714285714284,
+				noteTime = 10285.7139,
 				noteType = 1,
-				noteLength = 236.8421052631579
+				noteLength = 257.142853
 			},
 			{
-				noteTime = 10628.571428571426,
+				noteTime = 10628.5713,
 				noteType = 3,
-				noteLength = 157.89473684210526
+				noteLength = 171.428574
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 11142.85714285714,
+				noteTime = 11142.8574,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 11314.285714285712,
+				noteTime = 11314.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 11657.142857142855,
+				noteTime = 11657.1426,
 				noteType = 1,
-				noteLength = 236.8421052631579
+				noteLength = 257.142853
 			},
 			{
-				noteTime = 11999.999999999996,
+				noteTime = 12000.0,
 				noteType = 3,
-				noteLength = 157.89473684210526
+				noteLength = 171.428574
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 12351.42857142857,
+				noteTime = 12342.8574,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 12514.285714285712,
+				noteTime = 12514.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 12685.714285714284,
+				noteTime = 12685.7139,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 13114.285714285712,
+				noteTime = 13028.5713,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 13371.428571428569,
+				noteTime = 13371.4287,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 13885.714285714286,
+				noteTime = 13885.7139,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 14057.142857142855,
+				noteTime = 14057.1426,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 14400,
+				noteTime = 14400.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 14742.857142857141,
+				noteTime = 14742.8574,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 14914.285714285714,
+				noteTime = 14914.2852,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 15257.142857142855,
+				noteTime = 15257.1426,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 15428.571428571424,
+				noteTime = 15428.5713,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 15857.142857142855,
+				noteTime = 15771.4287,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 16028.571428571424,
+				noteTime = 16114.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 16285.714285714283,
+				noteTime = 16285.7139,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 16628.571428571428,
+				noteTime = 16628.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 17657.142857142855,
+				noteTime = 16800.0,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 16971.4277,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 16799.999999999996,
+				noteTime = 17142.8574,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 16971.42857142857,
+				noteTime = 17314.2852,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 17485.7148,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 17657.1426,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 17142.85714285714,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 17314.285714285714,
+				noteTime = 17742.8574,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 17485.714285714283,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 17742.85714285714,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 16467.85714285714,
-				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 17828.571428571428,
+				noteTime = 17828.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 18000,
+				noteTime = 18000.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 18171.42857142857,
+				noteTime = 18171.4277,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 18600,
+				noteTime = 18514.2852,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 18857.142857142855,
+				noteTime = 18857.1426,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 19028.571428571428,
+				noteTime = 19028.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 19371.428571428572,
+				noteTime = 19371.4277,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 19542.85714285714,
+				noteTime = 19542.8574,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 19885.714285714286,
+				noteTime = 19885.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 20228.571428571428,
+				noteTime = 20228.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 20400,
+				noteTime = 20400.0,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 20742.85714285714,
+				noteTime = 20742.8574,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 20914.28571428571,
+				noteTime = 20914.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 21342.85714285714,
+				noteTime = 21257.1426,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 21514.28571428571,
+				noteTime = 21600.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 21771.42857142857,
+				noteTime = 21771.4277,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 21942.85714285714,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 22114.285714285714,
+				noteTime = 22114.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 23142.85714285714,
+				noteTime = 22285.7148,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 22457.1426,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 22285.714285714283,
+				noteTime = 22628.57,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 22457.142857142855,
+				noteTime = 22800.0,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 22971.4277,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 23142.8574,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 22628.571428571428,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 22800,
+				noteTime = 23228.57,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 22971.42857142857,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 23228.571428571428,
-				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 23314.285714285714,
+				noteTime = 23314.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 23485.714285714286,
+				noteTime = 23485.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 23657.142857142855,
+				noteTime = 23657.1426,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 24085.714285714286,
+				noteTime = 24000.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 24342.85714285714,
+				noteTime = 24342.8574,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 24514.285714285714,
+				noteTime = 24514.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 24857.14285714286,
+				noteTime = 24685.7148,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 25028.571428571424,
+				noteTime = 24857.1426,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 25028.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 25371.42857142857,
+				noteTime = 25371.4277,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 25714.285714285714,
+				noteTime = 25714.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 25885.714285714286,
+				noteTime = 25885.7148,
 				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 24687.85714285714,
-				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 26228.571428571424,
+				noteTime = 26228.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 26399.999999999996,
+				noteTime = 26400.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 26828.571428571424,
+				noteTime = 26742.8574,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 26999.999999999996,
+				noteTime = 27085.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 27257.14285714285,
+				noteTime = 27257.1426,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 27599.999999999996,
+				noteTime = 27600.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 28628.571428571424,
+				noteTime = 27771.4277,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 27942.8574,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 27771.42857142857,
+				noteTime = 28114.2852,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 27942.85714285714,
+				noteTime = 28285.7148,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 28457.1426,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 28628.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 28114.285714285714,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 28285.714285714286,
+				noteTime = 28714.2852,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 28457.14285714285,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 28714.285714285714,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 27434.999999999996,
-				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 28971.42857142857,
+				noteTime = 28800.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 29142.85714285714,
+				noteTime = 28971.4277,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 29142.8574,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 29571.42857142857,
+				noteTime = 29485.7148,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 29828.571428571424,
+				noteTime = 29828.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 29999.999999999996,
+				noteTime = 30000.0,
 				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 28810.71428571428,
-				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 30342.857142857145,
+				noteTime = 30171.4277,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 30514.28571428571,
+				noteTime = 30342.8574,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 30514.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 30857.142857142855,
+				noteTime = 30857.1426,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 31200,
+				noteTime = 31200.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 31371.428571428572,
+				noteTime = 31371.4277,
 				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 30173.571428571428,
-				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 31714.28571428571,
+				noteTime = 31714.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 31885.714285714283,
+				noteTime = 31885.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 32314.28571428571,
+				noteTime = 32228.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 32485.714285714283,
+				noteTime = 32571.4277,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 32742.857142857138,
+				noteTime = 32742.8574,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 33085.71428571428,
+				noteTime = 33085.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 34114.28571428571,
+				noteTime = 33257.14,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 33428.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 33257.142857142855,
+				noteTime = 33600.0,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 33428.57142857143,
+				noteTime = 33771.43,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 33942.8555,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 34114.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 33600,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 33771.42857142857,
+				noteTime = 34200.0,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 33942.85714285714,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 34200,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 32920.71428571428,
-				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 34457.142857142855,
+				noteTime = 34285.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 34628.57142857143,
+				noteTime = 34457.14,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 34628.57,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 35057.142857142855,
+				noteTime = 34971.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 35314.28571428571,
+				noteTime = 35314.2852,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 35485.71428571428,
+				noteTime = 35485.7148,
 				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 34296.428571428565,
-				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 35665.71428571428,
+				noteTime = 35657.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 35828.57142857143,
+				noteTime = 35828.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 36342.85714285714,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 36514.28571428571,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 36000,
+				noteTime = 36000.0,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 36171.42857142857,
+				noteTime = 36171.43,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 36685.71428571428,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 36342.8555,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 36857.142857142855,
+				noteTime = 36514.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 36685.7148,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 36857.14,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 37037.142857142855,
+				noteTime = 37028.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 37200,
+				noteTime = 37200.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 37714.28571428571,
+				noteTime = 37371.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 37885.71428571428,
+				noteTime = 37542.8555,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 37714.2852,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 37885.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 37542.857142857145,
+				noteTime = 38057.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 38057.142857142855,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 38228.57142857143,
+				noteTime = 38228.57,
 				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 37371.42857142857,
-				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 38408.57142857143,
+				noteTime = 38400.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 38571.42857142857,
+				noteTime = 38571.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 39085.71428571428,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 39257.142857142855,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 38742.857142857145,
+				noteTime = 38742.8555,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 39428.57142857143,
+				noteTime = 38914.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 39600,
+				noteTime = 39085.7148,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 39257.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 38914.28571428572,
-				noteType = 1,
-				noteLength = 0
+				noteTime = 39428.57,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 39600.0,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 40457.142857142855,
+				noteTime = 39771.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 40628.57142857143,
+				noteTime = 39942.8555,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 40285.71428571429,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 40800,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 40114.28571428572,
+				noteTime = 40114.2852,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 40971.42857142857,
+				noteTime = 40285.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 39942.85714285714,
-				noteType = 3,
-				noteLength = 0
+				noteTime = 40457.14,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 39786.428571428565,
+				noteTime = 40628.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 40199.99999999999,
-				noteType = 3,
-				noteLength = 0
+				noteTime = 40800.0,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 40971.43,
+				noteType = 0,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 41151.428571428565,
+				noteTime = 41142.8555,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 41314.28571428571,
+				noteTime = 41314.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 41828.57142857142,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 41999.99999999999,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 41485.71428571428,
+				noteTime = 41485.7148,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 41657.142857142855,
+				noteTime = 41657.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 42171.428571428565,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 41828.57,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 42342.85714285714,
+				noteTime = 42000.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 42171.43,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 42342.8555,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 42522.85714285714,
+				noteTime = 42514.2852,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 42685.71428571428,
+				noteTime = 42685.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 43199.99999999999,
+				noteTime = 42857.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 43371.428571428565,
+				noteTime = 43028.57,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 43200.0,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 43371.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 43028.57142857143,
+				noteTime = 43542.8555,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 43542.85714285714,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 43714.28571428571,
+				noteTime = 43714.2852,
 				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 42857.142857142855,
-				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 43894.28571428571,
+				noteTime = 43885.7148,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 44057.142857142855,
+				noteTime = 44057.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 44571.428571428565,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 44742.85714285714,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 44228.57142857143,
+				noteTime = 44228.57,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 44400,
+				noteTime = 44400.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 44914.28571428571,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 44571.43,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 45085.71428571428,
+				noteTime = 44742.8555,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 44914.2852,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 45085.7148,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 45265.71428571428,
+				noteTime = 45257.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 45428.57142857143,
+				noteTime = 45428.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 45942.85714285714,
+				noteTime = 45600.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 46114.28571428571,
+				noteTime = 45771.43,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 45942.8555,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 46114.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 45771.42857142857,
+				noteTime = 46285.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 46285.71428571428,
+				noteTime = 46457.14,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 45600,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 46457.142857142855,
-				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 46637.142857142855,
+				noteTime = 46628.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 46800,
+				noteTime = 46800.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 47314.28571428571,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 47485.71428571428,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 46971.42857142857,
+				noteTime = 46971.43,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 47142.857142857145,
+				noteTime = 47142.8555,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 47657.142857142855,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 47314.2852,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 47828.57142857143,
+				noteTime = 47485.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 47657.14,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 47828.57,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 48008.57142857143,
+				noteTime = 48000.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 48171.42857142857,
+				noteTime = 48171.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 48685.71428571428,
+				noteTime = 48342.8555,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 48857.142857142855,
+				noteTime = 48514.2852,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 48685.7148,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 48857.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 48514.28571428572,
+				noteTime = 49028.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 49028.57142857143,
+				noteTime = 49200.0,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 49200,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 48342.857142857145,
-				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 49380,
+				noteTime = 49371.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 49542.857142857145,
+				noteTime = 49542.8555,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 50057.142857142855,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 50228.57142857143,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 49714.28571428572,
+				noteTime = 49714.2852,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 50400,
+				noteTime = 49885.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 50571.42857142857,
+				noteTime = 50057.14,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 50228.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 49885.71428571429,
-				noteType = 1,
-				noteLength = 0
+				noteTime = 50400.0,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 50571.43,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 51428.57142857143,
+				noteTime = 50742.8555,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 51600,
+				noteTime = 50914.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 51257.14285714286,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 51771.42857142857,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 51085.71428571429,
+				noteTime = 51085.7148,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 51942.857142857145,
+				noteTime = 51257.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 50914.28571428571,
-				noteType = 3,
-				noteLength = 0
+				noteTime = 51428.57,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 50757.85714285714,
+				noteTime = 51600.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 51171.428571428565,
-				noteType = 3,
-				noteLength = 0
+				noteTime = 51771.43,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 51942.8555,
+				noteType = 0,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 52122.85714285714,
+				noteTime = 52114.2852,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 52285.71428571428,
+				noteTime = 52285.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 52799.99999999999,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 52971.428571428565,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 52457.142857142855,
+				noteTime = 52457.14,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 52628.57142857143,
+				noteTime = 52628.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 53142.85714285714,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 52800.0,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 53314.28571428571,
+				noteTime = 52971.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 53142.8555,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 53314.2852,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 53494.28571428571,
+				noteTime = 53485.7148,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 53657.142857142855,
+				noteTime = 53657.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 54171.428571428565,
+				noteTime = 53828.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 54342.85714285714,
+				noteTime = 54000.0,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 54171.43,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 54342.8555,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 54000,
+				noteTime = 54514.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 54514.28571428571,
+				noteTime = 54685.7148,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 53828.57142857143,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 54685.71428571428,
-				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 54865.71428571428,
+				noteTime = 54857.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 55028.57142857143,
+				noteTime = 55028.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 55542.85714285714,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 55714.28571428571,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 55200,
+				noteTime = 55200.0,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 55371.42857142857,
+				noteTime = 55371.43,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 55885.71428571428,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 55542.8555,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 56057.142857142855,
+				noteTime = 55714.2852,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 55885.7148,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 56057.14,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 56237.142857142855,
+				noteTime = 56228.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 56400,
+				noteTime = 56400.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 56914.28571428571,
+				noteTime = 56571.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 57085.71428571428,
+				noteTime = 56742.8555,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 56914.2852,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 57085.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 56742.857142857145,
+				noteTime = 57257.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 57257.142857142855,
+				noteTime = 57428.57,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 56571.42857142857,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 57428.57142857143,
-				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 57600,
+				noteTime = 57600.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 57771.42857142857,
+				noteTime = 57771.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 57942.857142857145,
+				noteTime = 57942.8555,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 58114.28571428572,
+				noteTime = 58114.2852,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 58285.71428571428,
+				noteTime = 58285.7148,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 58457.142857142855,
+				noteTime = 58457.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 58800,
+				noteTime = 58800.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 59142.85714285714,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 59742.85714285714,
+				noteTime = 58971.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 59914.28571428571,
+				noteTime = 59142.8555,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 59228.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 60171.42857142856,
+				noteTime = 59314.2852,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 59485.7148,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 59657.14,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 59828.57,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 60000.0,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 60171.43,
 				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 58971.42857142857,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 59228.57142857143,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 59314.28571428572,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 59485.71428571429,
-				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 60514.28571428572,
+				noteTime = 60342.8555,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 60857.14285714286,
+				noteTime = 60514.2852,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 60600.0,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 60685.7148,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 60857.14,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 61028.57142857143,
+				noteTime = 61028.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 61199.99999999999,
+				noteTime = 61200.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 61542.85714285714,
+				noteTime = 61371.43,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 60347.14285714285,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 60599.99999999999,
+				noteTime = 61542.8555,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 60685.71428571428,
-				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 61885.71428571428,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 62485.71428571428,
+				noteTime = 61714.2852,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 61714.28571428572,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 62228.57142857143,
+				noteTime = 61885.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 62057.14285714286,
+				noteTime = 62057.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 62742.85714285715,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 62914.28571428572,
+				noteTime = 62228.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 62400.0,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 62742.8555,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 62914.2852,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 63085.71428571428,
+				noteTime = 63085.7148,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 63257.142857142855,
+				noteTime = 63257.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 63428.57142857143,
+				noteTime = 63428.57,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 63600,
+				noteTime = 63600.0,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 63771.428571428565,
+				noteTime = 63771.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 63942.85714285714,
+				noteTime = 63942.8555,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 64285.71428571428,
+				noteTime = 64285.7148,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 64628.57142857142,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 65228.57142857142,
+				noteTime = 64457.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 65399.99999999999,
+				noteTime = 64628.57,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 64714.2852,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 65657.14285714284,
+				noteTime = 64800.0,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 64971.43,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 65142.8555,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 65314.2852,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 65485.7148,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 65657.14,
 				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 64457.142857142855,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 64714.28571428571,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 64800,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 64971.42857142857,
-				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 66000,
+				noteTime = 65828.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 66342.85714285714,
+				noteTime = 66000.0,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 66085.71,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 66171.43,
+				noteType = 3,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 66342.86,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 66514.28571428571,
+				noteTime = 66514.28,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 66685.71428571428,
+				noteTime = 66685.71,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 67028.57142857142,
+				noteTime = 66857.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 65832.85714285713,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 66085.71428571428,
+				noteTime = 67028.57,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 66171.42857142857,
-				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 67371.42857142857,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 67971.42857142857,
+				noteTime = 67200.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 67200,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 67714.28571428571,
+				noteTime = 67371.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 67542.85714285714,
+				noteTime = 67542.86,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 68228.57142857143,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 68400,
+				noteTime = 67714.28,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 67885.71,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 68228.57,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 68400.0,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 68914.28571428571,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 69085.71428571428,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 69257.14285714286,
+				noteTime = 68571.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 69600,
+				noteTime = 68914.28,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 69771.42857142857,
+				noteTime = 69085.71,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 68577.85714285713,
+				noteTime = 69257.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 69600.0,
+				noteType = 1,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 69771.43,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 69951.42857142857,
+				noteTime = 69942.86,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 70114.2857142857,
+				noteTime = 70114.28,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 70285.71428571428,
+				noteTime = 70285.71,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 70971.42857142857,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 71142.85714285713,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 70457.14285714286,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 70714.28571428571,
+				noteTime = 70457.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 70628.57,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 70971.43,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 71142.86,
+				noteType = 2,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 71314.28571428571,
+				noteTime = 71314.28,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 71485.71428571428,
+				noteTime = 71485.71,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 71657.14285714286,
+				noteTime = 71657.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 71914.28571428571,
+				noteTime = 71828.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 72085.71428571428,
+				noteTime = 72000.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 72342.85714285714,
+				noteTime = 72342.86,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 72514.28571428571,
-				noteType = 2,
-				noteLength = 0
+				noteTime = 72514.28,
+				noteType = 0,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 72692.14285714284,
+				noteTime = 72685.71,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 72857.14285714284,
+				noteTime = 72857.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 73028.57142857142,
+				noteTime = 73028.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 73199.99999999999,
+				noteTime = 73200.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 73371.42857142857,
+				noteTime = 73371.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 73542.85714285713,
+				noteTime = 73542.86,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 73799.99999999999,
+				noteTime = 73714.28,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 73885.71,
 				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 73971.42857142857,
-				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 74057.14285714286,
+				noteTime = 74057.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 74400,
+				noteTime = 74400.0,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 74571.42857142857,
+				noteTime = 74571.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 74742.85714285714,
+				noteTime = 74742.86,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 75085.71428571429,
+				noteTime = 75085.71,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 75257.14285714286,
+				noteTime = 75257.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 75437.14285714286,
+				noteTime = 75428.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 75599.99999999999,
+				noteTime = 75600.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 75771.42857142857,
+				noteTime = 75771.43,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 76199.99999999999,
-				noteType = 2,
-				noteLength = 0
+				noteTime = 75942.86,
+				noteType = 3,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 76457.14285714286,
+				noteTime = 76114.28,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 76628.57142857142,
+				noteTime = 76457.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 76628.57,
+				noteType = 2,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 76800,
+				noteTime = 76800.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 76971.42857142857,
+				noteTime = 76971.43,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 77142.85714285714,
+				noteTime = 77142.86,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 77400,
+				noteTime = 77314.28,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 77571.42857142857,
+				noteTime = 77485.71,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 77828.57142857143,
+				noteTime = 77828.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 78000,
+				noteTime = 78000.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 78177.85714285713,
+				noteTime = 78171.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 78342.85714285713,
+				noteTime = 78342.86,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 78514.28571428571,
+				noteTime = 78514.28,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 78685.71428571428,
+				noteTime = 78685.71,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 78857.14285714286,
+				noteTime = 78857.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 79028.57142857142,
+				noteTime = 79028.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 79114.28571428571,
+				noteTime = 79200.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 79285.71428571428,
+				noteTime = 79371.43,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 79551.42857142857,
+				noteTime = 79542.86,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 79714.28571428571,
+				noteTime = 79714.28,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 80228.57142857142,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 80400,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 79885.71428571429,
+				noteTime = 79885.71,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 80057.14285714286,
+				noteTime = 80057.14,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 80571.42857142857,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 80228.57,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 80742.85714285713,
+				noteTime = 80400.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 80571.43,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 80742.86,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 80922.85714285713,
+				noteTime = 80914.28,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 81085.71428571429,
+				noteTime = 81085.71,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 81600,
+				noteTime = 81257.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 81771.42857142857,
+				noteTime = 81428.57,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 81600.0,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 81771.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 81428.57142857142,
+				noteTime = 81942.86,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 81942.85714285713,
+				noteTime = 82114.28,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 82114.28571428571,
-				noteType = 1,
-				noteLength = 0
-			},
-			{
-				noteTime = 81257.14285714286,
-				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 82294.28571428571,
+				noteTime = 82285.71,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 82457.14285714286,
+				noteTime = 82457.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 82971.42857142857,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 83142.85714285713,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 82628.57142857142,
+				noteTime = 82628.57,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 83314.28571428571,
+				noteTime = 82800.0,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 83485.71428571429,
+				noteTime = 82971.43,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 83142.86,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 82800,
-				noteType = 1,
-				noteLength = 0
+				noteTime = 83314.28,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 83485.71,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = false,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 84342.85714285713,
+				noteTime = 83657.14,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 84514.28571428571,
+				noteTime = 83828.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 84171.42857142858,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 84685.71428571429,
-				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 84000,
+				noteTime = 84000.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 84857.14285714286,
+				noteTime = 84171.43,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 83828.57142857142,
-				noteType = 3,
-				noteLength = 0
+				noteTime = 84342.86,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 83672.14285714284,
+				noteTime = 84514.28,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 84085.71428571428,
-				noteType = 3,
-				noteLength = 0
+				noteTime = 84685.71,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 84857.14,
+				noteType = 0,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 85037.14285714284,
+				noteTime = 85028.57,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 85200,
+				noteTime = 85200.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 85714.28571428571,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 85885.71428571428,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 85371.42857142857,
+				noteTime = 85371.43,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 85542.85714285713,
+				noteTime = 85542.86,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 86057.14285714284,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 85714.28,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 86228.57142857142,
+				noteTime = 85885.71,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 86057.14,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 86228.57,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 86408.57142857142,
+				noteTime = 86400.0,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 86571.42857142857,
+				noteTime = 86571.43,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 87085.71428571428,
+				noteTime = 86742.86,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 87257.14285714284,
+				noteTime = 86914.28,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 87085.71,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 87257.14,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 86914.28571428571,
+				noteTime = 87428.57,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 87428.57142857142,
+				noteTime = 87600.0,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 86742.85714285713,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 87600,
-				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 87780,
+				noteTime = 87771.43,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 87942.85714285713,
+				noteTime = 87942.86,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 88457.14285714284,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 88628.57142857142,
-				noteType = 3,
-				noteLength = 0
-			},
-			{
-				noteTime = 88114.28571428571,
+				noteTime = 88114.28,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 88285.71428571429,
+				noteTime = 88285.71,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 88800,
-				noteType = 0,
-				noteLength = 0
+				noteTime = 88457.14,
+				noteType = 2,
+				noteLength = 0.0
 			},
 			{
-				noteTime = 88971.42857142857,
+				noteTime = 88628.57,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
+			},
+			{
+				noteTime = 88800.0,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 88971.43,
+				noteType = 3,
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 89151.42857142857,
+				noteTime = 89142.86,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 89314.28571428571,
+				noteTime = 89314.28,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 89828.57142857142,
+				noteTime = 89485.71,
 				noteType = 2,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 90000,
+				noteTime = 89657.14,
+				noteType = 0,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 89828.57,
+				noteType = 2,
+				noteLength = 0.0
+			},
+			{
+				noteTime = 90000.0,
 				noteType = 3,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 89657.14285714286,
+				noteTime = 90171.43,
 				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			},
 			{
-				noteTime = 90171.42857142857,
+				noteTime = 90342.86,
 				noteType = 0,
-				noteLength = 0
-			},
-			{
-				noteTime = 89485.71428571429,
-				noteType = 2,
-				noteLength = 0
-			},
-			{
-				noteTime = 90342.85714285713,
-				noteType = 0,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {
 			{
-				noteTime = 90520.71428571428,
+				noteTime = 90514.28,
 				noteType = 1,
-				noteLength = 0
+				noteLength = 0.0
 			}
 		}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	},
 	{
 		mustHitSection = true,
-		bpm = 175,
 		sectionNotes = {}
 	}
 }
