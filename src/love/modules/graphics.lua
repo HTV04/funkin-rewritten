@@ -23,11 +23,27 @@ local isFading = false
 
 local fadeTimer
 
-local loveWidth, loveHeight
+local screenWidth, screenHeight
 
 return {
+	screenBase = function(width, height)
+		screenWidth, screenHeight = width, height
+	end,
+	getWidth = function()
+		return screenWidth
+	end,
+	getHeight = function()
+		return screenHeight
+	end,
+
 	imagePath = function(path)
-		return "images/" .. imageType .. "/" .. path .. "." .. imageType
+		local pathStr = "images/" .. imageType .. "/" .. path .. "." .. imageType
+
+		if love.filesystem.getInfo(pathStr) then
+			return pathStr
+		else
+			return "images/png/" .. path .. ".png"
+		end
 	end,
 	setImageType = function(type)
 		imageType = type
@@ -214,6 +230,184 @@ return {
 		return object
 	end,
 
+	newPixelImage = function(imageData)
+		local image, width, height
+
+		local object = {
+			x = 0,
+			y = 0,
+			orientation = 0,
+			sizeX = 1,
+			sizeY = 1,
+			offsetX = 0,
+			offsetY = 0,
+			shearX = 0,
+			shearY = 0,
+
+			setImage = function(self, imageData)
+				image = imageData
+				width = image:getWidth()
+				height = image:getHeight()
+			end,
+
+			getImage = function(self)
+				return image
+			end,
+
+			draw = function(self)
+				love.graphics.draw(
+					image,
+					self.x + 0.5,
+					self.y + 0.5,
+					self.orientation,
+					self.sizeX,
+					self.sizeY,
+					width / 2 + self.offsetX,
+					height / 2 + self.offsetY,
+					self.shearX,
+					self.shearY
+				)
+			end
+		}
+
+		object:setImage(imageData)
+
+		return object
+	end,
+
+	newPixelSprite = function(imageData, frameData, animData, animName, loopAnim)
+		local sheet, sheetWidth, sheetHeight
+
+		local frames = {}
+		local frame
+		local anims = animData
+		local anim = {
+			name = nil,
+			start = nil,
+			stop = nil,
+			speed = nil,
+			offsetX = nil,
+			offsetY = nil
+		}
+
+		local isAnimated
+		local isLooped
+
+		local object = {
+			x = 0,
+			y = 0,
+			orientation = 0,
+			sizeX = 1,
+			sizeY = 1,
+			offsetX = 0,
+			offsetY = 0,
+			shearX = 0,
+			shearY = 0,
+
+			setSheet = function(self, imageData)
+				sheet = imageData
+				sheetWidth = sheet:getWidth()
+				sheetHeight = sheet:getHeight()
+			end,
+
+			getSheet = function(self)
+				return sheet
+			end,
+
+			animate = function(self, animName, loopAnim)
+				anim.name = animName
+				anim.start = anims[animName].start
+				anim.stop = anims[animName].stop
+				anim.speed = anims[animName].speed
+				anim.offsetX = anims[animName].offsetX
+				anim.offsetY = anims[animName].offsetY
+
+				frame = anim.start
+				isLooped = loopAnim
+
+				isAnimated = true
+			end,
+			getAnimName = function(self)
+				return anim.name
+			end,
+			setAnimSpeed = function(self, speed)
+				anim.speed = speed
+			end,
+			isAnimated = function(self)
+				return isAnimated
+			end,
+			isLooped = function(self)
+				return isLooped
+			end,
+
+			update = function(self, dt)
+				if isAnimated then
+					frame = frame + anim.speed * dt
+				end
+
+				if isAnimated and frame > anim.stop then
+					if isLooped then
+						frame = anim.start
+					else
+						isAnimated = false
+					end
+				end
+			end,
+			draw = function(self)
+				local flooredFrame = math.floor(frame)
+
+				if flooredFrame <= anim.stop then
+					local width, height
+
+					if frameData[flooredFrame].offsetWidth == 0 then
+						width = frameData[flooredFrame].width / 2
+					else
+						width = frameData[flooredFrame].offsetWidth / 2 + frameData[flooredFrame].offsetX
+					end
+					if frameData[flooredFrame].offsetHeight == 0 then
+						height = frameData[flooredFrame].height / 2
+					else
+						height = frameData[flooredFrame].offsetHeight / 2 + frameData[flooredFrame].offsetY
+					end
+
+					love.graphics.draw(
+						sheet,
+						frames[flooredFrame],
+						self.x + 0.5,
+						self.y + 0.5,
+						self.orientation,
+						self.sizeX,
+						self.sizeY,
+						width + anim.offsetX + self.offsetX,
+						height + anim.offsetY + self.offsetY,
+						self.shearX,
+						self.shearY
+					)
+				end
+			end
+		}
+
+		object:setSheet(imageData)
+
+		for i = 1, #frameData do
+			table.insert(
+				frames,
+				love.graphics.newQuad(
+					frameData[i].x,
+					frameData[i].y,
+					frameData[i].width,
+					frameData[i].height,
+					sheetWidth,
+					sheetHeight
+				)
+			)
+		end
+
+		object:animate(animName, loopAnim)
+
+		return object
+	end,
+
 	setFade = function(value)
 		if fadeTimer then
 			Timer.cancel(fadeTimer)
@@ -266,17 +460,6 @@ return {
 	end,
 	isFading = function()
 		return isFading
-	end,
-
-	loveResize = function(width, height)
-		loveWidth = width
-		loveHeight = height
-	end,
-	loveWidth = function()
-		return loveWidth
-	end,
-	loveHeight = function()
-		return loveHeight
 	end,
 
 	clear = function(r, g, b, a, s, d)

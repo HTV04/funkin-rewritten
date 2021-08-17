@@ -1,7 +1,7 @@
 @echo off
 
 rem --------------------------------------------------------------------------------
-rem Friday Night Funkin' Rewritten Image Conversion Script v1.0
+rem Friday Night Funkin' Rewritten DDS Mass Conversion Script for Windows v1.1
 rem 
 rem Copyright (C) 2021  HTV04
 rem 
@@ -21,11 +21,11 @@ rem ----------------------------------------------------------------------------
 
 set texconv=%CD%\bin\texconv\texconv.exe
 
-pushd ..\src\love\images\png
+pushd love\images\png
 
 if exist ..\dds rmdir ..\dds /q /s
 
-echo Converting images to DDS...
+echo Converting...
 for /d %%d in (*) do (
 	mkdir ..\dds\%%d
 	

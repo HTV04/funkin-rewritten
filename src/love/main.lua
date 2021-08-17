@@ -20,14 +20,13 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 function love.load()
 	-- Load libraries
 	baton = require "lib.baton"
-	Class = require "lib.class"
 	ini = require "lib.ini"
 	lovesize = require "lib.lovesize"
 	Gamestate = require "lib.gamestate"
 	Timer = require "lib.timer"
 
 	-- Load modules
-	engine = require "modules.engine"
+	status = require "modules.status"
 	audio = require "modules.audio"
 	graphics = require "modules.graphics"
 	input = require "modules.input"
@@ -155,6 +154,7 @@ settingsVer=3
 	debugMenu = require "debug-menu"
 	menu = require "menu"
 	weeks = require "weeks"
+	weeksPixel = require "weeks-pixel"
 
 	-- Load week data
 	weekData = {
@@ -163,17 +163,15 @@ settingsVer=3
 		require "weeks.week2",
 		require "weeks.week3",
 		require "weeks.week4",
-		require "weeks.week5"
+		require "weeks.week5",
+		require "weeks.week6"
 	}
 
 	-- Screen init
 	lovesize.set(1280, 720)
 
-	graphics.loveResize(love.graphics.getWidth(), love.graphics.getHeight())
-
 	-- Variables
 	font = love.graphics.newFont("fonts/vcr.ttf", 24)
-	isLoading = false
 
 	weekNum = 1
 	songDifficulty = 2
@@ -208,8 +206,6 @@ end
 
 function love.resize(width, height)
 	lovesize.resize(width, height)
-
-	graphics.loveResize(width, height)
 end
 
 function love.update(dt)
@@ -217,7 +213,13 @@ function love.update(dt)
 
 	input:update()
 
-	Gamestate.update(dt)
+	if status.getNoResize() then
+		Gamestate.update(dt)
+	else
+		graphics.screenBase(lovesize.getWidth(), lovesize.getHeight())
+		Gamestate.update(dt)
+		graphics.screenBase(love.graphics.getWidth(), love.graphics.getHeight())
+	end
 
 	Timer.update(dt)
 end
@@ -225,18 +227,30 @@ end
 function love.draw()
 	love.graphics.setFont(font)
 
-	lovesize.begin()
+	if status.getNoResize() then
 		graphics.setColor(1, 1, 1) -- Fade effect on
 		Gamestate.draw()
 		love.graphics.setColor(1, 1, 1) -- Fade effect off
 
-		if isLoading then
-			love.graphics.print("Loading...", graphics.loveWidth() - 175, graphics.loveHeight() - 50)
+		if status.getLoading() then
+			love.graphics.print("Loading...", graphics.getWidth() - 175, graphics.getHeight() - 50)
 		end
-	lovesize.finish()
+	else
+		graphics.screenBase(lovesize.getWidth(), lovesize.getHeight())
+		lovesize.begin()
+			graphics.setColor(1, 1, 1) -- Fade effect on
+			Gamestate.draw()
+			love.graphics.setColor(1, 1, 1) -- Fade effect off
+
+			if status.getLoading() then
+				love.graphics.print("Loading...", lovesize.getWidth() - 175, lovesize.getHeight() - 50)
+			end
+		lovesize.finish()
+	end
+	graphics.screenBase(love.graphics.getWidth(), love.graphics.getHeight())
 
 	-- Debug output
 	if settings.showDebug then
-		love.graphics.print(engine.getDebugStr(settings.showDebug), 5, 5, nil, 0.5, 0.5)
+		love.graphics.print(status.getDebugStr(settings.showDebug), 5, 5, nil, 0.5, 0.5)
 	end
 end

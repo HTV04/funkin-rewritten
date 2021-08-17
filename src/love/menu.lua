@@ -28,7 +28,8 @@ local weekIDs = {
 	"Week 2",
 	"Week 3",
 	"Week 4",
-	"Week 5"
+	"Week 5",
+	"Week 6"
 }
 local weekSongs = {
 	{
@@ -57,6 +58,11 @@ local weekSongs = {
 		"Cocoa",
 		"Eggnog",
 		"Winter Horrorland"
+	},
+	{
+		"Senpai",
+		"Roses",
+		"Thorns"
 	}
 }
 local difficultyStrs = {
@@ -149,7 +155,7 @@ return {
 				if menuState > 2 then
 					music:stop()
 
-					isLoading = true
+					status.setLoading(true)
 
 					menuState = 2 -- So menuState isn't an "invalid" value
 
@@ -165,7 +171,7 @@ return {
 
 							Gamestate.switch(weekData[weekNum])
 
-							isLoading = false
+							status.setLoading(false)
 						end
 					)
 				end
@@ -189,7 +195,7 @@ return {
 
 	draw = function(self)
 		love.graphics.push()
-			love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
+			love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
 
 			titleBG:draw()
 
@@ -201,7 +207,7 @@ return {
 				girlfriendTitle:draw()
 
 				love.graphics.printf(
-					"v1.1.0\n" ..
+					"v1.1.0 beta 1\n" ..
 					"Developed by HTV04\n\n" ..
 					"Original game by Funkin' Crew, in association with Newgrounds",
 					-525,

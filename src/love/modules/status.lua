@@ -17,12 +17,23 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local loading
+
+local noResize
+
 return {
 	setLoading = function(state)
 		loading = state
 	end,
 	getLoading = function()
 		return loading
+	end,
+
+	setNoResize = function(state)
+		noResize = state
+	end,
+	getNoResize = function(state)
+		return noResize
 	end,
 
 	getDebugStr = function(type)

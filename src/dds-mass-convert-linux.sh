@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # --------------------------------------------------------------------------------
-# Friday Night Funkin' Rewritten Image Conversion Script for Linux v1.0
+# Friday Night Funkin' Rewritten DDS Mass Conversion Script for Linux v1.1
 # 
 # Copyright (C) 2021  HTV04
 # 
@@ -24,7 +24,7 @@ cd love/images/png # "Base images" directory
 rm -rf ../dds
 mkdir ../dds
 
-printf "%s\n" "Converting images to DDS..."
+printf "%s\n" "Converting..."
 
 for d in $(find . ! -path . -type d | cut -c3-)
 do

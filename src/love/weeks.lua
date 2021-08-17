@@ -528,10 +528,10 @@ return {
 				girlfriend:setAnimSpeed(14.4 / (60 / bpm))
 			end
 			if spriteTimers[2] == 0 then
-				weeks:safeAnimate(enemy, "idle", false, 2)
+				self:safeAnimate(enemy, "idle", false, 2)
 			end
 			if spriteTimers[3] == 0 then
-				weeks:safeAnimate(boyfriend, "idle", false, 3)
+				self:safeAnimate(boyfriend, "idle", false, 3)
 			end
 		end
 
@@ -573,9 +573,9 @@ return {
 					enemyArrow:animate("confirm", false)
 
 					if useAltAnims then
-						weeks:safeAnimate(enemy, curAnim .. " alt", false, 2)
+						self:safeAnimate(enemy, curAnim .. " alt", false, 2)
 					else
-						weeks:safeAnimate(enemy, curAnim, false, 2)
+						self:safeAnimate(enemy, curAnim, false, 2)
 					end
 
 					table.remove(enemyNote, 1)
@@ -590,7 +590,7 @@ return {
 
 					table.remove(boyfriendNote, 1)
 
-					if combo >= 5 then weeks:safeAnimate(girlfriend, "sad", true, 1) end
+					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
 
 					combo = 0
 					health = health - 2
@@ -666,7 +666,7 @@ return {
 								if not settings.kadeInput or success then
 									boyfriendArrow:animate("confirm", false)
 
-									weeks:safeAnimate(boyfriend, curAnim, false, 3)
+									self:safeAnimate(boyfriend, curAnim, false, 3)
 
 									health = health + 1
 
@@ -682,9 +682,9 @@ return {
 				if not success then
 					audio.playSound(sounds["miss"][love.math.random(3)])
 
-					if combo >= 5 then weeks:safeAnimate(girlfriend, "sad", true, 1) end
+					if combo >= 5 then self:safeAnimate(girlfriend, "sad", true, 1) end
 
-					weeks:safeAnimate(boyfriend, "miss " .. curAnim, false, 3)
+					self:safeAnimate(boyfriend, "miss " .. curAnim, false, 3)
 
 					score = score - 10
 					combo = 0
@@ -701,7 +701,7 @@ return {
 
 						boyfriendArrow:animate("confirm", false)
 
-						weeks:safeAnimate(boyfriend, curAnim, true, 3)
+						self:safeAnimate(boyfriend, curAnim, true, 3)
 
 						health = health + 1
 					end
