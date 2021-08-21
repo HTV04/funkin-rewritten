@@ -44,9 +44,6 @@ return {
 			"\nLUA MEM USAGE (KB): " .. tostring(math.floor(collectgarbage("count"))) ..
 			"\nGRAPHICS MEM USAGE (MB): " .. tostring(math.floor(love.graphics.getStats().texturememory / 1048576)) ..
 
-			"\n\nsettings.hardwareCompression: " .. tostring(settings.hardwareCompression) ..
-			"\ngraphics.getImageType(): " .. tostring(graphics.getImageType()) ..
-
 			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
 			"\nhealth: " .. tostring(health)
 		else

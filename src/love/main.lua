@@ -57,24 +57,10 @@ settingsVer=3-switch
 		settingsIni = ini.load("settings.ini")
 
 		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3-switch" then
-			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
-
-			local success, message = love.filesystem.write("settings.ini", settingsStr)
-
-			if success then
-				love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
-			else
-				love.window.showMessageBox("Error", message)
-			end
+			love.filesystem.write("settings.ini", settingsStr)
 		end
 	else
-		local success, message = love.filesystem.write("settings.ini", settingsStr)
-
-		if success then
-			love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
-		else
-			love.window.showMessageBox("Error", message)
-		end
+		love.filesystem.write("settings.ini", settingsStr)
 	end
 
 	settingsIni = ini.load("settings.ini")
@@ -193,19 +179,6 @@ function love.draw()
 
 	-- Debug output
 	if settings.showDebug then
-		local debugStr
-
-		if settings.showDebug == "detailed" then
-			debugStr = "FPS: " .. tostring(love.timer.getFPS()) ..
-			"\nLUA MEM USAGE (KB): " .. tostring(math.floor(collectgarbage("count"))) ..
-			"\nGRAPHICS MEM USAGE (MB): " .. tostring(math.floor(love.graphics.getStats().texturememory / 1048576)) ..
-
-			"\n\nmusicTime: " .. tostring(math.floor(musicTime)) ..  -- Floored for readability
-			"\nhealth: " .. tostring(health)
-		else
-			debugStr = "FPS: " .. tostring(love.timer.getFPS())
-		end
-
-		love.graphics.print(debugStr, 5, 5, nil, 0.5, 0.5)
+		love.graphics.print(status.getDebugStr(settings.showDebug), 5, 5, nil, 0.5, 0.5)
 	end
 end

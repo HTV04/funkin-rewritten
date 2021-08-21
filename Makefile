@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# Friday Night Funkin' Rewritten Makefile v1.2-switch
+# Friday Night Funkin' Rewritten Makefile v1.3-switch
 #
 # Copyright (C) 2021  HTV04
 #
@@ -27,9 +27,12 @@ switch: lovefile-switch
 	@rm -rf build/switch
 	@mkdir -p build/switch/switch/funkin-rewritten
 
-	@elf2nro resources/switch/LOVEPotion.elf build/switch/switch/funkin-rewritten/funkin-rewritten.nro --icon=resources/switch/icon.jpg --nacp=resources/switch/funkin-rewritten.nacp --romfsdir=resources/switch/romfs
+	@nacptool --create "Friday Night Funkin' Rewritten" HTV04 "$(shell cat version.txt)" build/switch/funkin-rewritten.nacp
+	@elf2nro resources/switch/LOVEPotion.elf build/switch/switch/funkin-rewritten/funkin-rewritten.nro --icon=resources/switch/icon.jpg --nacp=build/switch/funkin-rewritten.nacp --romfsdir=resources/switch/romfs
 
 	@cat build/lovefile-switch/switch/funkin-rewritten.love >> build/switch/switch/funkin-rewritten/funkin-rewritten.nro
+
+	@rm build/switch/funkin-rewritten.nacp
 
 release: lovefile-switch switch
 	@mkdir -p build/release

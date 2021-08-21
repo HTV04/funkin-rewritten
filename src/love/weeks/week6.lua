@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-local canvas, font
+local font
 
 local song, difficulty
 
@@ -29,10 +29,9 @@ return {
 	enter = function(self, previous, songNum, songAppend)
 		love.graphics.setDefaultFilter("nearest")
 
-		status.setNoResize(true)
+		lovesize.set(256, 144)
 
-		canvas = love.graphics.newCanvas(256, 144)
-		font = love.graphics.newFont("fonts/pixel_small.fnt")
+		font = love.graphics.newFont("fonts/pixel.ttf", 10)
 
 		weeksPixel:enter()
 
@@ -112,8 +111,6 @@ return {
 	end,
 
 	update = function(self, dt)
-		graphics.screenBase(256, 144)
-
 		if gameOver then
 			if not graphics.isFading() then
 				if input:pressed("confirm") then
@@ -162,71 +159,42 @@ return {
 	end,
 
 	draw = function(self)
-		local canvasScale
-
 		love.graphics.setFont(font)
-		graphics.screenBase(256, 144)
-		love.graphics.setCanvas(canvas)
-			love.graphics.clear()
 
-			weeksPixel:draw()
+		weeksPixel:draw()
 
-			if gameOver then
-				love.graphics.setCanvas()
-				graphics.screenBase(love.graphics.getWidth(), love.graphics.getHeight())
+		if gameOver then return end
 
-				canvasScale = math.min(math.floor(graphics.getWidth() / 256), math.floor(graphics.getHeight() / 144))
-				if canvasScale < 1 then canvasScale = math.min(graphics.getWidth() / 256, graphics.getHeight() / 144) end
-
-				love.graphics.draw(canvas, graphics.getWidth() / 2, graphics.getHeight() / 2, nil, canvasScale, canvasScale, 128, 72)
-
-				return
-			end
-
+		love.graphics.push()
+			love.graphics.translate(128, 72)
+			love.graphics.scale(cam.sizeX, cam.sizeY)
 			love.graphics.push()
-				love.graphics.translate(128, 72)
-				love.graphics.scale(cam.sizeX, cam.sizeY)
-
-				love.graphics.push()
-					love.graphics.translate(math.floor(cam.x * 0.9), math.floor(cam.y * 0.9))
-
-					if song ~= 3 then
-						sky:draw()
-					end
-
-					school:draw()
-				love.graphics.pop()
-				love.graphics.push()
-					love.graphics.translate(math.floor(cam.x), math.floor(cam.y))
-
-					if song ~= 3 then
-						street:draw()
-						treesBack:draw()
-
-						trees:draw()
-						petals:draw()
-						freaks:draw()
-					end
-
-					girlfriend:draw()
-					enemy:draw()
-					boyfriend:draw()
-				love.graphics.pop()
-				weeksPixel:drawRating()
+				love.graphics.translate(math.floor(cam.x * 0.9), math.floor(cam.y * 0.9))
+				if song ~= 3 then
+					sky:draw()
+				end
+				school:draw()
 			love.graphics.pop()
+			love.graphics.push()
+				love.graphics.translate(math.floor(cam.x), math.floor(cam.y))
+				if song ~= 3 then
+					street:draw()
+					treesBack:draw()
+					trees:draw()
+					petals:draw()
+					freaks:draw()
+				end
+				girlfriend:draw()
+				enemy:draw()
+				boyfriend:draw()
+			love.graphics.pop()
+			weeksPixel:drawRating()
+		love.graphics.pop()
 
-			weeksPixel:drawUI()
-		love.graphics.setCanvas()
-		graphics.screenBase(love.graphics.getWidth(), love.graphics.getHeight())
-
-		canvasScale = math.min(math.floor(graphics.getWidth() / 256), math.floor(graphics.getHeight() / 144))
-		if canvasScale < 1 then canvasScale = math.min(graphics.getWidth() / 256, graphics.getHeight() / 144) end
-
-		love.graphics.draw(canvas, graphics.getWidth() / 2, graphics.getHeight() / 2, nil, canvasScale, canvasScale, 128, 72)
+		weeksPixel:drawUI()
 	end,
 
 	leave = function(self)
-		canvas = nil
 		font = nil
 
 		sky = nil
@@ -235,7 +203,7 @@ return {
 
 		weeksPixel:leave()
 
-		status.setNoResize(false)
+		lovesize.set(1280, 720)
 
 		love.graphics.setDefaultFilter("linear")
 	end
