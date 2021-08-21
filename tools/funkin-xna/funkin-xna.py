@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 # --------------------------------------------------------------------------------
-# Friday Night Funkin' Rewritten Legacy XNA Conversion Helper v1.0
+# Friday Night Funkin' Rewritten Legacy XNA Conversion Helper v1.1
 #
 # Copyright (C) 2021  HTV04
 #
@@ -32,7 +32,7 @@ lua = ('\t-- Automatically generated from ' + txtname + '\n'
 c = 0
 for txtline in txtlines:
     c += 1
-    parsedline = re.match("(.+) = (\d+) (\d+) (\d+) (\d+)", txtline)
+    parsedline = re.match(r'(.+) = (\d+) (\d+) (\d+) (\d+)', txtline)
 
     name = parsedline.group(1)
     x = parsedline.group(2)
