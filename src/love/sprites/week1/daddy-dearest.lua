@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return Sprite (
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("week1/daddy-dearest")),
 	-- Automatically generated from DADDY_DEAREST.xml
 	{

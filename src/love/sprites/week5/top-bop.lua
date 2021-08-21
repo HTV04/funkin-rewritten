@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return Sprite (
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("week5/top-bop")),
     	-- Automatically generated from upperBop.xml
 	{

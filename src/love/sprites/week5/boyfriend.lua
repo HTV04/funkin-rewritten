@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return Sprite (
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("week5/boyfriend")),
     -- Automatically generated from bfChristmas.xml
 	{
@@ -330,5 +330,5 @@ return Sprite (
         ["idle"] = {start = 282, stop = 295, speed = 24, offsetX = 0, offsetY = 0}
     },
 	"idle",
-	true
+	false
 )

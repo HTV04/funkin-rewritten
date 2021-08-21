@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return Sprite (
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("rating")),
 	{
 		{x = 0, y = 0, width = 403, height = 152, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Sick

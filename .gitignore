@@ -17,6 +17,8 @@ resources/win64/love/*
 # Tools
 tools/funkin-json/*
 tools/funkin-xml/*
+tools/funkin-xna/*
 
 !tools/funkin-json/funkin-json.py
 !tools/funkin-xml/funkin-xml.py
+!tools/funkin-xna/funkin-xna.py

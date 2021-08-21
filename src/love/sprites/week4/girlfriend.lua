@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return Sprite (
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("week4/girlfriend")),
 	-- Automatically generated from gfCar.xml
 	{
@@ -57,5 +57,5 @@ return Sprite (
 		["sad"] = {start = 1, stop = 30, speed = 24, offsetX = 0, offsetY = 0} -- Temporary workaround
 	},
 	"idle",
-	true
+	false
 )

@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 -- NOTE: Pico's sprites are flipped horizontally as an enemy
-return Sprite (
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("pico")),
 	-- Automatically generated from Pico_FNF_assetss.xml
 	{
