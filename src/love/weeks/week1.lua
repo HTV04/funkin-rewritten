@@ -17,11 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local song, difficulty
+
 local stageBack, stageFront, curtains
 
 return {
-	enter = function(self)
+	enter = function(self, previous, songNum, songAppend)
 		weeks:enter()
+
+		song = songNum
+		difficulty = songAppend
 
 		stageBack = graphics.newImage(love.graphics.newImage(graphics.imagePath("week1/stage-back")))
 		stageFront = graphics.newImage(love.graphics.newImage(graphics.imagePath("week1/stage-front")))
@@ -44,10 +49,10 @@ return {
 	load = function(self)
 		weeks:load()
 
-		if songNum == 3 then
+		if song == 3 then
 			inst = love.audio.newSource("music/week1/dadbattle-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week1/dadbattle-voices.ogg", "stream")
-		elseif songNum == 2 then
+		elseif song == 2 then
 			inst = love.audio.newSource("music/week1/fresh-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week1/fresh-voices.ogg", "stream")
 		else
@@ -64,12 +69,12 @@ return {
 	initUI = function(self)
 		weeks:initUI()
 
-		if songNum == 3 then
-			weeks:generateNotes(love.filesystem.load("charts/week1/dadbattle" .. songAppend .. ".lua")())
-		elseif songNum == 2 then
-			weeks:generateNotes(love.filesystem.load("charts/week1/fresh" .. songAppend .. ".lua")())
+		if song == 3 then
+			weeks:generateNotes(love.filesystem.load("charts/week1/dadbattle" .. difficulty .. ".lua")())
+		elseif song == 2 then
+			weeks:generateNotes(love.filesystem.load("charts/week1/fresh" .. difficulty .. ".lua")())
 		else
-			weeks:generateNotes(love.filesystem.load("charts/week1/bopeebo" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week1/bopeebo" .. difficulty .. ".lua")())
 		end
 	end,
 
@@ -100,7 +105,7 @@ return {
 
 		weeks:update(dt)
 
-		if songNum == 1 and musicThres ~= oldMusicThres and math.fmod(musicTime + 500, 480000 / bpm) < 100 then
+		if song == 1 and musicThres ~= oldMusicThres and math.fmod(musicTime + 500, 480000 / bpm) < 100 then
 			boyfriend:animate("hey", false)
 		end
 
@@ -115,8 +120,8 @@ return {
 		end
 
 		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
-			if storyMode and songNum < 3 then
-				songNum = songNum + 1
+			if storyMode and song < 3 then
+				song = song + 1
 
 				self:load()
 			else

@@ -57,5 +57,5 @@ return graphics.newSprite(
 		["sad"] = {start = 1, stop = 30, speed = 24, offsetX = 0, offsetY = 0} -- Temporary workaround
 	},
 	"idle",
-	true
+	false
 )

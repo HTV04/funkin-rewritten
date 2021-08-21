@@ -17,14 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-local walls, escalator, christmasTree, snow -- Images
+local song, difficulty
 
-local topBop, bottomBop, santa -- Sprites
+local walls, escalator, christmasTree, snow
+
+local topBop, bottomBop, santa
 
 local scaryIntro = false
 
 return {
-	enter = function(self)
+	enter = function(self, previous, songNum, songAppend)
 		cam.sizeX, cam.sizeY = 0.7, 0.7
 		camScale.x, camScale.y = 0.7, 0.7
 
@@ -56,30 +58,38 @@ return {
 			["numbers"] = love.filesystem.load("sprites/numbers.lua")
 		}
 
-		walls = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/walls")))
-		escalator = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/escalator")))
-		christmasTree = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/christmas-tree")))
-		snow = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/snow")))
+		song = songNum
+		difficulty = songAppend
 
-		escalator.x = 125
-		christmasTree.x = 75
-		snow.y = 850
-		snow.sizeX, snow.sizeY = 2, 2
+		if song ~= 3 then
+			walls = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/walls")))
+			escalator = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/escalator")))
+			christmasTree = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/christmas-tree")))
+			snow = graphics.newImage(love.graphics.newImage(graphics.imagePath("week5/snow")))
 
-		topBop = love.filesystem.load("sprites/week5/top-bop.lua")()
-		bottomBop = love.filesystem.load("sprites/week5/bottom-bop.lua")()
+			escalator.x = 125
+			christmasTree.x = 75
+			snow.y = 850
+			snow.sizeX, snow.sizeY = 2, 2
+
+			topBop = love.filesystem.load("sprites/week5/top-bop.lua")()
+			bottomBop = love.filesystem.load("sprites/week5/bottom-bop.lua")()
+			santa = love.filesystem.load("sprites/week5/santa.lua")()
+
+			topBop.x, topBop.y = 60, -250
+			bottomBop.x, bottomBop.y = -75, 375
+			santa.x, santa.y = -1350, 410
+		end
+
 		girlfriend = love.filesystem.load("sprites/week5/girlfriend.lua")()
-		santa = love.filesystem.load("sprites/week5/santa.lua")()
 		enemy = love.filesystem.load("sprites/week5/dearest-duo.lua")()
 		boyfriend = love.filesystem.load("sprites/week5/boyfriend.lua")()
 		fakeBoyfriend = love.filesystem.load("sprites/boyfriend.lua")() -- Used for game over
 
 		rating = love.filesystem.load("sprites/rating.lua")()
 
-		topBop.x, topBop.y = 60, -250
-		bottomBop.x, bottomBop.y = -75, 375
+
 		girlfriend.x, girlfriend.y = -50, 410
-		santa.x, santa.y = -1350, 410
 		enemy.x, enemy.y = -780, 410
 		boyfriend.x, boyfriend.y = 300, 620
 		fakeBoyfriend.x, fakeBoyfriend.y = 300, 620
@@ -107,17 +117,13 @@ return {
 
 		enemyIcon:animate("dearest duo", false)
 
-		for i = 1, 3 do
-			sounds["miss"][i]:setVolume(0.25)
-		end
-
 		self:load()
 	end,
 
 	load = function(self)
 		weeks:load()
 
-		if songNum == 3 then
+		if song == 3 then
 			camScale.x, camScale.y = 0.9, 0.9
 
 			if scaryIntro then
@@ -147,7 +153,7 @@ return {
 
 			inst = love.audio.newSource("music/week5/winter-horrorland-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week5/winter-horrorland-voices.ogg", "stream")
-		elseif songNum == 2 then
+		elseif song == 2 then
 			inst = love.audio.newSource("music/week5/eggnog-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week5/eggnog-voices.ogg", "stream")
 		else
@@ -180,12 +186,12 @@ return {
 	initUI = function(self)
 		weeks:initUI()
 
-		if songNum == 3 then
-			weeks:generateNotes(love.filesystem.load("charts/week5/winter-horrorland" .. songAppend .. ".lua")())
-		elseif songNum == 2 then
-			weeks:generateNotes(love.filesystem.load("charts/week5/eggnog" .. songAppend .. ".lua")())
+		if song == 3 then
+			weeks:generateNotes(love.filesystem.load("charts/week5/winter-horrorland" .. difficulty .. ".lua")())
+		elseif song == 2 then
+			weeks:generateNotes(love.filesystem.load("charts/week5/eggnog" .. difficulty .. ".lua")())
 		else
-			weeks:generateNotes(love.filesystem.load("charts/week5/cocoa" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week5/cocoa" .. difficulty .. ".lua")())
 		end
 	end,
 
@@ -217,7 +223,7 @@ return {
 		if not scaryIntro then
 			weeks:update(dt)
 
-			if songNum ~= 3 then
+			if song ~= 3 then
 				topBop:update(dt)
 				bottomBop:update(dt)
 				santa:update(dt)
@@ -229,34 +235,34 @@ return {
 				end
 			end
 
-			if songNum == 3 then
+			if song == 3 then
 				if health >= 80 then
-					if enemyIcon.anim.name == "monster" then
+					if enemyIcon:getAnimName() == "monster" then
 						enemyIcon:animate("monster losing", false)
 					end
 				else
-					if enemyIcon.anim.name == "monster losing" then
+					if enemyIcon:getAnimName() == "monster losing" then
 						enemyIcon:animate("monster", false)
 					end
 				end
 			else
 				if health >= 80 then
-					if enemyIcon.anim.name == "dearest duo" then
+					if enemyIcon:getAnimName() == "dearest duo" then
 						enemyIcon:animate("dearest duo losing", false)
 					end
 				else
-					if enemyIcon.anim.name == "dearest duo losing" then
+					if enemyIcon:getAnimName() == "dearest duo losing" then
 						enemyIcon:animate("dearest duo", false)
 					end
 				end
 			end
 
 			if not scaryIntro and not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
-				if storyMode and songNum < 3 then
-					songNum = songNum + 1
+				if storyMode and song < 3 then
+					song = song + 1
 
 					-- Winter Horrorland setup
-					if songNum == 3 then
+					if song == 3 then
 						scaryIntro = true
 
 						audio.playSound(sounds["lights off"])
@@ -290,7 +296,7 @@ return {
 				love.graphics.translate(cam.x * 0.5, cam.y * 0.5)
 
 				walls:draw()
-				if songNum ~= 3 then
+				if song ~= 3 then
 					topBop:draw()
 					escalator:draw()
 				end
@@ -299,7 +305,7 @@ return {
 			love.graphics.push()
 				love.graphics.translate(cam.x * 0.9, cam.y * 0.9)
 
-				if songNum ~= 3 then
+				if song ~= 3 then
 					bottomBop:draw()
 				end
 
@@ -310,7 +316,7 @@ return {
 			love.graphics.push()
 				love.graphics.translate(cam.x, cam.y)
 
-				if songNum ~= 3 then
+				if song ~= 3 then
 					santa:draw()
 				end
 				enemy:draw()
@@ -328,7 +334,7 @@ return {
 				love.graphics.scale(0.7, 0.7)
 
 				for i = 1, 4 do
-					if enemyArrows[i].anim.name == "off" then
+					if enemyArrows[i]:getAnimName() == "off" then
 						graphics.setColor(0.6, 0.6, 0.6)
 					end
 					enemyArrows[i]:draw()
@@ -340,7 +346,7 @@ return {
 
 						for j = #enemyNotes[i], 1, -1 do
 							if (not settings.downscroll and enemyNotes[i][j].y - musicPos <= 560) or (settings.downscroll and enemyNotes[i][j].y - musicPos >= -560) then
-								local animName = enemyNotes[i][j].anim.name
+								local animName = enemyNotes[i][j]:getAnimName()
 
 								if animName == "hold" or animName == "end" then
 									graphics.setColor(1, 1, 1, 0.5)
@@ -351,7 +357,7 @@ return {
 						end
 						for j = #boyfriendNotes[i], 1, -1 do
 							if (not settings.downscroll and boyfriendNotes[i][j].y - musicPos <= 560) or (settings.downscroll and boyfriendNotes[i][j].y - musicPos >= -560) then
-								local animName = boyfriendNotes[i][j].anim.name
+								local animName = boyfriendNotes[i][j]:getAnimName()
 
 								if settings.downscroll then
 									if animName == "hold" or animName == "end" then

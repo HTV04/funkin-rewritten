@@ -182,6 +182,9 @@ settingsVer=3
 		0 -- Boyfriend
 	}
 
+	gameOver = false
+	storyMode = false
+
 	cam = {x = 0, y = 0, sizeX = 0.9, sizeY = 0.9}
 	camScale = {x = 0.9, y = 0.9}
 	uiScale = {x = 0.7, y = 0.7}
@@ -216,9 +219,13 @@ function love.update(dt)
 	if status.getNoResize() then
 		Gamestate.update(dt)
 	else
+		love.graphics.setFont(font)
 		graphics.screenBase(lovesize.getWidth(), lovesize.getHeight())
+		graphics.setColor(1, 1, 1) -- Fade effect on
 		Gamestate.update(dt)
+		love.graphics.setColor(1, 1, 1) -- Fade effect off
 		graphics.screenBase(love.graphics.getWidth(), love.graphics.getHeight())
+		love.graphics.setFont(font)
 	end
 
 	Timer.update(dt)
@@ -226,11 +233,11 @@ end
 
 function love.draw()
 	love.graphics.setFont(font)
-
 	if status.getNoResize() then
 		graphics.setColor(1, 1, 1) -- Fade effect on
 		Gamestate.draw()
 		love.graphics.setColor(1, 1, 1) -- Fade effect off
+		love.graphics.setFont(font)
 
 		if status.getLoading() then
 			love.graphics.print("Loading...", graphics.getWidth() - 175, graphics.getHeight() - 50)
@@ -241,6 +248,7 @@ function love.draw()
 			graphics.setColor(1, 1, 1) -- Fade effect on
 			Gamestate.draw()
 			love.graphics.setColor(1, 1, 1) -- Fade effect off
+			love.graphics.setFont(font)
 
 			if status.getLoading() then
 				love.graphics.print("Loading...", lovesize.getWidth() - 175, lovesize.getHeight() - 50)

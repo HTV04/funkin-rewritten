@@ -17,12 +17,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local song, difficulty
+
 local sunset
 
 local bgLimo, limoDancer, limo
 
 return {
-	enter = function(self)
+	enter = function(self, previous, songNum, songAppend)
 		bpm = 100
 
 		enemyFrameTimer = 0
@@ -48,10 +50,11 @@ return {
 			["numbers"] = love.filesystem.load("sprites/numbers.lua")
 		}
 
+		song = songNum
+		difficulty = songAppend
+
 		sunset = graphics.newImage(love.graphics.newImage(graphics.imagePath("week4/sunset")))
 
-
-		fakeBoyfriend = love.filesystem.load("sprites/boyfriend.lua")() -- Used for game over
 		bgLimo = love.filesystem.load("sprites/week4/bg-limo.lua")()
 		limoDancer = love.filesystem.load("sprites/week4/limo-dancer.lua")()
 		girlfriend = love.filesystem.load("sprites/week4/girlfriend.lua")()
@@ -59,6 +62,7 @@ return {
 		enemy = love.filesystem.load("sprites/week4/mommy-mearest.lua")()
 		boyfriend = love.filesystem.load("sprites/week4/boyfriend.lua")()
 		rating = love.filesystem.load("sprites/rating.lua")()
+		fakeBoyfriend = love.filesystem.load("sprites/boyfriend.lua")() -- Used for game over
 
 		fakeBoyfriend.x, fakeBoyfriend.y = 350, -100
 		bgLimo.y = 250
@@ -93,20 +97,16 @@ return {
 
 		enemyIcon:animate("mommy mearest", false)
 
-		for i = 1, 3 do
-			sounds["miss"][i]:setVolume(0.25)
-		end
-
 		self:load()
 	end,
 
 	load = function(self)
 		weeks:load()
 
-		if songNum == 3 then
+		if song == 3 then
 			inst = love.audio.newSource("music/week4/milf-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week4/milf-voices.ogg", "stream")
-		elseif songNum == 2 then
+		elseif song == 2 then
 			inst = love.audio.newSource("music/week4/high-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week4/high-voices.ogg", "stream")
 		else
@@ -123,12 +123,12 @@ return {
 	initUI = function(self)
 		weeks:initUI()
 
-		if songNum == 3 then
-			weeks:generateNotes(love.filesystem.load("charts/week4/milf" .. songAppend .. ".lua")())
-		elseif songNum == 2 then
-			weeks:generateNotes(love.filesystem.load("charts/week4/high" .. songAppend .. ".lua")())
+		if song == 3 then
+			weeks:generateNotes(love.filesystem.load("charts/week4/milf" .. difficulty .. ".lua")())
+		elseif song == 2 then
+			weeks:generateNotes(love.filesystem.load("charts/week4/high" .. difficulty .. ".lua")())
 		else
-			weeks:generateNotes(love.filesystem.load("charts/week4/satin-panties" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week4/satin-panties" .. difficulty .. ".lua")())
 		end
 	end,
 
@@ -160,7 +160,7 @@ return {
 		weeks:update(dt)
 
 		-- Hardcoded M.I.L.F camera scaling
-		if songNum == 3 and musicTime > 56000 and musicTime < 67000 and musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 / bpm) < 100 then
+		if song == 3 and musicTime > 56000 and musicTime < 67000 and musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 / bpm) < 100 then
 			if camScaleTimer then Timer.cancel(camScaleTimer) end
 
 			camScaleTimer = Timer.tween((60 / bpm) / 16, cam, {sizeX = camScale.x * 1.05, sizeY = camScale.y * 1.05}, "out-quad", function() camScaleTimer = Timer.tween((60 / bpm), cam, {sizeX = camScale.x, sizeY = camScale.y}, "out-quad") end)
@@ -173,22 +173,22 @@ return {
 		if musicThres ~= oldMusicThres and math.fmod(musicTime, 120000 / bpm) < 100 then
 			limoDancer:animate("anim", false)
 
-			limoDancer.anim.speed = 14.4 / (60 / bpm)
+			limoDancer:setAnimSpeed(14.4 / (60 / bpm))
 		end
 
 		if health >= 80 then
-			if enemyIcon.anim.name == "mommy mearest" then
+			if enemyIcon:getAnimName() == "mommy mearest" then
 				enemyIcon:animate("mommy mearest losing", false)
 			end
 		else
-			if enemyIcon.anim.name == "mommy mearest losing" then
+			if enemyIcon:getAnimName() == "mommy mearest losing" then
 				enemyIcon:animate("mommy mearest", false)
 			end
 		end
 
-		if graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
-			if storyMode and songNum < 3 then
-				songNum = songNum + 1
+		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
+			if storyMode and song < 3 then
+				song = song + 1
 
 				self:load()
 			else

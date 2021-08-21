@@ -52,8 +52,10 @@ return {
 		return imageType
 	end,
 
-	newImage = function(imageData)
+	newImage = function(imageData, optionsTable)
 		local image, width, height
+
+		local options
 
 		local object = {
 			x = 0,
@@ -77,6 +79,14 @@ return {
 			end,
 
 			draw = function(self)
+				local x = self.x
+				local y = self.y
+
+				if options and options.floored then
+					x = math.floor(x)
+					y = math.floor(y)
+				end
+
 				love.graphics.draw(
 					image,
 					self.x,
@@ -84,8 +94,8 @@ return {
 					self.orientation,
 					self.sizeX,
 					self.sizeY,
-					width / 2 + self.offsetX,
-					height / 2 + self.offsetY,
+					math.floor(width / 2) + self.offsetX,
+					math.floor(height / 2) + self.offsetY,
 					self.shearX,
 					self.shearY
 				)
@@ -94,10 +104,12 @@ return {
 
 		object:setImage(imageData)
 
+		options = optionsTable
+
 		return object
 	end,
 
-	newSprite = function(imageData, frameData, animData, animName, loopAnim)
+	newSprite = function(imageData, frameData, animData, animName, loopAnim, optionsTable)
 		local sheet, sheetWidth, sheetHeight
 
 		local frames = {}
@@ -114,6 +126,8 @@ return {
 
 		local isAnimated
 		local isLooped
+
+		local options
 
 		local object = {
 			x = 0,
@@ -149,6 +163,9 @@ return {
 
 				isAnimated = true
 			end,
+			getAnims = function(self)
+				return anims
+			end,
 			getAnimName = function(self)
 				return anim.name
 			end,
@@ -160,6 +177,13 @@ return {
 			end,
 			isLooped = function(self)
 				return isLooped
+			end,
+
+			setOptions = function(self, optionsTable)
+				options = optionsTable
+			end,
+			getOptions = function(self)
+				return options
 			end,
 
 			update = function(self, dt)
@@ -179,24 +203,41 @@ return {
 				local flooredFrame = math.floor(frame)
 
 				if flooredFrame <= anim.stop then
-					local width, height
+					local x = self.x
+					local y = self.y
+					local width
+					local height
 
-					if frameData[flooredFrame].offsetWidth == 0 then
-						width = frameData[flooredFrame].width / 2
-					else
-						width = frameData[flooredFrame].offsetWidth / 2 + frameData[flooredFrame].offsetX
+					if options and options.floored then
+						x = math.floor(x)
+						y = math.floor(y)
 					end
-					if frameData[flooredFrame].offsetHeight == 0 then
-						height = frameData[flooredFrame].height / 2
+
+					if options and options.noOffset then
+						if frameData[flooredFrame].offsetWidth ~= 0 then
+							width = frameData[flooredFrame].offsetX
+						end
+						if frameData[flooredFrame].offsetHeight ~= 0 then
+							height = frameData[flooredFrame].offsetY
+						end
 					else
-						height = frameData[flooredFrame].offsetHeight / 2 + frameData[flooredFrame].offsetY
+						if frameData[flooredFrame].offsetWidth == 0 then
+							width = math.floor(frameData[flooredFrame].width / 2)
+						else
+							width = math.floor(frameData[flooredFrame].offsetWidth / 2) + frameData[flooredFrame].offsetX
+						end
+						if frameData[flooredFrame].offsetHeight == 0 then
+							height = math.floor(frameData[flooredFrame].height / 2)
+						else
+							height = math.floor(frameData[flooredFrame].offsetHeight / 2) + frameData[flooredFrame].offsetY
+						end
 					end
 
 					love.graphics.draw(
 						sheet,
 						frames[flooredFrame],
-						self.x,
-						self.y,
+						x,
+						y,
 						self.orientation,
 						self.sizeX,
 						self.sizeY,
@@ -227,183 +268,7 @@ return {
 
 		object:animate(animName, loopAnim)
 
-		return object
-	end,
-
-	newPixelImage = function(imageData)
-		local image, width, height
-
-		local object = {
-			x = 0,
-			y = 0,
-			orientation = 0,
-			sizeX = 1,
-			sizeY = 1,
-			offsetX = 0,
-			offsetY = 0,
-			shearX = 0,
-			shearY = 0,
-
-			setImage = function(self, imageData)
-				image = imageData
-				width = image:getWidth()
-				height = image:getHeight()
-			end,
-
-			getImage = function(self)
-				return image
-			end,
-
-			draw = function(self)
-				love.graphics.draw(
-					image,
-					self.x + 0.5,
-					self.y + 0.5,
-					self.orientation,
-					self.sizeX,
-					self.sizeY,
-					width / 2 + self.offsetX,
-					height / 2 + self.offsetY,
-					self.shearX,
-					self.shearY
-				)
-			end
-		}
-
-		object:setImage(imageData)
-
-		return object
-	end,
-
-	newPixelSprite = function(imageData, frameData, animData, animName, loopAnim)
-		local sheet, sheetWidth, sheetHeight
-
-		local frames = {}
-		local frame
-		local anims = animData
-		local anim = {
-			name = nil,
-			start = nil,
-			stop = nil,
-			speed = nil,
-			offsetX = nil,
-			offsetY = nil
-		}
-
-		local isAnimated
-		local isLooped
-
-		local object = {
-			x = 0,
-			y = 0,
-			orientation = 0,
-			sizeX = 1,
-			sizeY = 1,
-			offsetX = 0,
-			offsetY = 0,
-			shearX = 0,
-			shearY = 0,
-
-			setSheet = function(self, imageData)
-				sheet = imageData
-				sheetWidth = sheet:getWidth()
-				sheetHeight = sheet:getHeight()
-			end,
-
-			getSheet = function(self)
-				return sheet
-			end,
-
-			animate = function(self, animName, loopAnim)
-				anim.name = animName
-				anim.start = anims[animName].start
-				anim.stop = anims[animName].stop
-				anim.speed = anims[animName].speed
-				anim.offsetX = anims[animName].offsetX
-				anim.offsetY = anims[animName].offsetY
-
-				frame = anim.start
-				isLooped = loopAnim
-
-				isAnimated = true
-			end,
-			getAnimName = function(self)
-				return anim.name
-			end,
-			setAnimSpeed = function(self, speed)
-				anim.speed = speed
-			end,
-			isAnimated = function(self)
-				return isAnimated
-			end,
-			isLooped = function(self)
-				return isLooped
-			end,
-
-			update = function(self, dt)
-				if isAnimated then
-					frame = frame + anim.speed * dt
-				end
-
-				if isAnimated and frame > anim.stop then
-					if isLooped then
-						frame = anim.start
-					else
-						isAnimated = false
-					end
-				end
-			end,
-			draw = function(self)
-				local flooredFrame = math.floor(frame)
-
-				if flooredFrame <= anim.stop then
-					local width, height
-
-					if frameData[flooredFrame].offsetWidth == 0 then
-						width = frameData[flooredFrame].width / 2
-					else
-						width = frameData[flooredFrame].offsetWidth / 2 + frameData[flooredFrame].offsetX
-					end
-					if frameData[flooredFrame].offsetHeight == 0 then
-						height = frameData[flooredFrame].height / 2
-					else
-						height = frameData[flooredFrame].offsetHeight / 2 + frameData[flooredFrame].offsetY
-					end
-
-					love.graphics.draw(
-						sheet,
-						frames[flooredFrame],
-						self.x + 0.5,
-						self.y + 0.5,
-						self.orientation,
-						self.sizeX,
-						self.sizeY,
-						width + anim.offsetX + self.offsetX,
-						height + anim.offsetY + self.offsetY,
-						self.shearX,
-						self.shearY
-					)
-				end
-			end
-		}
-
-		object:setSheet(imageData)
-
-		for i = 1, #frameData do
-			table.insert(
-				frames,
-				love.graphics.newQuad(
-					frameData[i].x,
-					frameData[i].y,
-					frameData[i].width,
-					frameData[i].height,
-					sheetWidth,
-					sheetHeight
-				)
-			)
-		end
-
-		object:animate(animName, loopAnim)
+		options = optionsTable
 
 		return object
 	end,

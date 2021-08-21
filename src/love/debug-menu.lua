@@ -34,7 +34,7 @@ return {
 		dirTable = love.filesystem.getDirectoryItems(curDir)
 	end,
 
-	enter = function(self)
+	enter = function(self, previous)
 		menuID = 1
 		selection = 3
 
@@ -54,8 +54,7 @@ return {
 			{2}
 		}
 
-		graphics.cancelTimer()
-		graphics.fade[1] = 0
+		graphics.setFade(0)
 		graphics.fadeIn(0.5)
 	end,
 
@@ -84,7 +83,7 @@ return {
 		overlaySprite = spriteData()
 
 		spriteAnims = {}
-		for i, _ in pairs(sprite.anims) do
+		for i, _ in pairs(sprite.getAnims()) do
 			table.insert(spriteAnims, i)
 		end
 

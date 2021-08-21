@@ -17,16 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return graphics.newPixelSprite(
+return graphics.newSprite(
 	images["notes"],
 	{
-		{x = 37, y = 1, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Up Arrow
-		{x = 37, y = 19, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Up Arrow On
-		{x = 37, y = 37, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 3: Up Arrow Press
-		{x = 37, y = 55, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 4: Up Arrow Confirm 1
-		{x = 37, y = 73, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 5: Up Arrow Confirm 2
-		{x = 17, y = 90, width = 7, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 6: Up Hold
-		{x = 17, y = 97, width = 7, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 7: Up End
+		{x = 36, y = 0, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Up Arrow
+		{x = 36, y = 18, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Up Arrow On
+		{x = 36, y = 36, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 3: Up Arrow Press
+		{x = 36, y = 54, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 4: Up Arrow Confirm 1
+		{x = 36, y = 72, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 5: Up Arrow Confirm 2
+		{x = 16, y = 89, width = 7, height = 6, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 6: Up Hold
+		{x = 16, y = 97, width = 7, height = 6, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 7: Up End
 	},
 	{
 		["off"] = {start = 1, stop = 1, speed = 0, offsetX = 0, offsetY = 0},
@@ -37,5 +37,8 @@ return graphics.newPixelSprite(
 		["end"] = {start = 7, stop = 7, speed = 0, offsetX = 0, offsetY = 0}
 	},
 	"off",
-	false
+	false,
+	{
+		floored = true
+	}
 )

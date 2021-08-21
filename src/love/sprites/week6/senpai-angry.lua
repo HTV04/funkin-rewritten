@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return graphics.newSprite( -- Angry Senpai looks better as a normal sprite for some reason???
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("week6/senpai")),
 	{
 		{x = 0, y = 0, width = 125, height = 164, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Angry Senpai DOWN NOTE instance 10000
@@ -99,5 +99,5 @@ return graphics.newSprite( -- Angry Senpai looks better as a normal sprite for s
 		["up"] = {start = 57, stop = 70, speed = 24, offsetX = 0, offsetY = 6}
 	},
 	"idle",
-	true
+	false
 )

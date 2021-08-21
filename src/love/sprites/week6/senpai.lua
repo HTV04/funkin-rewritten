@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return graphics.newPixelSprite(
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("week6/senpai")),
 	-- Automatically generated from senpai.xml
 	{
@@ -114,5 +114,5 @@ return graphics.newPixelSprite(
 		["idle"] = {start = 57, stop = 84, speed = 24, offsetX = 0, offsetY = 0}
 	},
 	"idle",
-	true
+	false
 )

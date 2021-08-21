@@ -17,11 +17,15 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local difficulty
+
 local stageBack, stageFront, curtains
 
 return {
-	enter = function(self)
+	enter = function(self, previous, songNum, songAppend)
 		weeks:enter()
+
+		difficulty = songAppend
 
 		stageBack = graphics.newImage(love.graphics.newImage(graphics.imagePath("week1/stage-back")))
 		stageFront = graphics.newImage(love.graphics.newImage(graphics.imagePath("week1/stage-front")))
@@ -46,7 +50,7 @@ return {
 		inst = nil
 		voices = love.audio.newSource("music/tutorial/tutorial.ogg", "stream")
 
-		self:initUI(songNum)
+		self:initUI()
 
 		weeks:voicesPlay()
 	end,
@@ -54,7 +58,7 @@ return {
 	initUI = function(self)
 		weeks:initUI()
 
-		weeks:generateNotes(love.filesystem.load("charts/tutorial/tutorial" .. songAppend .. ".lua")())
+		weeks:generateNotes(love.filesystem.load("charts/tutorial/tutorial" .. difficulty .. ".lua")())
 	end,
 
 	update = function(self, dt)
@@ -139,7 +143,7 @@ return {
 				weeks:safeAnimate(boyfriend, "idle", false, 3)
 			end
 
-			girlfriend.anim.speed = 14.4 / (60 / bpm)
+			girlfriend:setAnimSpeed(14.4 / (60 / bpm))
 		end
 
 		for i = 1, 3 do

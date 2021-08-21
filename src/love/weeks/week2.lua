@@ -17,11 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local song, difficulty
+
 local hauntedHouse
 
 return {
-	enter = function(self)
+	enter = function(self, previous, songNum, songAppend)
 		weeks:enter()
+
+		song = songNum
+		difficulty = songAppend
 
 		cam.sizeX, cam.sizeY = 1.1, 1.1
 		camScale.x, camScale.y = 1.1, 1.1
@@ -46,7 +51,7 @@ return {
 	load = function(self)
 		weeks:load()
 
-		if songNum == 2 then
+		if song == 2 then
 			inst = love.audio.newSource("music/week2/south-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week2/south-voices.ogg", "stream")
 		else
@@ -63,10 +68,10 @@ return {
 	initUI = function(self)
 		weeks:initUI()
 
-		if songNum == 2 then
-			weeks:generateNotes(love.filesystem.load("charts/week2/south" .. songAppend .. ".lua")())
+		if song == 2 then
+			weeks:generateNotes(love.filesystem.load("charts/week2/south" .. difficulty .. ".lua")())
 		else
-			weeks:generateNotes(love.filesystem.load("charts/week2/spookeez" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week2/spookeez" .. difficulty .. ".lua")())
 		end
 	end,
 
@@ -102,7 +107,7 @@ return {
 		if not hauntedHouse.animated then
 			hauntedHouse:animate("normal", false)
 		end
-		if songNum == 1 and musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 * (love.math.random(17) + 7) / bpm) < 100 then
+		if song == 1 and musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 * (love.math.random(17) + 7) / bpm) < 100 then
 			audio.playSound(sounds["thunder"][love.math.random(2)])
 
 			hauntedHouse:animate("lightning", false)
@@ -111,24 +116,24 @@ return {
 		end
 
 		if musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 / bpm) < 100 then
-			if enemy.anim.name == "idle" then
-				enemy.anim.speed = 14.4 / (120 / bpm)
+			if enemy:getAnimName() == "idle" then
+				enemy:setAnimSpeed(14.4 / (120 / bpm))
 			end
 		end
 
 		if health >= 80 then
-			if enemyIcon.anim.name == "skid and pump" then
+			if enemyIcon:getAnimName() == "skid and pump" then
 				enemyIcon:animate("skid and pump losing", false)
 			end
 		else
-			if enemyIcon.anim.name == "skid and pump losing" then
+			if enemyIcon:getAnimName() == "skid and pump losing" then
 				enemyIcon:animate("skid and pump", false)
 			end
 		end
 
 		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
-			if storyMode and songNum < 2 then
-				songNum = songNum + 1
+			if storyMode and song < 2 then
+				song = song + 1
 
 				self:load()
 			else

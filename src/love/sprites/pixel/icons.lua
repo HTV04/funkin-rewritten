@@ -2,7 +2,7 @@
 This file is part of Friday Night Funkin' Rewritten by HTV04
 ------------------------------------------------------------------------------]]
 
-return graphics.newPixelSprite(
+return graphics.newSprite(
 	images["icons"],
 	{
 		{x = 0, y = 0, width = 30, height = 30, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Boyfriend
@@ -15,5 +15,8 @@ return graphics.newPixelSprite(
 		["spirit"] = {start = 3, stop = 3, speed = 0, offsetX = 0, offsetY = 0}
 	},
 	"boyfriend",
-	false
+	false,
+	{
+		floored = true
+	}
 )

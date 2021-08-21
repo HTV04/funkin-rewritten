@@ -2,7 +2,7 @@
 This file is part of Friday Night Funkin' DOS by HTV04
 ------------------------------------------------------------------------------]]
 
-return graphics.newPixelSprite(
+return graphics.newSprite(
 	love.graphics.newImage(graphics.imagePath("pixel/girlfriend")),
 	-- Automatically generated from gfPixel.xml
 	{

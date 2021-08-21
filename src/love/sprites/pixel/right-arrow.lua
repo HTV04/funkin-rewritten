@@ -17,16 +17,16 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-return graphics.newPixelSprite(
+return graphics.newSprite(
 	images["notes"],
 	{
-		{x = 55, y = 1, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Right Arrow
-		{x = 55, y = 19, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Right Arrow On
-		{x = 55, y = 37, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 3: Right Arrow Press
-		{x = 55, y = 55, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 4: Right Arrow Confirm 1
-		{x = 55, y = 73, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 5: Right Arrow Confirm 2
-		{x = 26, y = 90, width = 7, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 6: Right Hold
-		{x = 26, y = 97, width = 7, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 7: Right End
+		{x = 54, y = 0, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Right Arrow
+		{x = 54, y = 18, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Right Arrow On
+		{x = 54, y = 36, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 3: Right Arrow Press
+		{x = 54, y = 54, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 4: Right Arrow Confirm 1
+		{x = 54, y = 72, width = 17, height = 17, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 5: Right Arrow Confirm 2
+		{x = 24, y = 89, width = 7, height = 6, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 6: Right Hold
+		{x = 24, y = 97, width = 7, height = 6, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 7: Right End
 	},
 	{
 		["off"] = {start = 1, stop = 1, speed = 0, offsetX = 0, offsetY = 0},
@@ -37,5 +37,8 @@ return graphics.newPixelSprite(
 		["end"] = {start = 7, stop = 7, speed = 0, offsetX = 0, offsetY = 0}
 	},
 	"off",
-	false
+	false,
+	{
+		floored = true
+	}
 )

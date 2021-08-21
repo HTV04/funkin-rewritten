@@ -330,5 +330,5 @@ return graphics.newSprite(
         ["idle"] = {start = 282, stop = 295, speed = 24, offsetX = 0, offsetY = 0}
     },
 	"idle",
-	true
+	false
 )

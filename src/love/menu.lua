@@ -17,6 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local menuState, songNum, songAppend
+
 local titleBG = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/title-bg")))
 local logo = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/logo")))
 
@@ -83,7 +85,7 @@ girlfriendTitle.x, girlfriendTitle.y = 300, -75
 music:setLooping(true)
 
 return {
-	enter = function(self)
+	enter = function(self, previous)
 		gameOver = false
 		storyMode = false
 
@@ -169,7 +171,7 @@ return {
 								storyMode = true
 							end
 
-							Gamestate.switch(weekData[weekNum])
+							Gamestate.switch(weekData[weekNum], songNum, songAppend)
 
 							status.setLoading(false)
 						end

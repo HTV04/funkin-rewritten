@@ -17,12 +17,17 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
+local song, difficulty
+
 local sky, city, cityWindows, behindTrain, street
 local winColors, winColor
 
 return {
-	enter = function(self)
+	enter = function(self, previous, songNum, songAppend)
 		weeks:enter()
+
+		song = songNum
+		difficulty = songAppend
 
 		cam.sizeX, cam.sizeY = 1, 1
 		camScale.x, camScale.y = 1, 1
@@ -62,10 +67,10 @@ return {
 	load = function(self)
 		weeks:load()
 
-		if songNum == 3 then
+		if song == 3 then
 			inst = love.audio.newSource("music/week3/blammed-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week3/blammed-voices.ogg", "stream")
-		elseif songNum == 2 then
+		elseif song == 2 then
 			inst = love.audio.newSource("music/week3/philly-nice-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week3/philly-nice-voices.ogg", "stream")
 		else
@@ -82,12 +87,12 @@ return {
 	initUI = function(self)
 		weeks:initUI()
 
-		if songNum == 3 then
-			weeks:generateNotes(love.filesystem.load("charts/week3/blammed" .. songAppend .. ".lua")())
-		elseif songNum == 2 then
-			weeks:generateNotes(love.filesystem.load("charts/week3/philly-nice" .. songAppend .. ".lua")())
+		if song == 3 then
+			weeks:generateNotes(love.filesystem.load("charts/week3/blammed" .. difficulty .. ".lua")())
+		elseif song == 2 then
+			weeks:generateNotes(love.filesystem.load("charts/week3/philly-nice" .. difficulty .. ".lua")())
 		else
-			weeks:generateNotes(love.filesystem.load("charts/week3/pico" .. songAppend .. ".lua")())
+			weeks:generateNotes(love.filesystem.load("charts/week3/pico" .. difficulty .. ".lua")())
 		end
 	end,
 
@@ -127,18 +132,18 @@ return {
 		end
 
 		if health >= 80 then
-			if enemyIcon.anim.name == "pico" then
+			if enemyIcon:getAnimName() == "pico" then
 				enemyIcon:animate("pico losing", false)
 			end
 		else
-			if enemyIcon.anim.name == "pico losing" then
+			if enemyIcon:getAnimName() == "pico losing" then
 				enemyIcon:animate("pico", false)
 			end
 		end
 
 		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
-			if storyMode and songNum < 3 then
-				songNum = songNum + 1
+			if storyMode and song < 3 then
+				song = song + 1
 
 				self:load()
 			else

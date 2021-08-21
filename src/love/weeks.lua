@@ -83,10 +83,6 @@ return {
 		end
 		enemyIcon.sizeX, enemyIcon.sizeY = 1.5, 1.5
 		boyfriendIcon.sizeX, boyfriendIcon.sizeY = -1.5, 1.5
-
-		for i = 1, 3 do
-			sounds["miss"][i]:setVolume(0.25)
-		end
 	end,
 
 	load = function(self)
@@ -200,23 +196,28 @@ return {
 							table.insert(enemyNotes[id], sprite())
 							enemyNotes[id][c].x = x
 							enemyNotes[id][c].y = 400 - noteTime * 0.6 * speed
+
 							enemyNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #enemyNotes[id] + 1
 
 									table.insert(enemyNotes[id], sprite())
 									enemyNotes[id][c].x = x
 									enemyNotes[id][c].y = 400 - (noteTime + k) * 0.6 * speed
-									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										enemyNotes[id][c].y = enemyNotes[id][c].y - 11
-										enemyNotes[id][c].orientation = math.pi
 
-										enemyNotes[id][c]:animate("end", false)
-									else
-										enemyNotes[id][c]:animate("hold", false)
-									end
+									enemyNotes[id][c]:animate("hold", false)
 								end
+
+								c = #enemyNotes[id]
+
+								enemyNotes[id][c].offsetY = -10
+								enemyNotes[id][c].sizeY = -1
+
+								enemyNotes[id][c]:animate("end", false)
 							end
 						else
 							local id = noteType + 1
@@ -226,23 +227,28 @@ return {
 							table.insert(boyfriendNotes[id], sprite())
 							boyfriendNotes[id][c].x = x
 							boyfriendNotes[id][c].y = 400 - noteTime * 0.6 * speed
+
 							boyfriendNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #boyfriendNotes[id] + 1
 
 									table.insert(boyfriendNotes[id], sprite())
 									boyfriendNotes[id][c].x = x
 									boyfriendNotes[id][c].y = 400 - (noteTime + k) * 0.6 * speed
-									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										boyfriendNotes[id][c].y = boyfriendNotes[id][c].y - 11
-										boyfriendNotes[id][c].orientation = math.pi
 
-										boyfriendNotes[id][c]:animate("end", false)
-									else
-										boyfriendNotes[id][c]:animate("hold", false)
-									end
+									boyfriendNotes[id][c]:animate("hold", false)
 								end
+
+								c = #boyfriendNotes[id]
+
+								boyfriendNotes[id][c].offsetY = -10
+								boyfriendNotes[id][c].sizeY = -1
+
+								boyfriendNotes[id][c]:animate("end", false)
 							end
 						end
 					else
@@ -254,23 +260,28 @@ return {
 							table.insert(boyfriendNotes[id], sprite())
 							boyfriendNotes[id][c].x = x
 							boyfriendNotes[id][c].y = 400 - noteTime * 0.6 * speed
+
 							boyfriendNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #boyfriendNotes[id] + 1
 
 									table.insert(boyfriendNotes[id], sprite())
 									boyfriendNotes[id][c].x = x
 									boyfriendNotes[id][c].y = 400 - (noteTime + k) * 0.6 * speed
-									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										boyfriendNotes[id][c].y = boyfriendNotes[id][c].y - 11
-										boyfriendNotes[id][c].orientation = math.pi
 
-										boyfriendNotes[id][c]:animate("end", false)
-									else
-										boyfriendNotes[id][c]:animate("hold", false)
-									end
+									boyfriendNotes[id][c]:animate("hold", false)
 								end
+
+								c = #boyfriendNotes[id]
+
+								boyfriendNotes[id][c].offsetY = -10
+								boyfriendNotes[id][c].sizeY = -1
+
+								boyfriendNotes[id][c]:animate("end", false)
 							end
 						else
 							local id = noteType + 1
@@ -280,23 +291,28 @@ return {
 							table.insert(enemyNotes[id], sprite())
 							enemyNotes[id][c].x = x
 							enemyNotes[id][c].y = 400 - noteTime * 0.6 * speed
+
 							enemyNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #enemyNotes[id] + 1
 
 									table.insert(enemyNotes[id], sprite())
 									enemyNotes[id][c].x = x
 									enemyNotes[id][c].y = 400 - (noteTime + k) * 0.6 * speed
-									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										enemyNotes[id][c].y = enemyNotes[id][c].y - 11
-										enemyNotes[id][c].orientation = math.pi
 
-										enemyNotes[id][c]:animate("end", false)
-									else
-										enemyNotes[id][c]:animate("hold", false)
-									end
+									enemyNotes[id][c]:animate("hold", false)
 								end
+
+								c = #enemyNotes[id]
+
+								enemyNotes[id][c].offsetY = -10
+								enemyNotes[id][c].sizeY = -1
+
+								enemyNotes[id][c]:animate("end", false)
 							end
 						end
 					end
@@ -310,22 +326,27 @@ return {
 							table.insert(enemyNotes[id], sprite())
 							enemyNotes[id][c].x = x
 							enemyNotes[id][c].y = -400 + noteTime * 0.6 * speed
+
 							enemyNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #enemyNotes[id] + 1
 
 									table.insert(enemyNotes[id], sprite())
 									enemyNotes[id][c].x = x
 									enemyNotes[id][c].y = -400 + (noteTime + k) * 0.6 * speed
-									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										enemyNotes[id][c].y = enemyNotes[id][c].y + 10
 
-										enemyNotes[id][c]:animate("end", false)
-									else
-										enemyNotes[id][c]:animate("hold", false)
-									end
+									enemyNotes[id][c]:animate("hold", false)
 								end
+
+								c = #enemyNotes[id]
+
+								enemyNotes[id][c].offsetY = -10
+
+								enemyNotes[id][c]:animate("end", false)
 							end
 						else
 							local id = noteType + 1
@@ -335,22 +356,27 @@ return {
 							table.insert(boyfriendNotes[id], sprite())
 							boyfriendNotes[id][c].x = x
 							boyfriendNotes[id][c].y = -400 + noteTime * 0.6 * speed
+
 							boyfriendNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #boyfriendNotes[id] + 1
 
 									table.insert(boyfriendNotes[id], sprite())
 									boyfriendNotes[id][c].x = x
 									boyfriendNotes[id][c].y = -400 + (noteTime + k) * 0.6 * speed
-									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										boyfriendNotes[id][c].y = boyfriendNotes[id][c].y + 10
 
-										boyfriendNotes[id][c]:animate("end", false)
-									else
-										boyfriendNotes[id][c]:animate("hold", false)
-									end
+									boyfriendNotes[id][c]:animate("hold", false)
 								end
+
+								c = #boyfriendNotes[id]
+
+								boyfriendNotes[id][c].offsetY = -10
+
+								boyfriendNotes[id][c]:animate("end", false)
 							end
 						end
 					else
@@ -362,22 +388,27 @@ return {
 							table.insert(boyfriendNotes[id], sprite())
 							boyfriendNotes[id][c].x = x
 							boyfriendNotes[id][c].y = -400 + noteTime * 0.6 * speed
+
 							boyfriendNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #boyfriendNotes[id] + 1
 
 									table.insert(boyfriendNotes[id], sprite())
 									boyfriendNotes[id][c].x = x
 									boyfriendNotes[id][c].y = -400 + (noteTime + k) * 0.6 * speed
-									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										boyfriendNotes[id][c].y = boyfriendNotes[id][c].y + 10
 
-										boyfriendNotes[id][c]:animate("end", false)
-									else
-										boyfriendNotes[id][c]:animate("hold", false)
-									end
+									boyfriendNotes[id][c]:animate("hold", false)
 								end
+
+								c = #boyfriendNotes[id]
+
+								boyfriendNotes[id][c].offsetY = -10
+
+								boyfriendNotes[id][c]:animate("end", false)
 							end
 						else
 							local id = noteType + 1
@@ -387,8 +418,12 @@ return {
 							table.insert(enemyNotes[id], sprite())
 							enemyNotes[id][c].x = x
 							enemyNotes[id][c].y = -400 + noteTime * 0.6 * speed
+
 							enemyNotes[id][c]:animate("on", false)
+
 							if chart[i].sectionNotes[j].noteLength > 0 then
+								local c
+
 								for k = 71 / speed, chart[i].sectionNotes[j].noteLength, 71 / speed do
 									local c = #enemyNotes[id] + 1
 
@@ -396,13 +431,19 @@ return {
 									enemyNotes[id][c].x = x
 									enemyNotes[id][c].y = -400 + (noteTime + k) * 0.6 * speed
 									if k > chart[i].sectionNotes[j].noteLength - 71 / speed then
-										enemyNotes[id][c].y = enemyNotes[id][c].y + 10
+										enemyNotes[id][c].offsetY = -10
 
 										enemyNotes[id][c]:animate("end", false)
 									else
 										enemyNotes[id][c]:animate("hold", false)
 									end
 								end
+
+								c = #enemyNotes[id]
+
+								enemyNotes[id][c].offsetY = -10
+
+								enemyNotes[id][c]:animate("end", false)
 							end
 						end
 					end
@@ -729,28 +770,51 @@ return {
 
 			if fakeBoyfriend then
 				fakeBoyfriend:animate("dies", false)
+
+				Timer.clear()
+
+				Timer.tween(
+					2,
+					cam,
+					{x = -fakeBoyfriend.x, y = -fakeBoyfriend.y, sizeX = camScale.x, sizeY = camScale.y},
+					"out-quad",
+					function()
+						inst = love.audio.newSource("music/game-over.ogg", "stream")
+						inst:setLooping(true)
+						inst:play()
+
+						if fakeBoyfriend then
+							fakeBoyfriend:animate("dead", true)
+						else
+							boyfriend:animate("dead", true)
+						end
+					end
+				)
 			else
 				boyfriend:animate("dies", false)
+
+				Timer.clear()
+
+				Timer.tween(
+					2,
+					cam,
+					{x = -boyfriend.x, y = -boyfriend.y, sizeX = camScale.x, sizeY = camScale.y},
+					"out-quad",
+					function()
+						inst = love.audio.newSource("music/game-over.ogg", "stream")
+						inst:setLooping(true)
+						inst:play()
+
+						if fakeBoyfriend then
+							fakeBoyfriend:animate("dead", true)
+						else
+							boyfriend:animate("dead", true)
+						end
+					end
+				)
 			end
 
-			Timer.clear()
-			Timer.tween(
-				2,
-				cam,
-				{x = -boyfriend.x, y = -boyfriend.y, sizeX = camScale.x, sizeY = camScale.y},
-				"out-quad",
-				function()
-					inst = love.audio.newSource("music/game-over.ogg", "stream")
-					inst:setLooping(true)
-					inst:play()
 
-					if fakeBoyfriend then
-						fakeBoyfriend:animate("dead", true)
-					else
-						boyfriend:animate("dead", true)
-					end
-				end
-			)
 		elseif health <= 20 and boyfriendIcon:getAnimName() == "boyfriend" then
 			boyfriendIcon:animate("boyfriend losing", false)
 		end
@@ -779,7 +843,7 @@ return {
 	draw = function(self)
 		if gameOver then
 			love.graphics.push()
-				love.graphics.translate(lovesize.getWidth() / 2, lovesize.getHeight() / 2)
+				love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
 
 				love.graphics.push()
 					love.graphics.scale(cam.sizeX, cam.sizeY)
@@ -797,7 +861,11 @@ return {
 
 	drawRating = function(self, multiplier)
 		love.graphics.push()
-			love.graphics.translate(cam.x * multiplier, cam.y * multiplier)
+			if multiplier then
+				love.graphics.translate(cam.x * multiplier, cam.y * multiplier)
+			else
+				love.graphics.translate(cam.x, cam.y)
+			end
 
 			graphics.setColor(1, 1, 1, ratingVisibility[1])
 			rating:draw()
