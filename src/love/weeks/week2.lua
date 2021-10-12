@@ -22,7 +22,7 @@ local song, difficulty
 local hauntedHouse
 
 return {
-	enter = function(self, previous, songNum, songAppend)
+	enter = function(self, from, songNum, songAppend)
 		weeks:enter()
 
 		song = songNum
@@ -51,7 +51,16 @@ return {
 	load = function(self)
 		weeks:load()
 
-		if song == 2 then
+		if song == 3 then
+			enemy = love.filesystem.load("sprites/week2/monster.lua")()
+
+			enemy.x, enemy.y = -610, 120
+
+			enemyIcon:animate("monster", false)
+
+			inst = love.audio.newSource("music/week2/monster-inst.ogg", "stream")
+			voices = love.audio.newSource("music/week2/monster-voices.ogg", "stream")
+		elseif song == 2 then
 			inst = love.audio.newSource("music/week2/south-inst.ogg", "stream")
 			voices = love.audio.newSource("music/week2/south-voices.ogg", "stream")
 		else
@@ -61,14 +70,15 @@ return {
 
 		self:initUI()
 
-		inst:play()
-		weeks:voicesPlay()
+		weeks:setupCountdown()
 	end,
 
 	initUI = function(self)
 		weeks:initUI()
 
-		if song == 2 then
+		if song == 3 then
+			weeks:generateNotes(love.filesystem.load("charts/week2/monster" .. difficulty .. ".lua")())
+		elseif song == 2 then
 			weeks:generateNotes(love.filesystem.load("charts/week2/south" .. difficulty .. ".lua")())
 		else
 			weeks:generateNotes(love.filesystem.load("charts/week2/spookeez" .. difficulty .. ".lua")())
@@ -76,38 +86,14 @@ return {
 	end,
 
 	update = function(self, dt)
-		if gameOver then
-			if not graphics.isFading() then
-				if input:pressed("confirm") then
-					inst:stop()
-					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
-					inst:play()
-
-					Timer.clear()
-
-					cam.x, cam.y = -boyfriend.x, -boyfriend.y
-
-					boyfriend:animate("dead confirm", false)
-
-					graphics.fadeOut(3, function() self:load() end)
-				elseif input:pressed("gameBack") then
-					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
-				end
-			end
-
-			boyfriend:update(dt)
-
-			return
-		end
-
 		weeks:update(dt)
 
 		hauntedHouse:update(dt)
 
-		if not hauntedHouse.animated then
+		if not hauntedHouse:isAnimated() then
 			hauntedHouse:animate("normal", false)
 		end
-		if song == 1 and musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 * (love.math.random(17) + 7) / bpm) < 100 then
+		if song == 1 and musicThres ~= oldMusicThres and math.fmod(absMusicTime, 60000 * (love.math.random(17) + 7) / bpm) < 100 then
 			audio.playSound(sounds["thunder"][love.math.random(2)])
 
 			hauntedHouse:animate("lightning", false)
@@ -115,29 +101,50 @@ return {
 			weeks:safeAnimate(boyfriend, "shaking", true, 3)
 		end
 
-		if musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 / bpm) < 100 then
+		if song ~= 3 and musicThres ~= oldMusicThres and math.fmod(absMusicTime, 60000 / bpm) < 100 then
 			if enemy:getAnimName() == "idle" then
 				enemy:setAnimSpeed(14.4 / (120 / bpm))
 			end
 		end
 
-		if health >= 80 then
-			if enemyIcon:getAnimName() == "skid and pump" then
-				enemyIcon:animate("skid and pump losing", false)
+		if song == 3 then
+			if health >= 80 then
+				if enemyIcon:getAnimName() == "monster" then
+					enemyIcon:animate("monster losing", false)
+				end
+			else
+				if enemyIcon:getAnimName() == "monster losing" then
+					enemyIcon:animate("monster", false)
+				end
 			end
 		else
-			if enemyIcon:getAnimName() == "skid and pump losing" then
-				enemyIcon:animate("skid and pump", false)
+			if health >= 80 then
+				if enemyIcon:getAnimName() == "skid and pump" then
+					enemyIcon:animate("skid and pump losing", false)
+				end
+			else
+				if enemyIcon:getAnimName() == "skid and pump losing" then
+					enemyIcon:animate("skid and pump", false)
+				end
 			end
 		end
 
-		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
-			if storyMode and song < 2 then
+		if not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
+			if storyMode and song < 3 then
 				song = song + 1
 
 				self:load()
 			else
-				graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
+				status.setLoading(true)
+
+				graphics.fadeOut(
+					0.5,
+					function()
+						Gamestate.switch(menu)
+
+						status.setLoading(false)
+					end
+				)
 			end
 		end
 
@@ -145,10 +152,6 @@ return {
 	end,
 
 	draw = function(self)
-		weeks:draw()
-
-		if gameOver then return end
-
 		love.graphics.push()
 			love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
 			love.graphics.scale(cam.sizeX, cam.sizeY)

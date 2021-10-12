@@ -26,7 +26,7 @@ local sky, school, street, treesBack
 local petals, trees, freaks
 
 return {
-	enter = function(self, previous, songNum, songAppend)
+	enter = function(self, from, songNum, songAppend)
 		love.graphics.setDefaultFilter("nearest")
 
 		status.setNoResize(true)
@@ -65,7 +65,6 @@ return {
 	end,
 
 	load = function(self)
-
 		if song == 3 then
 			school = love.filesystem.load("sprites/week6/evil-school.lua")()
 			enemy = love.filesystem.load("sprites/week6/spirit.lua")()
@@ -95,8 +94,7 @@ return {
 
 		self:initUI()
 
-		inst:play()
-		weeksPixel:voicesPlay()
+		weeksPixel:setupCountdown()
 	end,
 
 	initUI = function(self)
@@ -114,30 +112,6 @@ return {
 	update = function(self, dt)
 		graphics.screenBase(256, 144)
 
-		if gameOver then
-			if not graphics.isFading() then
-				if input:pressed("confirm") then
-					inst:stop()
-					inst = love.audio.newSource("music/pixel/game-over-end.ogg", "stream")
-					inst:play()
-
-					Timer.clear()
-
-					cam.x, cam.y = -fakeBoyfriend.x, -fakeBoyfriend.y
-
-					fakeBoyfriend:animate("dead confirm", false)
-
-					graphics.fadeOut(3, function() self:load() end)
-				elseif input:pressed("gameBack") then
-					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
-				end
-			end
-
-			fakeBoyfriend:update(dt)
-
-			return
-		end
-
 		weeksPixel:update(dt)
 
 		if song == 3 then
@@ -148,17 +122,26 @@ return {
 			freaks:update(dt)
 		end
 
-		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
+		if not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
 			if storyMode and song < 3 then
 				song = song + 1
 
 				self:load()
 			else
-				graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
+				status.setLoading(true)
+
+				graphics.fadeOut(
+					0.5,
+					function()
+						Gamestate.switch(menu)
+
+						status.setLoading(false)
+					end
+				)
 			end
 		end
 
-		weeksPixel:updateUI(dt)
+		weeksPixel:updateUI(dt, canvas)
 	end,
 
 	draw = function(self)
@@ -168,20 +151,6 @@ return {
 		graphics.screenBase(256, 144)
 		love.graphics.setCanvas(canvas)
 			love.graphics.clear()
-
-			weeksPixel:draw()
-
-			if gameOver then
-				love.graphics.setCanvas()
-				graphics.screenBase(love.graphics.getWidth(), love.graphics.getHeight())
-
-				canvasScale = math.min(math.floor(graphics.getWidth() / 256), math.floor(graphics.getHeight() / 144))
-				if canvasScale < 1 then canvasScale = math.min(graphics.getWidth() / 256, graphics.getHeight() / 144) end
-
-				love.graphics.draw(canvas, graphics.getWidth() / 2, graphics.getHeight() / 2, nil, canvasScale, canvasScale, 128, 72)
-
-				return
-			end
 
 			love.graphics.push()
 				love.graphics.translate(128, 72)

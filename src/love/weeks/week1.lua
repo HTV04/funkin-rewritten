@@ -22,7 +22,7 @@ local song, difficulty
 local stageBack, stageFront, curtains
 
 return {
-	enter = function(self, previous, songNum, songAppend)
+	enter = function(self, from, songNum, songAppend)
 		weeks:enter()
 
 		song = songNum
@@ -62,8 +62,7 @@ return {
 
 		self:initUI()
 
-		inst:play()
-		weeks:voicesPlay()
+		weeks:setupCountdown()
 	end,
 
 	initUI = function(self)
@@ -79,34 +78,10 @@ return {
 	end,
 
 	update = function(self, dt)
-		if gameOver then
-			if not graphics.isFading() then
-				if input:pressed("confirm") then
-					inst:stop()
-					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
-					inst:play()
-
-					Timer.clear()
-
-					cam.x, cam.y = -boyfriend.x, -boyfriend.y
-
-					boyfriend:animate("dead confirm", false)
-
-					graphics.fadeOut(3, function() self:load() end)
-				elseif input:pressed("gameBack") then
-					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
-				end
-			end
-
-			boyfriend:update(dt)
-
-			return
-		end
-
 		weeks:update(dt)
 
-		if song == 1 and musicThres ~= oldMusicThres and math.fmod(musicTime + 500, 480000 / bpm) < 100 then
-			boyfriend:animate("hey", false)
+		if song == 1 and musicThres ~= oldMusicThres and math.fmod(absMusicTime + 500, 480000 / bpm) < 100 then
+			weeks:safeAnimate(boyfriend, "hey", false, 3)
 		end
 
 		if health >= 80 then
@@ -119,13 +94,22 @@ return {
 			end
 		end
 
-		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
+		if not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
 			if storyMode and song < 3 then
 				song = song + 1
 
 				self:load()
 			else
-				graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
+				status.setLoading(true)
+
+				graphics.fadeOut(
+					0.5,
+					function()
+						Gamestate.switch(menu)
+
+						status.setLoading(false)
+					end
+				)
 			end
 		end
 
@@ -133,10 +117,6 @@ return {
 	end,
 
 	draw = function(self)
-		weeks:draw()
-
-		if gameOver then return end
-
 		love.graphics.push()
 			love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
 			love.graphics.scale(cam.sizeX, cam.sizeY)

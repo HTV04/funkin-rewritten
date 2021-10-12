@@ -1,6 +1,7 @@
 * text=auto eol=crlf
 
 *.sh text eol=lf
+*.py text eol=lf
 
 LICENSE text eol=lf
 Makefile text eol=lf

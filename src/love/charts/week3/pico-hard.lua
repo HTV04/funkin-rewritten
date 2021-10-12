@@ -22,6 +22,7 @@ return {
 	speed = 1.6,
 	{
 		mustHitSection = true,
+		bpm = 150.0,
 		sectionNotes = {}
 	},
 	{

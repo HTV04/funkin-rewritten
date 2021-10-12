@@ -26,7 +26,7 @@ local topBop, bottomBop, santa
 local scaryIntro = false
 
 return {
-	enter = function(self, previous, songNum, songAppend)
+	enter = function(self, from, songNum, songAppend)
 		cam.sizeX, cam.sizeY = 0.7, 0.7
 		camScale.x, camScale.y = 0.7, 0.7
 
@@ -37,25 +37,31 @@ return {
 		boyfriendFrameTimer = 0
 
 		sounds = {
-			["miss"] = {
+			countdown = {
+				three = love.audio.newSource("sounds/countdown-3.ogg", "static"),
+				two = love.audio.newSource("sounds/countdown-2.ogg", "static"),
+				one = love.audio.newSource("sounds/countdown-1.ogg", "static"),
+				go = love.audio.newSource("sounds/countdown-go.ogg", "static")
+			},
+			miss = {
 				love.audio.newSource("sounds/miss1.ogg", "static"),
 				love.audio.newSource("sounds/miss2.ogg", "static"),
 				love.audio.newSource("sounds/miss3.ogg", "static")
 			},
-			["death"] = love.audio.newSource("sounds/death.ogg", "static"),
-			["lights off"] = love.audio.newSource("sounds/week5/lights-off.ogg", "static"),
-			["lights on"] = love.audio.newSource("sounds/week5/lights-on.ogg", "static")
+			death = love.audio.newSource("sounds/death.ogg", "static"),
+			lightsOff = love.audio.newSource("sounds/week5/lights-off.ogg", "static"),
+			lightsOn = love.audio.newSource("sounds/week5/lights-on.ogg", "static")
 		}
 
 		images = {
-			["icons"] = love.graphics.newImage(graphics.imagePath("icons")),
-			["notes"] = love.graphics.newImage(graphics.imagePath("notes")),
-			["numbers"] = love.graphics.newImage(graphics.imagePath("numbers"))
+			icons = love.graphics.newImage(graphics.imagePath("icons")),
+			notes = love.graphics.newImage(graphics.imagePath("notes")),
+			numbers = love.graphics.newImage(graphics.imagePath("numbers"))
 		}
 
 		sprites = {
-			["icons"] = love.filesystem.load("sprites/icons.lua"),
-			["numbers"] = love.filesystem.load("sprites/numbers.lua")
+			icons = love.filesystem.load("sprites/icons.lua"),
+			numbers = love.filesystem.load("sprites/numbers.lua")
 		}
 
 		song = songNum
@@ -88,7 +94,6 @@ return {
 
 		rating = love.filesystem.load("sprites/rating.lua")()
 
-
 		girlfriend.x, girlfriend.y = -50, 410
 		enemy.x, enemy.y = -780, 410
 		boyfriend.x, boyfriend.y = 300, 620
@@ -97,13 +102,13 @@ return {
 		rating.sizeX, rating.sizeY = 0.75, 0.75
 		numbers = {}
 		for i = 1, 3 do
-			numbers[i] = sprites["numbers"]()
+			numbers[i] = sprites.numbers()
 
 			numbers[i].sizeX, numbers[i].sizeY = 0.5, 0.5
 		end
 
-		enemyIcon = sprites["icons"]()
-		boyfriendIcon = sprites["icons"]()
+		enemyIcon = sprites.icons()
+		boyfriendIcon = sprites.icons()
 
 		if settings.downscroll then
 			enemyIcon.y = -400
@@ -114,6 +119,9 @@ return {
 		end
 		enemyIcon.sizeX, enemyIcon.sizeY = 1.5, 1.5
 		boyfriendIcon.sizeX, boyfriendIcon.sizeY = -1.5, 1.5
+
+		countdownFade = {}
+		countdown = love.filesystem.load("sprites/countdown.lua")()
 
 		enemyIcon:animate("dearest duo", false)
 
@@ -130,8 +138,7 @@ return {
 				cam.x, cam.y = -150, 750
 				cam.sizeX, cam.sizeY = 2.5, 2.5
 
-				graphics.cancelTimer()
-				graphics.fade[1] = 1
+				graphics.setFade(1)
 			else
 				cam.sizeX, cam.sizeY = 0.9, 0.9
 			end
@@ -171,15 +178,13 @@ return {
 
 					camTimer = Timer.tween(2, cam, {x = -boyfriend.x + 100, y = -boyfriend.y + 75, sizeX = 0.9, sizeY = 0.9}, "out-quad")
 
-					inst:play()
-					weeks:voicesPlay()
+					weeks:setupCountdown()
 				end
 			)
 
-			audio.playSound(sounds["lights on"])
+			audio.playSound(sounds.lightsOn)
 		else
-			inst:play()
-			weeks:voicesPlay()
+			weeks:setupCountdown()
 		end
 	end,
 
@@ -196,30 +201,6 @@ return {
 	end,
 
 	update = function(self, dt)
-		if gameOver then
-			if not graphics.isFading() then
-				if input:pressed("confirm") then
-					inst:stop()
-					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
-					inst:play()
-
-					Timer.clear()
-
-					cam.x, cam.y = -fakeBoyfriend.x, -fakeBoyfriend.y
-
-					fakeBoyfriend:animate("dead confirm", false)
-
-					graphics.fadeOut(3, function() self:load() end)
-				elseif input:pressed("gameBack") then
-					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
-				end
-			end
-
-			fakeBoyfriend:update(dt)
-
-			return
-		end
-
 		if not scaryIntro then
 			weeks:update(dt)
 
@@ -228,7 +209,7 @@ return {
 				bottomBop:update(dt)
 				santa:update(dt)
 
-				if musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 / bpm) < 100 then
+				if musicThres ~= oldMusicThres and math.fmod(absMusicTime, 60000 / bpm) < 100 then
 					topBop:animate("anim", false)
 					bottomBop:animate("anim", false)
 					santa:animate("anim", false)
@@ -257,7 +238,7 @@ return {
 				end
 			end
 
-			if not scaryIntro and not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
+			if not (scaryIntro or countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
 				if storyMode and song < 3 then
 					song = song + 1
 
@@ -265,17 +246,25 @@ return {
 					if song == 3 then
 						scaryIntro = true
 
-						audio.playSound(sounds["lights off"])
+						audio.playSound(sounds.lightsOff)
 
-						graphics.cancelTimer()
-						graphics.fade[1] = 0
+						graphics.setFade(0)
 
 						Timer.after(3, function() self:load() end)
 					else
 						self:load()
 					end
 				else
-					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
+					status.setLoading(true)
+
+					graphics.fadeOut(
+						0.5,
+						function()
+							Gamestate.switch(menu)
+
+							status.setLoading(false)
+						end
+					)
 				end
 			end
 
@@ -284,10 +273,6 @@ return {
 	end,
 
 	draw = function(self)
-		weeks:draw()
-
-		if gameOver then return end
-
 		love.graphics.push()
 			love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
 			love.graphics.scale(cam.sizeX, cam.sizeY)
@@ -413,6 +398,10 @@ return {
 					love.graphics.print("Score: " .. score, 300, 400)
 					graphics.setColor(1, 1, 1)
 				end
+
+				graphics.setColor(1, 1, 1, countdownFade[1])
+				countdown:draw()
+				graphics.setColor(1, 1, 1)
 			love.graphics.pop()
 		end
 	end,

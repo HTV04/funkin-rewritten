@@ -127,8 +127,9 @@ return graphics.newSprite(
 		{x = 4272, y = 2831, width = 418, height = 725, offsetX = 0, offsetY = -34, offsetWidth = 418, offsetHeight = 759} -- 104: monster up note0023
 	},
     {
-        ["right"] = {start = 1, stop = 15, speed = 24, offsetX = -10, offsetY = 5},
-        ["left"] = {start = 16, stop = 35, speed = 24, offsetX = -30, offsetY = 11},
+        -- Left and right are swapped in the data
+		["left"] = {start = 1, stop = 15, speed = 24, offsetX = -10, offsetY = 5},
+        ["right"] = {start = 16, stop = 35, speed = 24, offsetX = -30, offsetY = 11},
         ["down"] = {start = 36, stop = 65, speed = 24, offsetX = -34, offsetY = -47},
         ["idle"] = {start = 66, stop = 80, speed = 24, offsetX = 0, offsetY = 0},
         ["up"] = {start = 81, stop = 104, speed = 24, offsetX = 4, offsetY = 32}

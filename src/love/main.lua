@@ -1,5 +1,5 @@
 --[[----------------------------------------------------------------------------
-Friday Night Funkin' Rewritten v1.0.1
+Friday Night Funkin' Rewritten v1.1.0 beta 2
 
 Copyright (C) 2021  HTV04
 
@@ -18,6 +18,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 function love.load()
+	local curOS = love.system.getOS()
+
 	-- Load libraries
 	baton = require "lib.baton"
 	ini = require "lib.ini"
@@ -31,130 +33,19 @@ function love.load()
 	graphics = require "modules.graphics"
 	input = require "modules.input"
 
-	-- Create, read, and apply settings
-	settingsStr = [[
-; Friday Night Funkin' Rewritten Settings
+	-- Load settings
+	settings = require "settings"
 
-[Video]
-; Screen/window width and height (you should change this to your device's screen resolution if you are using the "exclusive" fullscreen type)
-; NOTE: These settings will be ignored if using the "desktop" fullscreen type
-width=1280
-height=720
+	-- Load states
+	clickStart = require "states.click-start"
+	debugMenu = require "states.debug-menu"
+	menu = require "states.menu"
+	weeks = require "states.weeks"
+	weeksPixel = require "states.weeks-pixel"
 
-; Fullscreen settings, if you don't want Vsync (60 FPS cap), set "fullscreenType" to "exclusive" and "vsync" to "0"
-fullscreen=false
-fullscreenType=desktop
-vsync=1
-
-; Use hardware-compressed image formats to save RAM, disabling this will make the game eat your RAM for breakfast (and increase load times)
-; WARNING: Don't disable this on 32-bit versions of the game, or the game will quickly run out of memory and crash (thanks to the 2 GB RAM cap)
-; NOTE: If hardware compression is not supported on your device, this option will be silently ignored
-hardwareCompression=true
-
-[Audio]
-; Master volume
-; Possible values: 0.0-1.0
-volume=1.0
-
-[Game]
-; "Downscroll" makes arrows scroll down instead of up, and also moves some aspects of the UI around
-downscroll=false
-
-; "Kade Input" disables anti-spam, but counts "Shit" inputs as misses
-; NOTE: Currently unfinished, some aspects of this input mode still need to be implemented, like mash violations
-kadeInput=false
-
-[Advanced]
-; Show debug info on the screen
-; Possible values: false, fps, detailed
-showDebug=false
-
-; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings!
-[Data]
-settingsVer=3
-]]
-
-	if love.filesystem.getInfo("settings.ini") then
-		settingsIni = ini.load("settings.ini")
-
-		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3" then
-			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
-
-			local success, message = love.filesystem.write("settings.ini", settingsStr)
-
-			if success then
-				love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
-			else
-				love.window.showMessageBox("Error", message)
-			end
-		end
-	else
-		local success, message = love.filesystem.write("settings.ini", settingsStr)
-
-		if success then
-			love.window.showMessageBox("Success", "Settings file successfully created: \"" .. love.filesystem.getSaveDirectory() .. "/settings.ini\"")
-		else
-			love.window.showMessageBox("Error", message)
-		end
-	end
-
-	settingsIni = ini.load("settings.ini")
-	settings = {}
-
-	if ini.readKey(settingsIni, "Video", "fullscreen") == "true" then
-		love.window.setMode(
-			ini.readKey(settingsIni, "Video", "width"),
-			ini.readKey(settingsIni, "Video", "height"),
-			{
-				fullscreen = true,
-				fullscreentype = ini.readKey(settingsIni, "Video", "fullscreenType"),
-				vsync = tonumber(ini.readKey(settingsIni, "Video", "vsync"))
-			}
-		)
-	else
-		love.window.setMode(
-			ini.readKey(settingsIni, "Video", "width"),
-			ini.readKey(settingsIni, "Video", "height"),
-			{
-				vsync = tonumber(ini.readKey(settingsIni, "Video", "vsync")),
-				resizable = true
-			}
-		)
-	end
-	if ini.readKey(settingsIni, "Video", "hardwareCompression") == "true" then
-		settings.hardwareCompression = true
-
-		if love.graphics.getImageFormats()["DXT5"] then
-			graphics.setImageType("dds")
-		end
-	else
-		settings.hardwareCompression = false
-	end
-
-	love.audio.setVolume(tonumber(ini.readKey(settingsIni, "Audio", "volume")))
-
-	if ini.readKey(settingsIni, "Game", "downscroll") == "true" then
-		settings.downscroll = true
-	else
-		settings.downscroll = false
-	end
-	if ini.readKey(settingsIni, "Game", "kadeInput") == "true" then
-		settings.kadeInput = true
-	else
-		settings.kadeInput = false
-	end
-
-	if ini.readKey(settingsIni, "Advanced", "showDebug") == "fps" or ini.readKey(settingsIni, "Advanced", "showDebug") == "detailed" then
-		settings.showDebug = ini.readKey(settingsIni, "Advanced", "showDebug")
-	else
-		settings.showDebug = false
-	end
-
-	-- Load engine
-	debugMenu = require "debug-menu"
-	menu = require "menu"
-	weeks = require "weeks"
-	weeksPixel = require "weeks-pixel"
+	-- Load substates
+	gameOver = require "substates.game-over"
+	gameOverPixel = require "substates.game-over-pixel"
 
 	-- Load week data
 	weekData = {
@@ -167,7 +58,13 @@ settingsVer=3
 		require "weeks.week6"
 	}
 
-	-- Screen init
+	-- LÖVE init
+	if curOS == "OS X" then
+		love.window.setIcon(love.image.newImageData("icons/macos.png"))
+	else
+		love.window.setIcon(love.image.newImageData("icons/default.png"))
+	end
+
 	lovesize.set(1280, 720)
 
 	-- Variables
@@ -182,8 +79,8 @@ settingsVer=3
 		0 -- Boyfriend
 	}
 
-	gameOver = false
 	storyMode = false
+	countingDown = false
 
 	cam = {x = 0, y = 0, sizeX = 0.9, sizeY = 0.9}
 	camScale = {x = 0.9, y = 0.9}
@@ -192,7 +89,15 @@ settingsVer=3
 	musicTime = 0
 	health = 0
 
-	Gamestate.switch(menu)
+	if curOS == "Web" then
+		Gamestate.switch(clickStart)
+	else
+		Gamestate.switch(menu)
+	end
+end
+
+function love.resize(width, height)
+	lovesize.resize(width, height)
 end
 
 function love.keypressed(key)
@@ -207,8 +112,8 @@ function love.keypressed(key)
 	end
 end
 
-function love.resize(width, height)
-	lovesize.resize(width, height)
+function love.mousepressed(x, y, button, istouch, presses)
+	Gamestate.mousepressed(x, y, button, istouch, presses)
 end
 
 function love.update(dt)

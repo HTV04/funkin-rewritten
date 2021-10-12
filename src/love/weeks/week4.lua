@@ -24,30 +24,36 @@ local sunset
 local bgLimo, limoDancer, limo
 
 return {
-	enter = function(self, previous, songNum, songAppend)
+	enter = function(self, from, songNum, songAppend)
 		bpm = 100
 
 		enemyFrameTimer = 0
 		boyfriendFrameTimer = 0
 
 		sounds = {
-			["miss"] = {
+			countdown = {
+				three = love.audio.newSource("sounds/countdown-3.ogg", "static"),
+				two = love.audio.newSource("sounds/countdown-2.ogg", "static"),
+				one = love.audio.newSource("sounds/countdown-1.ogg", "static"),
+				go = love.audio.newSource("sounds/countdown-go.ogg", "static")
+			},
+			miss = {
 				love.audio.newSource("sounds/miss1.ogg", "static"),
 				love.audio.newSource("sounds/miss2.ogg", "static"),
 				love.audio.newSource("sounds/miss3.ogg", "static")
 			},
-			["death"] = love.audio.newSource("sounds/death.ogg", "static")
+			death = love.audio.newSource("sounds/death.ogg", "static")
 		}
 
 		images = {
-			["icons"] = love.graphics.newImage(graphics.imagePath("icons")),
-			["notes"] = love.graphics.newImage(graphics.imagePath("notes")),
-			["numbers"] = love.graphics.newImage(graphics.imagePath("numbers"))
+			icons = love.graphics.newImage(graphics.imagePath("icons")),
+			notes = love.graphics.newImage(graphics.imagePath("notes")),
+			numbers = love.graphics.newImage(graphics.imagePath("numbers"))
 		}
 
 		sprites = {
-			["icons"] = love.filesystem.load("sprites/icons.lua"),
-			["numbers"] = love.filesystem.load("sprites/numbers.lua")
+			icons = love.filesystem.load("sprites/icons.lua"),
+			numbers = love.filesystem.load("sprites/numbers.lua")
 		}
 
 		song = songNum
@@ -77,13 +83,13 @@ return {
 		rating.sizeX, rating.sizeY = 0.75, 0.75
 		numbers = {}
 		for i = 1, 3 do
-			numbers[i] = sprites["numbers"]()
+			numbers[i] = sprites.numbers()
 
 			numbers[i].sizeX, numbers[i].sizeY = 0.5, 0.5
 		end
 
-		enemyIcon = sprites["icons"]()
-		boyfriendIcon = sprites["icons"]()
+		enemyIcon = sprites.icons()
+		boyfriendIcon = sprites.icons()
 
 		if settings.downscroll then
 			enemyIcon.y = -400
@@ -94,6 +100,9 @@ return {
 		end
 		enemyIcon.sizeX, enemyIcon.sizeY = 1.5, 1.5
 		boyfriendIcon.sizeX, boyfriendIcon.sizeY = -1.5, 1.5
+
+		countdownFade = {}
+		countdown = love.filesystem.load("sprites/countdown.lua")()
 
 		enemyIcon:animate("mommy mearest", false)
 
@@ -116,8 +125,7 @@ return {
 
 		self:initUI()
 
-		inst:play()
-		weeks:voicesPlay()
+		weeks:setupCountdown()
 	end,
 
 	initUI = function(self)
@@ -133,34 +141,10 @@ return {
 	end,
 
 	update = function(self, dt)
-		if gameOver then
-			if not graphics.isFading() then
-				if input:pressed("confirm") then
-					inst:stop()
-					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
-					inst:play()
-
-					Timer.clear()
-
-					cam.x, cam.y = -fakeBoyfriend.x, -fakeBoyfriend.y
-
-					fakeBoyfriend:animate("dead confirm", false)
-
-					graphics.fadeOut(3, function() self:load() end)
-				elseif input:pressed("gameBack") then
-					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
-				end
-			end
-
-			fakeBoyfriend:update(dt)
-
-			return
-		end
-
 		weeks:update(dt)
 
 		-- Hardcoded M.I.L.F camera scaling
-		if song == 3 and musicTime > 56000 and musicTime < 67000 and musicThres ~= oldMusicThres and math.fmod(musicTime, 60000 / bpm) < 100 then
+		if song == 3 and musicTime > 56000 and musicTime < 67000 and musicThres ~= oldMusicThres and math.fmod(absMusicTime, 60000 / bpm) < 100 then
 			if camScaleTimer then Timer.cancel(camScaleTimer) end
 
 			camScaleTimer = Timer.tween((60 / bpm) / 16, cam, {sizeX = camScale.x * 1.05, sizeY = camScale.y * 1.05}, "out-quad", function() camScaleTimer = Timer.tween((60 / bpm), cam, {sizeX = camScale.x, sizeY = camScale.y}, "out-quad") end)
@@ -170,7 +154,7 @@ return {
 		limoDancer:update(dt)
 		limo:update(dt)
 
-		if musicThres ~= oldMusicThres and math.fmod(musicTime, 120000 / bpm) < 100 then
+		if musicThres ~= oldMusicThres and math.fmod(absMusicTime, 120000 / bpm) < 100 then
 			limoDancer:animate("anim", false)
 
 			limoDancer:setAnimSpeed(14.4 / (60 / bpm))
@@ -186,13 +170,22 @@ return {
 			end
 		end
 
-		if not graphics.isFading() and not inst:isPlaying() and not voices:isPlaying() then
+		if not (countingDown or graphics.isFading()) and not (inst:isPlaying() and voices:isPlaying()) then
 			if storyMode and song < 3 then
 				song = song + 1
 
 				self:load()
 			else
-				graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
+				status.setLoading(true)
+
+				graphics.fadeOut(
+					0.5,
+					function()
+						Gamestate.switch(menu)
+
+						status.setLoading(false)
+					end
+				)
 			end
 		end
 
@@ -200,10 +193,6 @@ return {
 	end,
 
 	draw = function(self)
-		weeks:draw()
-
-		if gameOver then return end
-
 		love.graphics.push()
 			love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
 			love.graphics.scale(cam.sizeX, cam.sizeY)

@@ -21,8 +21,11 @@ local difficulty
 
 local stageBack, stageFront, curtains
 
+local zoomTimer
+local zoom = {}
+
 return {
-	enter = function(self, previous, songNum, songAppend)
+	enter = function(self, from, songNum, songAppend)
 		weeks:enter()
 
 		difficulty = songAppend
@@ -47,12 +50,14 @@ return {
 	load = function(self)
 		weeks:load()
 
+		zoom[1] = 1
+
 		inst = nil
 		voices = love.audio.newSource("music/tutorial/tutorial.ogg", "stream")
 
 		self:initUI()
 
-		weeks:voicesPlay()
+		weeks:setupCountdown()
 	end,
 
 	initUI = function(self)
@@ -62,43 +67,25 @@ return {
 	end,
 
 	update = function(self, dt)
-		if gameOver then
-			if not graphics:isFading() then
-				if input:pressed("confirm") then
-					if inst then -- In case "confirm" is pressed before game over music starts
-						inst:stop()
-					end
-					inst = love.audio.newSource("music/game-over-end.ogg", "stream")
-					inst:play()
+		oldMusicThres = musicThres
+		if countingDown or love.system.getOS() == "Web" then -- Source:tell() can't be trusted on love.js!
+			musicTime = musicTime + 1000 * dt
+		else
+			if not graphics.isFading() then
+				local time = love.timer.getTime()
+				local seconds = voices:tell("seconds")
 
-					Timer.clear()
+				musicTime = musicTime + (time * 1000) - previousFrameTime
+				previousFrameTime = time * 1000
 
-					cam.x, cam.y = -boyfriend.x, -boyfriend.y
-
-					boyfriend:animate("dead confirm", false)
-
-					graphics.fadeOut(3, function() self:load() end)
-				elseif input:pressed("gameBack") then
-					graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
+				if lastReportedPlaytime ~= seconds * 1000 then
+					lastReportedPlaytime = seconds * 1000
+					musicTime = (musicTime + lastReportedPlaytime) / 2
 				end
 			end
-
-			boyfriend:update(dt)
-
-			return
 		end
-
-		oldMusicThres = musicThres
-
-		musicTime = musicTime + (love.timer.getTime() * 1000) - previousFrameTime
-		previousFrameTime = love.timer.getTime() * 1000
-
-		if voices:tell("seconds") * 1000 ~= lastReportedPlaytime then
-			musicTime = (musicTime + (voices:tell("seconds") * 1000)) / 2
-			lastReportedPlaytime = voices:tell("seconds") * 1000
-		end
-
-		musicThres = math.floor(musicTime / 100) -- Since "musicTime" isn't precise, this is needed
+		absMusicTime = math.abs(musicTime)
+		musicThres = math.floor(absMusicTime / 100) -- Since "musicTime" isn't precise, this is needed
 
 		for i = 1, #events do
 			if events[i].eventTime <= musicTime then
@@ -112,10 +99,15 @@ return {
 				if camTimer then
 					Timer.cancel(camTimer)
 				end
+				if zoomTimer then
+					Timer.cancel(zoomTimer)
+				end
 				if events[i].mustHitSection then
-					camTimer = Timer.tween(1.5, cam, {x = -boyfriend.x + 50, y = -boyfriend.y + 50}, "out-quad")
+					camTimer = Timer.tween(1.25, cam, {x = -boyfriend.x + 100, y = -boyfriend.y + 75}, "out-quad")
+					zoomTimer = Timer.tween(1.25, zoom, {1}, "in-bounce")
 				else
-					camTimer = Timer.tween(1.5, cam, {x = -girlfriend.x - 100, y = -girlfriend.y + 75}, "out-quad")
+					camTimer = Timer.tween(1.25, cam, {x = -girlfriend.x - 100, y = -girlfriend.y + 75}, "out-quad")
+					zoomTimer = Timer.tween(1.25, zoom, {1.25}, "in-bounce")
 				end
 
 				table.remove(events, i)
@@ -124,7 +116,7 @@ return {
 			end
 		end
 
-		if musicThres ~= oldMusicThres and math.fmod(musicTime, 240000 / bpm) < 100 then
+		if musicThres ~= oldMusicThres and math.fmod(absMusicTime, 240000 / bpm) < 100 then
 			if camScaleTimer then Timer.cancel(camScaleTimer) end
 
 			camScaleTimer = Timer.tween((60 / bpm) / 16, cam, {sizeX = camScale.x * 1.05, sizeY = camScale.y * 1.05}, "out-quad", function() camScaleTimer = Timer.tween((60 / bpm), cam, {sizeX = camScale.x, sizeY = camScale.y}, "out-quad") end)
@@ -133,7 +125,7 @@ return {
 		girlfriend:update(dt)
 		boyfriend:update(dt)
 
-		if musicThres ~= oldMusicThres and math.fmod(musicTime, 120000 / bpm) < 100 then
+		if musicThres ~= oldMusicThres and math.fmod(absMusicTime, 120000 / bpm) < 100 then
 			spriteTimers[1] = math.max(spriteTimers[1], spriteTimers[2]) -- Gross hack, but whatever
 
 			if spriteTimers[1] == 0 then
@@ -154,23 +146,31 @@ return {
 			end
 		end
 
-		if not graphics.isFading() and not voices:isPlaying() then
+		if musicThres ~= oldMusicThres and (musicThres == 185 or musicThres == 280) then
+			weeks:safeAnimate(girlfriend, "cheer", false, 1)
+			weeks:safeAnimate(boyfriend, "hey", false, 3)
+		end
+
+		if not (countingDown or graphics.isFading()) and not voices:isPlaying() then
 			storyMode = false
 
-			graphics.fadeOut(0.5, function() Gamestate.switch(menu) end)
+			graphics.fadeOut(
+					0.5,
+					function()
+						Gamestate.switch(menu)
+
+						status.setLoading(false)
+					end
+				)
 		end
 
 		weeks:updateUI(dt)
 	end,
 
 	draw = function(self)
-		weeks:draw()
-
-		if gameOver then return end
-
 		love.graphics.push()
 			love.graphics.translate(graphics.getWidth() / 2, graphics.getHeight() / 2)
-			love.graphics.scale(cam.sizeX, cam.sizeY)
+			love.graphics.scale(cam.sizeX * zoom[1], cam.sizeY * zoom[1])
 
 			love.graphics.push()
 				love.graphics.translate(cam.x * 0.9, cam.y * 0.9)

@@ -1,5 +1,5 @@
 # --------------------------------------------------------------------------------
-# Friday Night Funkin' Rewritten Makefile v1.2
+# Friday Night Funkin' Rewritten Makefile v1.3
 #
 # Copyright (C) 2021  HTV04
 #
@@ -17,11 +17,21 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 # --------------------------------------------------------------------------------
 
+all: lovefile desktop console
+
+desktop: lovefile win64 win32 macos
+
+console: lovefile switch
+
 lovefile:
 	@rm -rf build/lovefile
 	@mkdir -p build/lovefile
 
 	@cd src/love; zip -r -9 ../../build/lovefile/funkin-rewritten.love .
+
+	@mkdir -p build/release
+	@rm -f build/release/funkin-rewritten-lovefile.zip
+	@cd build/lovefile; zip -9 -r ../release/funkin-rewritten-lovefile.zip .
 
 win64: lovefile
 	@rm -rf build/win64
@@ -38,6 +48,10 @@ win64: lovefile
 
 	@cat resources/win64/love/love.exe build/lovefile/funkin-rewritten.love > build/win64/funkin-rewritten.exe
 
+	@mkdir -p build/release
+	@rm -f build/release/funkin-rewritten-win64.zip
+	@cd build/win64; zip -9 -r ../release/funkin-rewritten-win64.zip .
+
 win32: lovefile
 	@rm -rf build/win32
 	@mkdir -p build/win32
@@ -53,6 +67,10 @@ win32: lovefile
 
 	@cat resources/win32/love/love.exe build/lovefile/funkin-rewritten.love > build/win32/funkin-rewritten.exe
 
+	@mkdir -p build/release
+	@rm -f build/release/funkin-rewritten-win32.zip
+	@cd build/win32; zip -9 -r ../release/funkin-rewritten-win32.zip .
+
 macos: lovefile
 	@rm -rf build/macos
 	@mkdir -p "build/macos/Friday Night Funkin' Rewritten.app"
@@ -61,18 +79,27 @@ macos: lovefile
 
 	@cp build/lovefile/funkin-rewritten.love "build/macos/Friday Night Funkin' Rewritten.app/Contents/Resources"
 
-release: lovefile win64 win32 macos
 	@mkdir -p build/release
-
-	@rm -f build/release/funkin-rewritten-lovefile.zip
-	@rm -f build/release/funkin-rewritten-win64.zip
-	@rm -f build/release/funkin-rewritten-win32.zip
 	@rm -f build/release/funkin-rewritten-macos.zip
-
-	@cd build/lovefile; zip -9 -r ../release/funkin-rewritten-lovefile.zip .
-	@cd build/win64; zip -9 -r ../release/funkin-rewritten-win64.zip .
-	@cd build/win32; zip -9 -r ../release/funkin-rewritten-win32.zip .
 	@cd build/macos; zip -9 -r ../release/funkin-rewritten-macos.zip .
+
+switch: lovefile
+	@rm -rf build/switch
+	@mkdir -p build/switch/switch/funkin-rewritten
+
+	@nacptool --create "Friday Night Funkin' Rewritten" HTV04 "$(shell cat version.txt)" build/switch/funkin-rewritten.nacp
+
+	@mkdir build/switch/romfs
+	@cp build/lovefile/funkin-rewritten.love build/switch/romfs/game.love
+
+	@elf2nro resources/switch/love.elf build/switch/switch/funkin-rewritten/funkin-rewritten.nro --icon=resources/switch/icon.jpg --nacp=build/switch/funkin-rewritten.nacp --romfsdir=build/switch/romfs
+
+	@rm -r build/switch/romfs
+	@rm build/switch/funkin-rewritten.nacp
+
+	@mkdir -p build/release
+	@rm -f build/release/funkin-rewritten-switch.zip
+	@cd build/switch; zip -9 -r ../release/funkin-rewritten-switch.zip .
 
 clean:
 	@rm -rf build
