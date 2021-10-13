@@ -112,7 +112,7 @@ After running a build method, its release ZIP will be located at `./build/releas
 * Set up dependencies shown in `./resources/switch/dependencies.txt`
 * Run `make console`
 
-## All Platforms
+### All Platforms
 * Set up dependencies shown in `./resources/win64/dependencies.txt`
 * Set up dependencies shown in `./resources/win32/dependencies.txt`
 * Set up dependencies shown in `./resources/macos/dependencies.txt`
