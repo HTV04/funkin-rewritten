@@ -40,7 +40,7 @@ downscroll=false
 kadeInput=false
 
 ; "DFJK" makes the arrow keybinds as dfjk
-dfjk=true
+dfjk=false
 	
 [Advanced]
 ; Show debug info on the screen
@@ -83,7 +83,7 @@ downscroll=false
 kadeInput=false
 
 ; "DFJK" makes the arrow keybinds as dfjk
-dfjk=true
+dfjk=false
 	
 [Advanced]
 ; Show debug info on the screen
