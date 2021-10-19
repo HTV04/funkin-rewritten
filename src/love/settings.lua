@@ -79,6 +79,9 @@ downscroll=false
 ; NOTE: Currently unfinished, some aspects of this input mode still need to be implemented, like mash violations
 kadeInput=false
 
+; "DFJK" makes the arrow keybinds as dfjk
+dfjk=true
+	
 [Advanced]
 ; Show debug info on the screen
 ; Possible values: false, fps, detailed
