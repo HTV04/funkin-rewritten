@@ -31,7 +31,7 @@ function love.load()
 	status = require "modules.status"
 	audio = require "modules.audio"
 	graphics = require "modules.graphics"
-	input = require "modules.input"
+	input = require "settings"
 
 	-- Load settings
 	settings = require "settings"
