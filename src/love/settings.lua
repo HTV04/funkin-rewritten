@@ -39,6 +39,9 @@ downscroll=false
 ; NOTE: Currently unfinished, some aspects of this input mode still need to be implemented, like mash violations
 kadeInput=false
 
+; sets your arrow keybinds to DFJK
+dfjk=false
+
 [Advanced]
 ; Show debug info on the screen
 ; Possible values: false, fps, detailed
@@ -78,6 +81,9 @@ downscroll=false
 ; "Kade Input" disables anti-spam, but counts "Shit" inputs as misses
 ; NOTE: Currently unfinished, some aspects of this input mode still need to be implemented, like mash violations
 kadeInput=false
+
+; sets your arrow keybinds to DFJK
+dfjk=false
 
 [Advanced]
 ; Show debug info on the screen
@@ -119,6 +125,12 @@ if curOS == "NX" then
 
 	love.audio.setVolume(tonumber(ini.readKey(settingsIni, "Audio", "volume")))
 
+        if ini.readKey(settingsIni, "Game", "dfjk) == "true" then
+		settings.dfjk = true
+	else
+		settings.dfjk = false
+	end
+
 	if ini.readKey(settingsIni, "Game", "downscroll") == "true" then
 		settings.downscroll = true
 	else
@@ -142,6 +154,7 @@ elseif curOS == "Web" then -- For love.js, we won't bother creating and reading 
 	settings.downscroll = false
 	settings.kadeInput = false
 	settings.showDebug = false
+        settings.dfjk = false
 else
 	if love.filesystem.getInfo("settings.ini") then
 		settingsIni = ini.load("settings.ini")
@@ -206,6 +219,13 @@ else
 	else
 		settings.downscroll = false
 	end
+
+        if ini.readKey(settingsIni, "Game", "dfjk) == "true" then
+		settings.dfjk = true
+	else
+		settings.dfjk = false
+	end
+
 	if ini.readKey(settingsIni, "Game", "kadeInput") == "true" then
 		settings.kadeInput = true
 	else
