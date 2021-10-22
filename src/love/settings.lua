@@ -32,6 +32,9 @@ hardwareCompression=true
 volume=1.0
 
 [Game]
+; Sets your arrow keybinds to DFJK
+dfjk=false
+
 ; "Downscroll" makes arrows scroll down instead of up, and also moves some aspects of the UI around
 downscroll=false
 
@@ -46,7 +49,7 @@ showDebug=false
 
 ; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings!
 [Data]
-settingsVer=3-nx
+settingsVer=4-nx
 ]]) or (curOS ~= "Web" and [[
 ; Friday Night Funkin' Rewritten Settings
 
@@ -72,6 +75,9 @@ hardwareCompression=true
 volume=1.0
 
 [Game]
+; Sets your arrow keybinds to DFJK
+dfjk=false
+
 ; "Downscroll" makes arrows scroll down instead of up, and also moves some aspects of the UI around
 downscroll=false
 
@@ -86,7 +92,7 @@ showDebug=false
 
 ; These variables are read by the game for internal purposes, don't edit these unless you want to risk losing your current settings!
 [Data]
-settingsVer=3
+settingsVer=4
 ]])
 
 local settingsIni
@@ -100,7 +106,7 @@ if curOS == "NX" then
 	if love.filesystem.getInfo("settings.ini") then
 		settingsIni = ini.load("settings.ini")
 
-		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3-nx" then
+		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "4-nx" then
 			love.filesystem.write("settings.ini", settingsStr)
 		end
 	else
@@ -118,6 +124,12 @@ if curOS == "NX" then
 	end
 
 	love.audio.setVolume(tonumber(ini.readKey(settingsIni, "Audio", "volume")))
+
+    if ini.readKey(settingsIni, "Game", "dfjk") == "true" then
+		settings.dfjk = true
+	else
+		settings.dfjk = false
+	end
 
 	if ini.readKey(settingsIni, "Game", "downscroll") == "true" then
 		settings.downscroll = true
@@ -139,14 +151,17 @@ elseif curOS == "Web" then -- For love.js, we won't bother creating and reading 
 	love.window.setMode(1280, 720) -- Due to shared code, lovesize will be used even though the resolution will never change :/
 
 	settings.hardwareCompression = false
+
+	settings.dfjk = false
 	settings.downscroll = false
 	settings.kadeInput = false
+
 	settings.showDebug = false
 else
 	if love.filesystem.getInfo("settings.ini") then
 		settingsIni = ini.load("settings.ini")
 
-		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "3" then
+		if not settingsIni["Data"] or ini.readKey(settingsIni, "Data", "settingsVer") ~= "4" then
 			love.window.showMessageBox("Warning", "The current settings file is outdated, and will now be reset.")
 
 			local success, message = love.filesystem.write("settings.ini", settingsStr)
@@ -201,11 +216,18 @@ else
 
 	love.audio.setVolume(tonumber(ini.readKey(settingsIni, "Audio", "volume")))
 
+	if ini.readKey(settingsIni, "Game", "dfjk") == "true" then
+		settings.dfjk = true
+	else
+		settings.dfjk = false
+	end
+
 	if ini.readKey(settingsIni, "Game", "downscroll") == "true" then
 		settings.downscroll = true
 	else
 		settings.downscroll = false
 	end
+
 	if ini.readKey(settingsIni, "Game", "kadeInput") == "true" then
 		settings.kadeInput = true
 	else

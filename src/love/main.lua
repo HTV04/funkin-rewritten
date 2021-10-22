@@ -31,10 +31,10 @@ function love.load()
 	status = require "modules.status"
 	audio = require "modules.audio"
 	graphics = require "modules.graphics"
-	input = require "modules.input"
 
 	-- Load settings
 	settings = require "settings"
+	input = require "input"
 
 	-- Load states
 	clickStart = require "states.click-start"
