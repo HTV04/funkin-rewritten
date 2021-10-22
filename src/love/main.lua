@@ -31,12 +31,10 @@ function love.load()
 	status = require "modules.status"
 	audio = require "modules.audio"
 	graphics = require "modules.graphics"
+
 	-- Load settings
-	settings = require "settings" -- putting settings before input module for dfjk setting
-        -- Load modules continue
-	input = require "modules.input"
-
-
+	settings = require "settings"
+	input = require "input"
 
 	-- Load states
 	clickStart = require "states.click-start"
