@@ -162,7 +162,7 @@ music:setLooping(true)
 return {
 	enter = function(self, previous)
 		songNum = 0
-
+        story:animate("story hover", true)
         freeplay:animate("freeplay", true)
         options:animate("options", true)
 
