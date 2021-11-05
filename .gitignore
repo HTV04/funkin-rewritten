@@ -14,8 +14,8 @@ resources/win32/love/*
 resources/win64/love/*
 
 # Legacy Switch dependencies
-resources/switch/LOVEPotion.elf
-resources/switch/romfs/*
+resources/switch-old/LOVEPotion.elf
+resources/switch-old/romfs/*
 
 # Tools
 tools/funkin-json/*
