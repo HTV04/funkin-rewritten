@@ -4,5 +4,3 @@ LÖVE Potion: https://github.com/lovebrew/LovePotion/releases
 lovepotion-shaders: https://github.com/HTV04/lovepotion-shaders
 	Download it, extract it, and copy the DKSH files to ./romfs/shaders
 
-(Optional) NACP file:
-	Run in terminal: nacptool --create "Friday Night Funkin' Rewritten" "HTV04" "1.0.1-switch" "funkin-rewritten.nacp"

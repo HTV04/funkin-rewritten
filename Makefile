@@ -18,30 +18,30 @@
 # --------------------------------------------------------------------------------
 
 lovefile-switch:
-	@rm -rf build/lovefile-switch
-	@mkdir -p build/lovefile-switch/switch
+	@rm -rf build/lovefile-switch-old
+	@mkdir -p build/lovefile-switch-old/switch
 
-	@cd src/love; zip -r -9 ../../build/lovefile-switch/switch/funkin-rewritten.love .
+	@cd src/love; zip -r -9 ../../build/lovefile-switch-old/switch/funkin-rewritten.love .
 
 switch: lovefile-switch
-	@rm -rf build/switch
-	@mkdir -p build/switch/switch/funkin-rewritten
+	@rm -rf build/switch-old
+	@mkdir -p build/switch-old/switch/funkin-rewritten
 
-	@nacptool --create "Friday Night Funkin' Rewritten" HTV04 "$(shell cat version.txt)" build/switch/funkin-rewritten.nacp
-	@elf2nro resources/switch/LOVEPotion.elf build/switch/switch/funkin-rewritten/funkin-rewritten.nro --icon=resources/switch/icon.jpg --nacp=build/switch/funkin-rewritten.nacp --romfsdir=resources/switch/romfs
+	@nacptool --create "Friday Night Funkin' Rewritten" HTV04 "$(shell cat version.txt)" build/switch-old/funkin-rewritten.nacp
+	@elf2nro resources/switch-old/LOVEPotion.elf build/switch-old/switch/funkin-rewritten/funkin-rewritten.nro --icon=resources/switch-old/icon.jpg --nacp=build/switch-old/funkin-rewritten.nacp --romfsdir=resources/switch-old/romfs
 
-	@cat build/lovefile-switch/switch/funkin-rewritten.love >> build/switch/switch/funkin-rewritten/funkin-rewritten.nro
+	@cat build/lovefile-switch-old/switch/funkin-rewritten.love >> build/switch-old/switch/funkin-rewritten/funkin-rewritten.nro
 
-	@rm build/switch/funkin-rewritten.nacp
+	@rm build/switch-old/funkin-rewritten.nacp
 
 release: lovefile-switch switch
 	@mkdir -p build/release
 
-	@rm -f build/release/funkin-rewritten-lovefile-switch.zip
-	@rm -f build/release/funkin-rewritten-switch.zip
+	@rm -f build/release/funkin-rewritten-lovefile-switch-old.zip
+	@rm -f build/release/funkin-rewritten-switch-old.zip
 
-	@cd build/lovefile-switch; zip -9 -r ../release/funkin-rewritten-lovefile-switch.zip .
-	@cd build/switch; zip -9 -r ../release/funkin-rewritten-switch.zip .
+	@cd build/lovefile-switch-old; zip -9 -r ../release/funkin-rewritten-lovefile-switch-old.zip .
+	@cd build/switch-old; zip -9 -r ../release/funkin-rewritten-switch-old.zip .
 
 clean:
 	@rm -rf build

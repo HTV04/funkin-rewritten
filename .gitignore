@@ -9,16 +9,21 @@ build/*
 
 # Dependencies
 resources/macos/love.app/*
-resources/switch/LOVEPotion.elf
-resources/switch/romfs/*
+resources/switch/love.elf
 resources/win32/love/*
 resources/win64/love/*
 
+# Legacy Switch dependencies
+resources/switch-old/LOVEPotion.elf
+resources/switch-old/romfs/*
+
 # Tools
 tools/funkin-json/*
+tools/funkin-json-sniff/*
 tools/funkin-xml/*
 tools/funkin-xna/*
 
 !tools/funkin-json/funkin-json.py
+!tools/funkin-json-sniff/funkin-json-sniff.py
 !tools/funkin-xml/funkin-xml.py
 !tools/funkin-xna/funkin-xna.py
