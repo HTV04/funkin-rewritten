@@ -56,7 +56,7 @@ week4 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storym
 week5 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week5")))
 week6 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week6")))
 
-
+enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 
 
 
@@ -119,7 +119,7 @@ end
 
 enemyDanceLines.x, enemyDanceLines.y = -375, -170
 
-enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
+
 
 bfDanceLines.sizeX, bfDanceLines.sizeY = 0.7, 0.7
 gfDanceLines.sizeX, gfDanceLines.sizeY = 0.5, 0.5
@@ -167,6 +167,8 @@ return {
 		end
 		
 	end,
+
+
 
 
 	update = function(self, dt)
@@ -219,18 +221,25 @@ return {
 					weekNum = 7
 				end
 				if weekNum == 1 then
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 					enemyDanceLines:animate("none", true)
 				elseif weekNum == 2 then
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 					enemyDanceLines:animate("daddy dearest", true)
 				elseif weekNum == 3 then
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 					enemyDanceLines:animate("spooky", true)
 				elseif weekNum == 4 then
+					enemyDanceLines.sizeX = 0.5, 0.5
 					enemyDanceLines:animate("pico", true)
 				elseif weekNum == 5 then
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 					enemyDanceLines:animate("mommy mearest", true)
 				elseif weekNum == 6 then
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 					enemyDanceLines:animate("parents", true)
 				elseif weekNum == 7 then
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 1, 1
 					enemyDanceLines:animate("senpai", true)
 				end
 			elseif input:pressed("left") then
@@ -324,12 +333,14 @@ return {
 					love.graphics.printf("TRACKS\nSatin-Panties\nHigh\nM.I.L.F", -1050, 140, 853, "center", nil, 1.5, 1.5)
 					love.graphics.printf("MOMMY MUST MURDER", -585, -395, 853, "right", nil, 1.5, 1.5)
 				elseif weekNum == 6 then
+					
 					week6.y = 320
 					week4.y = 130
 					week5.x, week5.y = 0, 220
 					week4:draw()
 					week5:draw()
 					week6:draw()
+					
 					love.graphics.printf("TRACKS\nCocoa\nEggnog\nWinter-Horrorland", -1050, 140, 853, "center", nil, 1.5, 1.5)
 					love.graphics.printf("RED SNOW", -585, -395, 853, "right", nil, 1.5, 1.5)
 				elseif weekNum == 7 then
@@ -337,6 +348,7 @@ return {
 					week5.y = 130
 					week5:draw()
 					week6:draw()
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 1, 1
 					love.graphics.printf("TRACKS\nSenpai\nRoses\nThorns", -1050, 140, 853, "center", nil, 1.5, 1.5)
 					love.graphics.printf("HATING SIMULATOR FT. MOAWLING", -585, -395, 853, "right", nil, 1.5, 1.5)
 				end
