@@ -10,7 +10,7 @@ Friday Night Funkin' Rewritten features:
 * Other cool features, like downscroll
 * And more to come!
 
-Join the Discord server for updates: https://discord.gg/tQGzN2Wu48
+Join my Discord server for Funkin' Rewritten updates and discussion: https://discord.gg/tQGzN2Wu48
 
 # Controls
 If using a controller on a PC, a controller with an Xbox button layout is recommended. Controller buttons will be remappable in a future update.
@@ -37,13 +37,14 @@ If using a controller on a PC, a controller with an Xbox button layout is recomm
 * A - Confirm (Game Over)
 * Start - Exit
 
-## Debug (PC only)
+## Debug
 ### Keyboard
 * 6 - Take screenshot
   * Screenshot paths:
     * Windows - `%APPDATA%\funkin-rewritten\screenshots`
     * macOS - `~/Library/Application Support/funkin-rewritten/screenshots`
 	* Linux - `~/.local/share/love/funkin-rewritten/screenshots`
+	* Nintendo Switch - `./funkin-rewritten/screenshots`
 * 7 - Open debug menu
 
 # Settings
@@ -51,7 +52,7 @@ The settings file can be found in the following places on the following systems:
 * Windows - `%APPDATA%\funkin-rewritten\settings.ini`
 * macOS - `~/Library/Application Support/funkin-rewritten/settings.ini`
 * Linux - `~/.local/share/love/funkin-rewritten/settings.ini`
-* Nintendo Switch - `/switch/funkin-rewritten-switch/save/settings.ini`
+* Nintendo Switch - `./funkin-rewritten/settings.ini`
 
 # Progress
 **Menus** - 50% Complete
