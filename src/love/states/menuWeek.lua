@@ -230,7 +230,7 @@ return {
 					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 					enemyDanceLines:animate("spooky", true)
 				elseif weekNum == 4 then
-					enemyDanceLines.sizeX = 0.5, 0.5
+					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 					enemyDanceLines:animate("pico", true)
 				elseif weekNum == 5 then
 					enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
