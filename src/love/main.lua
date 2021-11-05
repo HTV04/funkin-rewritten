@@ -40,8 +40,13 @@ function love.load()
 	clickStart = require "states.click-start"
 	debugMenu = require "states.debug-menu"
 	menu = require "states.menu"
+	menuWeek = require "states.menuWeek"
+	menuSelect = require "states.menuSelect"
+	menuFreeplay = require "states.menuFreeplay"
 	weeks = require "states.weeks"
 	weeksPixel = require "states.weeks-pixel"
+
+	
 
 	-- Load substates
 	gameOver = require "substates.game-over"
