@@ -35,7 +35,7 @@ local difficultyAnim = love.filesystem.load("sprites/menu/storymenu/difficulty.l
 
 local bfDanceLines = love.filesystem.load("sprites/menu/storymenu/idlelines.lua")()
 
-local gfDanceLines = love.filesystem.load("sprites/menu/storymenu/idlelinesGF.lua")()
+local gfDanceLines = love.filesystem.load("sprites/menu/storymenu/idlelines.lua")()
 
 local tutorial, week1, week2, week3, week4, week5, week6
 
@@ -129,6 +129,7 @@ music:setLooping(true)
 return {
 	enter = function(self, previous)
         bfDanceLines:animate("boyfriend", true)
+		gfDanceLines:animate("girlfriend", true)
 		enemyDanceLines:animate("none", true)
 		songNum = 0
 
