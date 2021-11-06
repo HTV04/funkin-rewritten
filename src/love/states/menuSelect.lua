@@ -234,9 +234,13 @@ return {
 
 				--confirmFunc()
                 if menuButton == 1 then
+                    status.setLoading(true)
                     Gamestate.switch(menuWeek)
+                    status.setLoading(false)
                 elseif menuButton == 2 then
+                    status.setLoading(true)
                     Gamestate.switch(menuFreeplay)
+                    status.setLoading(false)
                 elseif menuButton == 3 then
                     love.window.showMessageBox("lol", "Not implemented yet :P")
                 end

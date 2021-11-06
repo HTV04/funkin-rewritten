@@ -32,153 +32,20 @@ local logo = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/l
 local girlfriendTitle = love.filesystem.load("sprites/menu/girlfriend-title.lua")()
 local titleEnter = love.filesystem.load("sprites/menu/titleEnter.lua")()
 
-local menuNames = {
-	"Story Mode",
-	"Freeplay",
-	"Options"
-}
-
-local weekMeta = {
-	{
-		"Tutorial",
-		{
-			"Tutorial"
-		}
-	},
-	{
-		"Week 1",
-		{
-			"Bopeebo",
-			"Fresh",
-			"Dadbattle"
-		}
-	},
-	{
-		"Week 2",
-		{
-			"Spookeez",
-			"South",
-			"Monster"
-		}
-	},
-	{
-		"Week 3",
-		{
-			"Pico",
-			"Philly Nice",
-			"Blammed"
-		}
-	},
-	{
-		"Week 4",
-		{
-			"Satin Panties",
-			"High",
-			"M.I.L.F"
-		}
-	},
-	{
-		"Week 5",
-		{
-			"Cocoa",
-			"Eggnog",
-			"Winter Horrorland"
-		}
-	},
-	{
-		"Week 6",
-		{
-			"Senpai",
-			"Roses",
-			"Thorns"
-		}
-	}
-}
-local difficultyStrs = {
-	"-easy",
-	"",
-	"-hard"
-}
-
 local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
 local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
 local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
 local function switchMenu(menu)
-	if menu == 4 then
-		love.window.showMessageBox("lol", "Not implemented yet :P")
-
-		return switchMenu(1)
-	elseif menu == 3 then
-		function upFunc()
-			if menuState == 3 then
-				songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
-			elseif menuState == 2 then
-				songNum = (songNum > 1) and songNum - 1 or #weekMeta[weekNum][2]
-			else
-				weekNum = (weekNum > 1) and weekNum - 1 or #weekMeta
-			end
-		end
-		function downFunc()
-			if menuState == 3 then
-				songDifficulty = (songDifficulty < 3) and songDifficulty + 1 or 1
-			elseif menuState == 2 then
-				songNum = (songNum < #weekMeta[weekNum][2]) and songNum + 1 or 1
-			else
-				weekNum = (weekNum < #weekMeta) and weekNum + 1 or 1
-			end
-		end
-		
-		function backFunc()
-			if menuState == 1 then
-				switchMenu(1)
-			else
-				menuState = menuState - 1
-			end
-		end
-		
-	elseif menu == 2 then
-		weekNum = 1
-		songNum = 1
-
-		function upFunc()
-			if menuState == 2 then
-				songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
-			else
-				weekNum = (weekNum > 1) and weekNum - 1 or #weekMeta
-			end
-		end
-		function downFunc()
-			if menuState == 2 then
-				songDifficulty = (songDifficulty < 3) and songDifficulty + 1 or 1
-			else
-				weekNum = (weekNum < #weekMeta) and weekNum + 1 or 1
-			end
-		end
-		
-		function backFunc()
-			if menuState == 1 then
-				switchMenu(1)
-			else
-				menuState = menuState - 1
-			end
-		end
-	else
-		function upFunc()
-			menuNum = (menuNum > 1) and menuNum - 1 or #menuNames
-		end
-		function downFunc()
-			menuNum = (menuNum < #menuNames) and menuNum + 1 or 1
-		end
 		function confirmFunc()
+            status.setLoading(true)
 			Gamestate.switch(menuSelect)
+            status.setLoading(false)
 		end
 		function backFunc()
 			graphics.fadeOut(0.5, love.event.quit)
 		end
-		
-	end
 
 	menuState = 1
 end
@@ -193,6 +60,7 @@ music:setLooping(true)
 
 return {
 	enter = function(self, previous)
+        titleEnter:animate("anim", true)
 		songNum = 0
 
 		cam.sizeX, cam.sizeY = 0.9, 0.9
@@ -212,18 +80,11 @@ return {
 		--titleEnter:animate("anim", true)
 
 		if not graphics.isFading() then
-			if input:pressed("up") then
-				audio.playSound(selectSound)
-
-				upFunc()
-			elseif input:pressed("down") then
-				audio.playSound(selectSound)
-
-				downFunc()
-			elseif input:pressed("confirm") then
+			if input:pressed("confirm") then
 				audio.playSound(confirmSound)
 
 				titleEnter:animate("pressed", false)
+
 
 				confirmFunc()
 			elseif input:pressed("back") then
@@ -246,8 +107,7 @@ return {
 				girlfriendTitle:draw()
 				titleEnter:draw()
 
-				--drawFunc()
-			love.graphics.pop()
+				love.graphics.pop()
 		love.graphics.pop()
 	end,
 

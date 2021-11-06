@@ -48,6 +48,7 @@ local difficultyStrs = {
 	"-hard"
 }
 
+
 tutorial = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week0")))
 week1 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week1")))
 week2 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week2")))
@@ -57,12 +58,6 @@ week5 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storym
 week6 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week6")))
 
 enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
-
-
-
-
-
-
 
 local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
 local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
@@ -133,6 +128,7 @@ music:setLooping(true)
 
 return {
 	enter = function(self, previous)
+        bfDanceLines:animate("boyfriend", true)
 		enemyDanceLines:animate("none", true)
 		songNum = 0
 
@@ -250,7 +246,6 @@ return {
 				else
 					songDifficulty = 3 
 				end
-				
 			elseif input:pressed("right") then
 				audio.playSound(selectSound)
 
@@ -261,6 +256,7 @@ return {
 				end
 			elseif input:pressed("confirm") then
 				audio.playSound(confirmSound)
+                bfDanceLines:animate("boyfriend confirm", false)
 
 				confirmFunc()
 			elseif input:pressed("back") then
