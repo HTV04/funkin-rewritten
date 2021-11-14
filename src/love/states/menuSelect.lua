@@ -161,6 +161,7 @@ options.y = 200
 
 return {
 	enter = function(self, previous)
+		menuButton = 1
 		songNum = 0
         story:animate("story hover", true)
         freeplay:animate("freeplay", true)
