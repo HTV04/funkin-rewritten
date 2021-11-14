@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-local upFunc, downFunc, confirmFunc, backFunc, drawFunc
+local upFunc, downFunc, confirmFunc, backFunc, drawFunc, musicStop
 
 local menuState
 
@@ -50,6 +50,8 @@ local function switchMenu(menu)
 	menuState = 1
 end
 
+
+
 logo.x, logo.y = -350, -125
 
 girlfriendTitle.x, girlfriendTitle.y = 325, 65
@@ -72,6 +74,10 @@ return {
 		graphics.fadeIn(0.5)
 
 		music:play()
+	end,
+
+	musicStop = function(self)
+		music:stop()
 	end,
 
 	update = function(self, dt)
@@ -112,7 +118,7 @@ return {
 	end,
 
 	leave = function(self)
-		music:stop()
+		--music:stop()
 
 		Timer.clear()
 	end

@@ -41,7 +41,7 @@ local songDifficulty = 2
 local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
 local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
-local music = love.audio.newSource("music/menu/menu.ogg", "stream")
+--local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
 local function switchMenu(menu)
 	if menu == 4 then
@@ -69,7 +69,7 @@ local function switchMenu(menu)
 		end
 		function confirmFunc()
 			if menuState == 3 then
-				music:stop()
+				--music:stop()
 
 				status.setLoading(true)
 
@@ -157,12 +157,12 @@ story.y = -200
 freeplay.y = 0
 options.y = 200
 
-music:setLooping(true)
+--music:setLooping(true)
 
 return {
 	enter = function(self, previous)
 		songNum = 0
-        --story:animate("story hover", true)
+        story:animate("story hover", true)
         freeplay:animate("freeplay", true)
         options:animate("options", true)
 
@@ -174,7 +174,7 @@ return {
 		graphics.setFade(0)
 		graphics.fadeIn(0.5)
 
-		music:play()
+		--music:play()
 	end,
 
 	update = function(self, dt)
@@ -269,7 +269,7 @@ return {
 	end,
 
 	leave = function(self)
-		music:stop()
+		--music:stop()
 
 		Timer.clear()
 	end

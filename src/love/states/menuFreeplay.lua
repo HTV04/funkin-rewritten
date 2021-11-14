@@ -101,7 +101,6 @@ local difficultyStrs = {
 local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
 local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
-local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
 local function switchMenu(menu)
 	if menu == 4 then
@@ -135,7 +134,6 @@ local function switchMenu(menu)
 		end
 		function confirmFunc()
 			if menuState == 3 then
-				music:stop()
 
 				status.setLoading(true)
 
@@ -218,13 +216,14 @@ function rightFunc()
 end
 function confirmFunc()
 	if menuState == 3 then
-		music:stop()
 
 		status.setLoading(true)
 
 		graphics.fadeOut(
 			0.5,
 			function()
+				menu:musicStop()
+				
 				songAppend = difficultyStrs[songDifficulty]
 
 				storyMode = false
@@ -273,7 +272,6 @@ function drawFunc()
 		love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
 	end
 end
-music:setLooping(true)
 
 return {
 	enter = function(self, previous)
@@ -287,7 +285,6 @@ return {
 		graphics.setFade(0)
 		graphics.fadeIn(0.5)
 
-		music:play()
 	end,
 
 	update = function(self, dt)
@@ -337,7 +334,6 @@ return {
 	end,
 
 	leave = function(self)
-		music:stop()
 
 		Timer.clear()
 	end

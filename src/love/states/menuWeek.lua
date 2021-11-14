@@ -62,7 +62,7 @@ enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
 local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
 local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
-local music = love.audio.newSource("music/menu/menu.ogg", "stream")
+--local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
 local function switchMenu(menu)
 	if menu == 4 then
@@ -124,7 +124,7 @@ gfDanceLines.x, gfDanceLines.y = 375, -170
 
 difficultyAnim.x, difficultyAnim.y = 375 + 25, 220
 
-music:setLooping(true)
+--music:setLooping(true)
 
 return {
 	enter = function(self, previous)
@@ -141,10 +141,10 @@ return {
 		graphics.setFade(0)
 		graphics.fadeIn(0.5)
 
-		music:play()
+		--music:play()
 
 		function confirmFunc()
-			music:stop()
+			menu:musicStop()
 			songNum = 1
 
 			status.setLoading(true)
@@ -358,7 +358,7 @@ return {
 	end,
 
 	leave = function(self)
-		music:stop()
+		--music:stop()
 
 		Timer.clear()
 	end
