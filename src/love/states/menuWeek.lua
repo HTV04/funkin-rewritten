@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
-local upFunc, downFunc, confirmFunc, backFunc, drawFunc
+local upFunc, downFunc, confirmFunc, backFunc, drawFunc, menuFunc, menuDesc, trackNames
 
 local menuState
 
@@ -99,7 +99,6 @@ return {
 		
 		 
 
-		--music:play()
 
 		function confirmFunc()
 			menu:musicStop()
@@ -309,13 +308,12 @@ return {
 				
 				love.graphics.printf(menuDesc, -585, -395, 853, "right", nil, 1.5, 1.5)
 				love.graphics.printf("TRACKS" .. trackNames, -1050, 140, 853, "center", nil, 1.5, 1.5)
-				--drawFunc()
+
 			love.graphics.pop()
 		love.graphics.pop()
 	end,
 
 	leave = function(self)
-		--music:stop()
 
 		Timer.clear()
 	end
