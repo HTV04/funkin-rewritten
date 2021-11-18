@@ -27,127 +27,13 @@ local options = love.filesystem.load("sprites/menu/menuButtons.lua")()
 local story = love.filesystem.load("sprites/menu/menuButtons.lua")()
 local freeplay = love.filesystem.load("sprites/menu/menuButtons.lua")()
 
-local menuButton = 1
-
-local menuNum = 1
-
-local weekNum = 1
-local songNum, songAppend
-local songDifficulty = 2
-
-
-
+local menuButton
 
 local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
 local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
 
 local function switchMenu(menu)
-	if menu == 4 then
-		love.window.showMessageBox("lol", "Not implemented yet :P")
-
-		return switchMenu(1)
-	elseif menu == 3 then
-		function leftFunc()
-			if menuState == 3 then
-				songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
-			elseif menuState == 2 then
-				songNum = (songNum > 1) and songNum - 1 or #weekMeta[weekNum][2]
-			else
-				weekNum = (weekNum > 1) and weekNum - 1 or #weekMeta
-			end
-		end
-		function rightFunc()
-			if menuState == 3 then
-				songDifficulty = (songDifficulty < 3) and songDifficulty + 1 or 1
-			elseif menuState == 2 then
-				songNum = (songNum < #weekMeta[weekNum][2]) and songNum + 1 or 1
-			else
-				weekNum = (weekNum < #weekMeta) and weekNum + 1 or 1
-			end
-		end
-		function confirmFunc()
-			if menuState == 3 then
-
-				status.setLoading(true)
-
-				graphics.fadeOut(
-					0.5,
-					function()
-						songAppend = difficultyStrs[songDifficulty]
-
-						storyMode = false
-
-						Gamestate.switch(weekData[weekNum], songNum, songAppend)
-
-						status.setLoading(false)
-					end
-				)
-			else
-				if menuState == 1 then
-					songNum = 1
-				end
-
-				menuState = menuState + 1
-			end
-		end
-		function backFunc()
-			if menuState == 1 then
-				switchMenu(1)
-			else
-				menuState = menuState - 1
-			end
-		end
-		function drawFunc()
-			graphics.setColor(1, 1, 1)
-
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
-			end
-		end
-	elseif menu == 2 then
-		weekNum = 1
-		songNum = 1
-
-		function confirmFunc()
-			
-		end
-		function backFunc()
-			if menuState == 1 then
-				switchMenu(1)
-			else
-				menuState = menuState - 1
-			end
-		end
-		function drawFunc()
-			graphics.setColor(1, 1, 1)
-
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
-			end
-		end
-	else
-		function confirmFunc()
-			switchMenu(menuNum + 1)
-		end
-		function backFunc()
-			graphics.fadeOut(0.5, love.event.quit)
-		end
-		function drawFunc()
-			graphics.setColor(1, 1, 1)
-
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Exit", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Exit", -640, 350, 1280, "center", nil, 1, 1)
-			end
-		end
-	end
-
 	menuState = 1
 end
 
@@ -266,7 +152,6 @@ return {
 	end,
 
 	leave = function(self)
-		--music:stop()
 
 		Timer.clear()
 	end
