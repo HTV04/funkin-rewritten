@@ -142,15 +142,15 @@ return {
 			elseif weekNum == 4 then
 				enemyDanceLines:animate("pico", true)
 				trackNames = "\nPico\nPhilly\nBlammed"
-				menuDec = "PICO"
+				menuDesc = "PICO"
 			elseif weekNum == 5 then
 				enemyDanceLines:animate("mommy mearest", true)
 				trackNames = "\nSatin-Panties\nHigh\nM.I.L.F"
-				menuDec = "MOMMY MUST MURDER"
+				menuDesc = "MOMMY MUST MURDER"
 			elseif weekNum == 6 then
 				enemyDanceLines:animate("parents", true)
 				trackNames = "\nCocoa\nEggnog\nWinter-Horrorland"
-				menuDec = "RED SNOW"
+				menuDesc = "RED SNOW"
 			elseif weekNum == 7 then
 				enemyDanceLines:animate("senpai", true)
 				trackNames = "\nSenpai\nRoses\nThorns"
