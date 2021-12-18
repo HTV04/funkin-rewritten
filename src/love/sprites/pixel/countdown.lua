@@ -4,7 +4,6 @@ return graphics.newSprite(
 		{x = 0, y = 0, width = 87, height = 41, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: Ready
 		{x = 87, y = 0, width = 80, height = 37, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: Set
 		{x = 167, y = 0, width = 97, height = 37, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 3: Date
-        {x = 0, y = 41, width = 92, height = 38, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0} -- 4: Date Glitch
 	},
 	{
 		["ready"] = {start = 1, stop = 1, speed = 0, offsetX = 0, offsetY = 0},
