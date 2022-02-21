@@ -130,7 +130,7 @@ return {
 			elseif input:pressed("back") then
 				audio.playSound(selectSound)
 
-				Gamestate.switch(menu)
+				Gamestate.switch(titleMenu)
 			end
 		end
 	end,

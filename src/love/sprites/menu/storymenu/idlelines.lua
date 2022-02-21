@@ -183,13 +183,14 @@ return graphics.newSprite(
         ["boyfriend confirm"] = {start = 1, stop = 26, speed = 24, offsetX = 0, offsetY = 0},
         ["boyfriend"] = {start = 27, stop = 40, speed = 24, offsetX = 0, offsetY = 0},
         ["girlfriend"] = {start = 55, stop = 84, speed = 24, offsetX = 0, offsetY = 0},
-        ["daddy dearest"] = {start = 41, stop = 54, speed = 24, offsetX = 0, offsetY = 0},
-        ["spooky"] = {start = 141, stop = 156, speed = 24, offsetX = 0, offsetY = 0},
-        ["pico"] = {start = 113, stop = 126, speed = 24, offsetX = 0, offsetY = 0},
-        ["mommy mearest"] = {start = 85, stop = 98, speed = 24, offsetX = 0, offsetY = 0},
-        ["parents"] = {start = 99, stop = 112, speed = 24, offsetX = 0, offsetY = 0},
-        ["senpai"] = {start = 127, stop = 140, speed = 24, offsetX = 0, offsetY = 0},
-        ["none"] = {start = 157, stop = 157, speed = 24, offsetX = 0, offsetY = 0}
+		["week1"] = {start = 157, stop = 157, speed = 24, offsetX = 0, offsetY = 0},
+        ["week2"] = {start = 41, stop = 54, speed = 24, offsetX = 0, offsetY = 0},
+        ["week3"] = {start = 141, stop = 156, speed = 24, offsetX = 0, offsetY = 0},
+        ["week4"] = {start = 113, stop = 126, speed = 24, offsetX = 0, offsetY = 0},
+        ["week5"] = {start = 85, stop = 98, speed = 24, offsetX = 0, offsetY = 0},
+        ["week6"] = {start = 99, stop = 112, speed = 24, offsetX = 0, offsetY = 0},
+        ["week7"] = {start = 127, stop = 140, speed = 24, offsetX = 0, offsetY = 0},
+		["week8"] = {start = 157, stop = 157, speed = 24, offsetX = 0, offsetY = 0}
     },
     "boyfriend",
     true

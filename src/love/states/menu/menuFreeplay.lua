@@ -110,10 +110,6 @@ local function switchMenu(menu)
 	elseif menu == 3 then
 		
 	elseif menu == 2 then
-		function tempMenu()
-			graphics.setColor(0, 0, 0)
-			love.graphics.printf("Welcome to the temporary freeplay menu", -640, 0, 853, "center", nil, 1.5, 1.5)
-		end
 		function leftFunc()
 			if menuState == 3 then
 				songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
@@ -181,21 +177,12 @@ local function switchMenu(menu)
 			end
 			graphics.setColor(1, 1, 1)
 
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
-			end
 		end
 	end
 
 	menuState = 1
 end
 
-function tempMenu()
-	graphics.setColor(0, 0, 0)
-	love.graphics.printf("Welcome to the temporary freeplay menu", -640, 0, 853, "center", nil, 1.5, 1.5)
-end
 function leftFunc()
 	if menuState == 3 then
 		songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
@@ -265,12 +252,6 @@ function drawFunc()
 		love.graphics.printf("Choose a week: < " .. weekMeta[weekNum][1] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
 	end
 	graphics.setColor(1, 1, 1)
-
-	if input:getActiveDevice() == "joy" then
-		love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-	else
-		love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
-	end
 end
 
 return {
@@ -324,10 +305,6 @@ return {
 			love.graphics.push()
 				love.graphics.scale(cam.sizeX, cam.sizeY)
 
-
-
-				
-				tempMenu()
 				drawFunc()
 			love.graphics.pop()
 		love.graphics.pop()

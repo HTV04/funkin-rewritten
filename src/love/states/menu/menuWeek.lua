@@ -39,15 +39,20 @@ local gfDanceLines = love.filesystem.load("sprites/menu/storymenu/idlelines.lua"
 
 local tutorial, week1, week2, week3, week4, week5, week6
 
-
-
-
+local weekDesc = {
+	"LEARN TO FUNK",
+	"DADDY DEAREST",
+	"SPOOKY MONTH",
+	"PICO",
+	"MOMMY MUST MURDER",
+	"RED SNOW",
+	"HATING SIMULATOR FT. MOAWLING"
+}
 local difficultyStrs = {
 	"-easy",
 	"",
 	"-hard"
 }
-
 
 tutorial = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week0")))
 week1 = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/storymenu/week1")))
@@ -80,7 +85,7 @@ return {
 	enter = function(self, previous)
         bfDanceLines:animate("boyfriend", true)
 		gfDanceLines:animate("girlfriend", true)
-		enemyDanceLines:animate("none", true)
+		enemyDanceLines:animate("week1", true)
 		songNum = 0
 		weekNum = 1
 		trackNames = "\nTutorial"
@@ -89,16 +94,10 @@ return {
 		cam.sizeX, cam.sizeY = 0.9, 0.9
 		camScale.x, camScale.y = 0.9, 0.9
 
-
-
 		switchMenu(1)
 
 		graphics.setFade(0)
 		graphics.fadeIn(0.5)
-
-		
-		 
-
 
 		function confirmFunc()
 			menu:musicStop()
@@ -109,6 +108,7 @@ return {
 			graphics.fadeOut(
 				0.5,
 				function()
+					
 					songAppend = difficultyStrs[songDifficulty]
 
 					storyMode = true
@@ -122,40 +122,33 @@ return {
 		
 	end,
 
-
-
-
 	update = function(self, dt)
 
+
 		function menuFunc()
+			if weekNum ~= 7 then
+				enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
+			elseif weekNum == 7 then
+				enemyDanceLines.sizeX, enemyDanceLines.sizeY = 1, 1
+			end
+
 			if weekNum == 1 then
 				trackNames = "\nTutorial"
-				menuDesc = "LEARN TO FUNK"
 			elseif weekNum == 2 then
-				enemyDanceLines:animate("daddy dearest", true)
 				trackNames = "\nBopeebo\nFresh\nDad-Battle"
-				menuDesc = "DADDY DEAREST"
 			elseif weekNum == 3 then
-				enemyDanceLines:animate("spooky", true)
 				trackNames = "\nSpookeez\nSouth\nMonster"
-				menuDesc = "SPOOKY MONTH"
 			elseif weekNum == 4 then
-				enemyDanceLines:animate("pico", true)
 				trackNames = "\nPico\nPhilly\nBlammed"
-				menuDesc = "PICO"
 			elseif weekNum == 5 then
-				enemyDanceLines:animate("mommy mearest", true)
 				trackNames = "\nSatin-Panties\nHigh\nM.I.L.F"
-				menuDesc = "MOMMY MUST MURDER"
 			elseif weekNum == 6 then
-				enemyDanceLines:animate("parents", true)
 				trackNames = "\nCocoa\nEggnog\nWinter-Horrorland"
-				menuDesc = "RED SNOW"
 			elseif weekNum == 7 then
-				enemyDanceLines:animate("senpai", true)
 				trackNames = "\nSenpai\nRoses\nThorns"
-				menuDesc = "HATING SIMULATOR FT. MOAWLING"
 			end
+
+			enemyDanceLines:animate("week" .. weekNum, true)
 		end
 		
 		enemyDanceLines:update(dt)
@@ -168,12 +161,6 @@ return {
 			difficultyAnim:animate("normal", true)
 		elseif songDifficulty == 3 then
 			difficultyAnim:animate("hard", true)
-		end
-
-		if weekNum ~= 7 then
-			enemyDanceLines.sizeX, enemyDanceLines.sizeY = 0.5, 0.5
-		elseif weekNum == 7 then
-			enemyDanceLines.sizeX, enemyDanceLines.sizeY = 1, 1
 		end
 
 		difficultyAnim:update(dt)
@@ -306,8 +293,10 @@ return {
 					week6:draw()
 				end
 				
-				love.graphics.printf(menuDesc, -585, -395, 853, "right", nil, 1.5, 1.5)
+				love.graphics.printf(weekDesc[weekNum], -585, -395, 853, "right", nil, 1.5, 1.5)
+				graphics.setColor(255 / 255, 117 / 255, 172 / 255)
 				love.graphics.printf("TRACKS" .. trackNames, -1050, 140, 853, "center", nil, 1.5, 1.5)
+				graphics.setColor(1,1,1)
 
 			love.graphics.pop()
 		love.graphics.pop()

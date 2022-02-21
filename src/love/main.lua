@@ -39,14 +39,12 @@ function love.load()
 	-- Load states
 	clickStart = require "states.click-start"
 	debugMenu = require "states.debug-menu"
-	menu = require "states.menu"
-	menuWeek = require "states.menuWeek"
-	menuSelect = require "states.menuSelect"
-	menuFreeplay = require "states.menuFreeplay"
+	titleMenu = require "states.menu.titleMenu"
+	menuWeek = require "states.menu.menuWeek"
+	menuSelect = require "states.menu.menuSelect"
+	menuFreeplay = require "states.menu.menuFreeplay"
 	weeks = require "states.weeks"
 	weeksPixel = require "states.weeks-pixel"
-
-	
 
 	-- Load substates
 	gameOver = require "substates.game-over"
@@ -97,7 +95,7 @@ function love.load()
 	if curOS == "Web" then
 		Gamestate.switch(clickStart)
 	else
-		Gamestate.switch(menu)
+		Gamestate.switch(titleMenu)
 	end
 end
 
