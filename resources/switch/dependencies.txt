@@ -1,2 +1,0 @@
-love-nx 11.3-nx4: https://github.com/retronx-team/love-nx/releases/download/11.3-nx4/love.elf
-	Download it to .
