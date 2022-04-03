@@ -48,6 +48,7 @@ weeks = {
 
 		girlfriend = lovedos.filesystem.load("sprites/gf.lua")()
 		boyfriend = lovedos.filesystem.load("sprites/bf.lua")()
+		fakeBoyfriend = lovedos.filesystem.load("sprites/bfdead.lua")()
 
 		enemyIcon = sprites["icons"]()
 		boyfriendIcon = sprites["icons"]()
@@ -284,8 +285,8 @@ weeks = {
 		if not y then y = 0 end
 		if not offset then offset = 1 end
 
-		object.x = cam.x * offset + 160 + x
-		object.y = cam.y * offset + 100 + y
+		object.x = 160 + cam.x * offset + x
+		object.y = 100 + cam.y * offset + y
 	end,
 
 	updateUI = function(dt)
@@ -407,19 +408,18 @@ weeks = {
 		if health > 100 then
 			health = 100
 		elseif health <= 0 then -- Game over, yeah!
+			inst:stop()
+			voices:stop()
+
 			gameOver = true
 
-			if weekNum == 1 then -- TODO: Make this less gross
-				fakeBoyfriend:animate("dies", false)
-			else
-				boyfriend:animate("dies", false)
-			end
+			fakeBoyfriend:animate("dies", false)
 
 			Timer.clear()
 			Timer.tween(
 				2,
 				cam,
-				{x = -boyfriend.x, y = -boyfriend.y},
+				{x = -50, y = -30}, -- Gross hack
 				"out-quad",
 				function()
 					fakeBoyfriend:animate("dead", true)

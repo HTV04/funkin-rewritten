@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("IMAGES/GF.PNG"),
+	love.graphics.newImage("images/gf.png"),
 	-- Automatically generated from gfPixel.xml
 	{
 		{x = 0, y = 0, width = 120, height = 106, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: GF IDLE0000

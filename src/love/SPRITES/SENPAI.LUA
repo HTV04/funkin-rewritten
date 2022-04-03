@@ -18,7 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
 
 return Sprite (
-	love.graphics.newImage("IMAGES/SENPAI.PNG"),
+	love.graphics.newImage("images/senpai.png"),
 	{
 		{x = 1755, y = 0, width = 125, height = 163, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 1: SENPAI DOWN NOTE instance 10000
 		{x = 1755, y = 0, width = 125, height = 163, offsetX = 0, offsetY = 0, offsetWidth = 0, offsetHeight = 0}, -- 2: SENPAI DOWN NOTE instance 10001

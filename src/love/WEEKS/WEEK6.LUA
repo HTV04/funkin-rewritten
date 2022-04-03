@@ -73,15 +73,9 @@ weeks[1] = {
 
 		if gameOver then
 			if input:pressed("confirm") then
-				inst:stop()
-				inst = love.audio.newSource("music/g-over2.wav", "stream")
-				inst:play()
-
 				Timer.clear()
 
-				cam.x, cam.y = -boyfriend.x, -boyfriend.y
-
-				boyfriend:animate("dead confirm", false)
+				cam.x, cam.y = 25, 0
 
 				weeks[1].load()
 			elseif input:pressed("gameBack") then
@@ -89,7 +83,7 @@ weeks[1] = {
 			end
 
 			fakeBoyfriend:update(dt)
-			weeks.syncCamera(fakeBoyfriend, 0, 0)
+			weeks.syncCamera(fakeBoyfriend, 50, 30)
 
 			return
 		end
@@ -134,7 +128,7 @@ weeks[1] = {
 		enemyFrameTimer = enemyFrameTimer + 24 * dt
 
 		if not voices:isPlaying() then
-			if storyMode and songNum < 3 then
+			if storyMode and songNum < 2 then -- Thorns is broken
 				songNum = songNum + 1
 			else
 				graphics.fadeOut(1, weeks[1].stop)

@@ -27,8 +27,8 @@ local weekIDs = {
 local weekSongs = {
 	{
 		"Senpai",
-		"Roses",
-		"Thorns"
+		"Roses"
+		-- "Thorns" -- Broken
 	}
 }
 local difficultyStrs = {
@@ -50,7 +50,7 @@ menu = {
 
 		titleBG.x, titleBG.y = 160, 100
 
-		girlfriendTitle.x, girlfriendTitle.y = 160, 90
+		girlfriendTitle.x, girlfriendTitle.y = 160, 80
 
 		music:setLooping(true)
 		music:play()
