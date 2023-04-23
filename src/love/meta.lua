@@ -1,5 +1,5 @@
 --[[----------------------------------------------------------------------------
-This file is part of Friday Night Funkin' Rewritten
+Friday Night Funkin' Rewritten v1.1.0 beta 2
 
 Copyright (C) 2021  HTV04
 
@@ -16,12 +16,10 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
-local metaFile = require "meta" -- this is needed cause conf.lua gets loaded before main.lua
+version = "v1.1.1 beta 3"
 
-function love.conf(t)
-	t.identity = "funkin-rewritten"
-	t.version = "11.3"
-	--t.console = true
-
-	t.window.title = "Friday Night Funkin' Rewritten " .. version
-end
+credits = version .. [[
+    Developed by HTV04
+    Original game by Funkin' Crew, in association with Newgrounds
+    Thanks to all Github contributors! <3
+]]
