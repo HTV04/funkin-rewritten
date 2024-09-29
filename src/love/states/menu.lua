@@ -16,7 +16,6 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 ------------------------------------------------------------------------------]]
-
 local leftFunc, rightFunc, confirmFunc, backFunc, drawFunc
 
 local menuState
@@ -32,13 +31,14 @@ local logo = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/l
 
 local girlfriendTitle = love.filesystem.load("sprites/menu/girlfriend-title.lua")()
 
-local menuNames = {
+local menuNames = { -- all of the menu items are here
 	"Story Mode",
 	"Freeplay",
+	"Credits",
 	"Options"
 }
 
-local weekMeta = {
+local weekMeta = { -- meta for all of the weeks (switches between them in menu)
 	{
 		"Tutorial",
 		{
@@ -105,11 +105,13 @@ local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
 local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
-local function switchMenu(menu)
-	if menu == 4 then
+local function switchMenu(menu) -- actual code for the menu options
+	if menu == 5 then
 		love.window.showMessageBox("lol", "Not implemented yet :P")
 
 		return switchMenu(1)
+	elseif menu == 4 then
+		love.window.showMessageBox("Credits", credits)
 	elseif menu == 3 then
 		function leftFunc()
 			if menuState == 3 then
@@ -270,21 +272,13 @@ local function switchMenu(menu)
 			graphics.setColor(1, 1, 0)
 			love.graphics.printf("< " .. menuNames[menuNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
 			graphics.setColor(1, 1, 1)
-
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Exit", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Exit", -640, 350, 1280, "center", nil, 1, 1)
-			end
 		end
 	end
 
 	menuState = 1
 end
 
-logo.x, logo.y = -350, -125
-
-girlfriendTitle.x, girlfriendTitle.y = 300, -75
+logo.x, logo.y = 0, -55
 
 music:setLooping(true)
 
@@ -338,15 +332,13 @@ return {
 
 				logo:draw()
 
-				girlfriendTitle:draw()
-
 				love.graphics.printf(
 					"v1.1.0 beta 2\n" ..
 					"Developed by HTV04\n\n" ..
 					"Original game by Funkin' Crew, in association with Newgrounds",
-					-525,
-					90,
-					450,
+					0,
+					0,
+					0,
 					"right",
 					nil,
 					1,
