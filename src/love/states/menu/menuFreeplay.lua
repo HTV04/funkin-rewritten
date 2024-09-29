@@ -28,9 +28,7 @@ local songNum, songAppend
 local songDifficulty = 2
 
 local titleBG = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/title-bg")))
-local logo = graphics.newImage(love.graphics.newImage(graphics.imagePath("menu/logo")))
 
-local girlfriendTitle = love.filesystem.load("sprites/menu/girlfriend-title.lua")()
 
 local menuNames = {
 	"Story Mode",
@@ -103,7 +101,6 @@ local difficultyStrs = {
 local selectSound = love.audio.newSource("sounds/menu/select.ogg", "static")
 local confirmSound = love.audio.newSource("sounds/menu/confirm.ogg", "static")
 
-local music = love.audio.newSource("music/menu/menu.ogg", "stream")
 
 local function switchMenu(menu)
 	if menu == 4 then
@@ -111,6 +108,8 @@ local function switchMenu(menu)
 
 		return switchMenu(1)
 	elseif menu == 3 then
+		
+	elseif menu == 2 then
 		function leftFunc()
 			if menuState == 3 then
 				songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
@@ -131,7 +130,6 @@ local function switchMenu(menu)
 		end
 		function confirmFunc()
 			if menuState == 3 then
-				music:stop()
 
 				status.setLoading(true)
 
@@ -179,114 +177,82 @@ local function switchMenu(menu)
 			end
 			graphics.setColor(1, 1, 1)
 
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
-			end
-		end
-	elseif menu == 2 then
-		weekNum = 1
-		songNum = 1
-
-		function leftFunc()
-			if menuState == 2 then
-				songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
-			else
-				weekNum = (weekNum > 1) and weekNum - 1 or #weekMeta
-			end
-		end
-		function rightFunc()
-			if menuState == 2 then
-				songDifficulty = (songDifficulty < 3) and songDifficulty + 1 or 1
-			else
-				weekNum = (weekNum < #weekMeta) and weekNum + 1 or 1
-			end
-		end
-		function confirmFunc()
-			if menuState == 2 then
-				music:stop()
-
-				status.setLoading(true)
-
-				graphics.fadeOut(
-					0.5,
-					function()
-						songAppend = difficultyStrs[songDifficulty]
-
-						storyMode = true
-
-						Gamestate.switch(weekData[weekNum], songNum, songAppend)
-
-						status.setLoading(false)
-					end
-				)
-			else
-				menuState = menuState + 1
-			end
-		end
-		function backFunc()
-			if menuState == 1 then
-				switchMenu(1)
-			else
-				menuState = menuState - 1
-			end
-		end
-		function drawFunc()
-			graphics.setColor(1, 1, 0)
-			if menuState == 2 then
-				if songDifficulty == 3 then
-					love.graphics.printf("Choose a difficulty: < Hard >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				elseif songDifficulty == 2 then
-					love.graphics.printf("Choose a difficulty: < Normal >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				else
-					love.graphics.printf("Choose a difficulty: < Easy >", -640, 285, 853, "center", nil, 1.5, 1.5)
-				end
-			else
-				love.graphics.printf("Choose a week: < " .. weekMeta[weekNum][1] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
-			end
-			graphics.setColor(1, 1, 1)
-
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Back", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Back", -640, 350, 1280, "center", nil, 1, 1)
-			end
-		end
-	else
-		function leftFunc()
-			menuNum = (menuNum > 1) and menuNum - 1 or #menuNames
-		end
-		function rightFunc()
-			menuNum = (menuNum < #menuNames) and menuNum + 1 or 1
-		end
-		function confirmFunc()
-			switchMenu(menuNum + 1)
-		end
-		function backFunc()
-			graphics.fadeOut(0.5, love.event.quit)
-		end
-		function drawFunc()
-			graphics.setColor(1, 1, 0)
-			love.graphics.printf("< " .. menuNames[menuNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
-			graphics.setColor(1, 1, 1)
-
-			if input:getActiveDevice() == "joy" then
-				love.graphics.printf("Left Stick/D-Pad: Select | A: Confirm | B: Exit", -640, 350, 1280, "center", nil, 1, 1)
-			else
-				love.graphics.printf("Arrow Keys: Select | Enter: Confirm | Escape: Exit", -640, 350, 1280, "center", nil, 1, 1)
-			end
 		end
 	end
 
 	menuState = 1
 end
 
-logo.x, logo.y = -350, -125
+function leftFunc()
+	if menuState == 3 then
+		songDifficulty = (songDifficulty > 1) and songDifficulty - 1 or 3
+	elseif menuState == 2 then
+		songNum = (songNum > 1) and songNum - 1 or #weekMeta[weekNum][2]
+	else
+		weekNum = (weekNum > 1) and weekNum - 1 or #weekMeta
+	end
+end
+function rightFunc()
+	if menuState == 3 then
+		songDifficulty = (songDifficulty < 3) and songDifficulty + 1 or 1
+	elseif menuState == 2 then
+		songNum = (songNum < #weekMeta[weekNum][2]) and songNum + 1 or 1
+	else
+		weekNum = (weekNum < #weekMeta) and weekNum + 1 or 1
+	end
+end
+function confirmFunc()
+	if menuState == 3 then
 
-girlfriendTitle.x, girlfriendTitle.y = 300, -75
+		status.setLoading(true)
 
-music:setLooping(true)
+		graphics.fadeOut(
+			0.5,
+			function()
+				menu:musicStop()
+				
+				songAppend = difficultyStrs[songDifficulty]
+
+				storyMode = false
+
+				Gamestate.switch(weekData[weekNum], songNum, songAppend)
+
+				status.setLoading(false)
+			end
+		)
+	else
+		if menuState == 1 then
+			songNum = 1
+		end
+
+		menuState = menuState + 1
+	end
+end
+function backFunc()
+	if menuState == 1 then
+		switchMenu(1)
+	else
+		menuState = menuState - 1
+	end
+end
+
+function drawFunc()
+	graphics.setColor(1, 1, 0)
+	if menuState == 3 then
+		if songDifficulty == 3 then
+			love.graphics.printf("Choose a difficulty: < Hard >", -640, 285, 853, "center", nil, 1.5, 1.5)
+		elseif songDifficulty == 2 then
+			love.graphics.printf("Choose a difficulty: < Normal >", -640, 285, 853, "center", nil, 1.5, 1.5)
+		else
+			love.graphics.printf("Choose a difficulty: < Easy >", -640, 285, 853, "center", nil, 1.5, 1.5)
+		end
+	elseif menuState == 2 then
+		love.graphics.printf("Choose a song: < " .. weekMeta[weekNum][2][songNum] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
+	else
+		love.graphics.printf("Choose a week: < " .. weekMeta[weekNum][1] .. " >", -640, 285, 853, "center", nil, 1.5, 1.5)
+	end
+	graphics.setColor(1, 1, 1)
+end
 
 return {
 	enter = function(self, previous)
@@ -300,11 +266,9 @@ return {
 		graphics.setFade(0)
 		graphics.fadeIn(0.5)
 
-		music:play()
 	end,
 
 	update = function(self, dt)
-		girlfriendTitle:update(dt)
 
 		if not graphics.isFading() then
 			if input:pressed("left") then
@@ -322,7 +286,12 @@ return {
 			elseif input:pressed("back") then
 				audio.playSound(selectSound)
 
-				backFunc()
+				if menuState == 1 then
+					Gamestate.switch(menuSelect)
+				else
+					menuState = menuState - 1
+				end
+				
 			end
 		end
 	end,
@@ -336,30 +305,12 @@ return {
 			love.graphics.push()
 				love.graphics.scale(cam.sizeX, cam.sizeY)
 
-				logo:draw()
-
-				girlfriendTitle:draw()
-
-				love.graphics.printf(
-					"v1.1.0 beta 2\n" ..
-					"Developed by HTV04\n\n" ..
-					"Original game by Funkin' Crew, in association with Newgrounds",
-					-525,
-					90,
-					450,
-					"right",
-					nil,
-					1,
-					1
-				)
-
 				drawFunc()
 			love.graphics.pop()
 		love.graphics.pop()
 	end,
 
 	leave = function(self)
-		music:stop()
 
 		Timer.clear()
 	end

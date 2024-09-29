@@ -86,11 +86,8 @@ return {
 		boyfriendIcon.sizeX = -1
 
 		countdownFade = {}
-		countdown = love.filesystem.load("sprites/countdown.lua")()
+		countdown = love.filesystem.load("sprites/pixel/countdown.lua")()
 
-		-- Temporary
-		countdown.sizeX = 0.2
-		countdown.sizeY = 0.2
 	end,
 
 	load = function(self)
@@ -518,7 +515,7 @@ return {
 							{0},
 							"linear",
 							function()
-								countdown:animate("go")
+								countdown:animate("date")
 								countdownFade[1] = 1
 								audio.playSound(sounds.countdown.go)
 								Timer.tween(
